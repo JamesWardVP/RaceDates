@@ -23,7 +23,9 @@
   - **Gates/prices** — calendar pages don't publish them; all scraped events show TBC. Would need per-event page scraping (later refinement).
   - Adapter pattern to copy: `Get-BtccEvents` in refresh-events.ps1 — fetch page, regex the round blocks, `Parse-DayMonth`/`Parse-DateRange` for dates, `Find-Track` venue guard, emit ordered hashtables, `Merge-SeriesEvents "<id>" (...)` in main. Global dedupe by event id happens before the sorted write.
   - ⚠️ PS 5.1 gotchas (keep in mind for new adapters): scripts must stay pure ASCII (em-dash via `[char]0x2014`); don't wrap `ConvertFrom-Json` in `@()`; write JSON with `ConvertTo-Json -InputObject`.
-- ⏳ **Part 3 todo: GitHub Actions workflow** (`.github/workflows/refresh-data.yml`, cron schedule, runs both refresh scripts and commits changed JSON). **James has already created a blank GitHub repo for the project (2026-07-20)** — ask him for the repo URL when ready to `git init`, add remote, push, and set up the workflow + Pages hosting.
+- ✅ **Part 3 done (v0.4.3): repo live at github.com/JamesWardVP/RaceDates** with daily refresh workflow + Pages deploy workflow. Local commits push via git credential manager (no gh CLI installed).
+  - ⏳ **BLOCKED on James:** first Pages deploy failed at "Configure Pages" — he must set repo **Settings → Pages → Source = "GitHub Actions"** once. Then re-run the failed "Deploy to GitHub Pages" workflow (or push any commit). Site will be at https://jameswardvp.github.io/RaceDates/ — verify all pages + data load there once up.
+  - Remember to commit + push the logs/ updates that record this (they were written after the initial push).
 
 After Phase 2 (in order):
 - **Phase 5 — Admin page**: password gate, add-track form, auto-enrichment of new venues (design depends on what the Phase 2 pipeline looks like).

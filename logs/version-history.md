@@ -9,6 +9,14 @@ Newest entries at the top. When work listed in `current-plan.md` is completed, i
 
 ---
 
+## 0.4.3 — 2026-07-20
+- **Phase 2 (part 3) — Project on GitHub with automated refresh + deploy workflows:**
+  - Repo initialised and pushed to https://github.com/JamesWardVP/RaceDates (branch `main`, full history starts at v0.4.2).
+  - `.github/workflows/refresh-data.yml` — daily (05:17 UTC) + manual: runs both PowerShell refresh scripts on ubuntu (`pwsh`), commits `main/data/*.json` only when changed; a data commit automatically triggers redeployment.
+  - `.github/workflows/deploy-pages.yml` — deploys the `main/` folder to GitHub Pages on every push.
+  - Pipeline scripts switched to forward-slash paths so they run on both Windows (dev) and the Linux runners.
+  - ⚠️ First Pages deploy failed at "Configure Pages": the workflow token cannot enable Pages on the repo. **James needs to set repo Settings → Pages → Source = "GitHub Actions" once**, then the next push/re-run deploys. Site URL will be https://jameswardvp.github.io/RaceDates/
+
 ## 0.4.2 — 2026-07-20
 - **Phase 2 (part 2 continued) — four more calendar adapters + 8 new venues. The site now runs almost entirely on live scraped data (43 of 45 events).**
   - **BSB adapter** (britishsuperbike.com/calendar): all 10 UK 2026 rounds; Assen correctly skipped by the venue guard; Test days ignored; per-round "Book Tickets" links captured (absolute URLs only — past rounds swap the button for a relative Results link).
