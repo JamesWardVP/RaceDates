@@ -293,9 +293,17 @@ foreach ($track in $tracks) {
 
 # ------------------------------------------------------------- discoveries ---
 
+# Venues flagged via the admin page's review flow stay out of the
+# discovered list permanently.
+$reviewPath = "$root/main/data/review-tracks.json"
+$reviewQids = @{}
+if (Test-Path $reviewPath) {
+    foreach ($r in (Get-Content $reviewPath -Raw -Encoding UTF8 | ConvertFrom-Json)) { $reviewQids[$r.qid] = $true }
+}
+
 $discovered = @(
     $wdItems.Values |
-    Where-Object { -not $matchedQids.ContainsKey($_.qid) -and $null -ne $_.lat } |
+    Where-Object { -not $matchedQids.ContainsKey($_.qid) -and $null -ne $_.lat -and -not $reviewQids.ContainsKey($_.qid) } |
     Sort-Object name |
     ForEach-Object {
         [ordered]@{

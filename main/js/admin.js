@@ -42,8 +42,8 @@
 
   /* ---------- state ---------- */
 
-  let tracks = [], series = [], events = [], discovered = [];
-  let dirtyTracks = false, dirtyEvents = false;
+  let tracks = [], series = [], events = [], discovered = [], reviewList = [];
+  let dirtyTracks = false, dirtyEvents = false, dirtyReview = false;
   const staged = [];
 
   async function showApp() {
@@ -55,9 +55,15 @@
     try {
       discovered = await (await fetch("data/discovered-tracks.json")).json();
     } catch { discovered = []; }
-    $("discovered-count").textContent = `(${discovered.length})`;
+    try {
+      reviewList = await (await fetch("data/review-tracks.json")).json();
+    } catch { reviewList = []; }
+    /* Hide anything already flagged for review or already on the site */
+    discovered = discovered.filter((dv) =>
+      !reviewList.some((r) => r.qid === dv.qid) && !tracks.some((t) => t.wikidata === dv.qid));
     renderTrackForm({});
     renderDiscovered();
+    renderReview();
     renderEventForm();
     renderStaged();
   }
@@ -67,7 +73,7 @@
   document.querySelectorAll(".admin-tabs .mode-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".admin-tabs .mode-btn").forEach((b) => b.classList.toggle("active", b === btn));
-      ["add-track", "discovered", "add-event", "publish"].forEach((t) => {
+      ["add-track", "discovered", "review", "add-event", "publish"].forEach((t) => {
         $(`tab-${t}`).hidden = t !== btn.dataset.tab;
       });
     });
@@ -223,10 +229,15 @@
     const imageName = data.image ? decodeURIComponent(data.image.split("FilePath/")[1] || "") : "";
     const text = `${data.name} ${data.description || ""} ${summary} ${imageName}`;
     /* Defunct venues: closure claims, "former/closed" wording, or a Wikipedia
-       intro written in the past tense ("…was a motor racing circuit"). */
-    const pastTense = /\bwas\s+(a|an|the)\b/i.test(summary.split(".")[0] || "");
-    if (data.defunct || pastTense || /former|closed|defunct|demolish|disused/i.test(`${data.description} ${summary}`)) {
-      statusEl.textContent = "Looks like a former/closed venue — use Review to add it deliberately.";
+       intro written in the past tense ("…was a motor racing circuit").
+       Flagged venues move to the Review tab and leave Discovered for good. */
+    const reasons = [];
+    if (data.defunct) reasons.push("Wikidata records a closure date");
+    if (/\bwas\s+(a|an|the)\b/i.test(summary.split(".")[0] || "")) reasons.push("Wikipedia describes it in the past tense");
+    if (/former|closed|defunct|demolish|disused/i.test(`${data.description} ${summary}`)) reasons.push('described as former/closed');
+    if (reasons.length) {
+      flagForReview(dv, reasons.join("; "));
+      statusEl.textContent = "Flagged as a possible dead track — moved to the Review tab.";
       return false;
     }
 
@@ -249,6 +260,7 @@
     });
     dirtyTracks = true;
     staged.push(`New track (auto): ${data.name}`);
+    clearVenueLists(data.wikidata);
     renderStaged();
     renderEventForm();
     statusEl.textContent = "Added ✓ — staged for publish.";
@@ -317,15 +329,83 @@
     });
     dirtyTracks = true;
     staged.push(`New track: ${v("name")}`);
+    clearVenueLists(v("wikidata"));
     renderStaged();
     renderTrackForm({});
     renderEventForm();
     msg.textContent = "Staged. Publish when ready.";
   }
 
+  /* ---------- review flow (possible dead tracks) ---------- */
+
+  function flagForReview(dv, reason) {
+    reviewList.push({ ...dv, reason, flagged: new Date().toISOString().slice(0, 10) });
+    discovered = discovered.filter((d) => d.qid !== dv.qid);
+    dirtyReview = true;
+    staged.push(`Flagged for review: ${dv.name}`);
+    renderDiscovered();
+    renderReview();
+    renderStaged();
+  }
+
+  /* Called when a flagged/discovered venue actually gets staged as a track */
+  function clearVenueLists(qid) {
+    if (!qid) return;
+    if (reviewList.some((r) => r.qid === qid)) {
+      reviewList = reviewList.filter((r) => r.qid !== qid);
+      dirtyReview = true;
+      renderReview();
+    }
+    if (discovered.some((d) => d.qid === qid)) {
+      discovered = discovered.filter((d) => d.qid !== qid);
+      renderDiscovered();
+    }
+  }
+
+  function renderReview() {
+    $("review-count").textContent = reviewList.length ? `(${reviewList.length})` : "";
+    $("review-list").innerHTML = reviewList.length ? `
+      <ul class="admin-results">
+        ${reviewList.map((rv, i) => `
+          <li>
+            <button type="button" class="btn btn-outline" data-review="${i}">Add anyway</button>
+            <button type="button" class="btn btn-outline" data-unflag="${i}">Unflag</button>
+            ${rv.image ? `<img class="admin-thumb" src="${rv.image}" alt="" loading="lazy">` : '<span class="admin-thumb admin-thumb-empty">—</span>'}
+            <strong>${rv.name}</strong>
+            <span class="admin-hint">${rv.reason || "flagged"} · ${rv.flagged || ""}</span>
+          </li>`).join("")}
+      </ul>` : '<p class="admin-hint">Nothing flagged.</p>';
+
+    $("review-list").querySelectorAll("button[data-review]").forEach((b) => {
+      b.addEventListener("click", () => {
+        const rv = reviewList[Number(b.dataset.review)];
+        document.querySelector('[data-tab="add-track"]').click();
+        useEntity(rv.qid, {
+          name: rv.name, lat: rv.lat, lng: rv.lng, opened: rv.opened,
+          capacity: rv.capacity, image: rv.image, website: rv.website, wikipedia: rv.wikipedia,
+        });
+      });
+    });
+    $("review-list").querySelectorAll("button[data-unflag]").forEach((b) => {
+      b.addEventListener("click", () => {
+        const rv = reviewList[Number(b.dataset.unflag)];
+        reviewList = reviewList.filter((r) => r.qid !== rv.qid);
+        const { reason, flagged, ...dv } = rv;
+        discovered.push(dv);
+        discovered.sort((a, b) => a.name.localeCompare(b.name));
+        dirtyReview = true;
+        staged.push(`Unflagged: ${rv.name}`);
+        renderDiscovered();
+        renderReview();
+        renderStaged();
+      });
+    });
+  }
+
   /* ---------- discovered venues ---------- */
 
   function renderDiscovered() {
+    $("discovered-count").textContent = discovered.length ? `(${discovered.length})` : "";
     $("discovered-list").innerHTML = discovered.length ? `
       <ul class="admin-results">
         ${discovered.map((dv, i) => `
@@ -447,7 +527,8 @@
       const message = `Admin: ${staged.join("; ").slice(0, 200)}`;
       if (dirtyTracks) await commitFile("main/data/tracks.json", JSON.stringify(tracks, null, 2), message, token);
       if (dirtyEvents) await commitFile("main/data/events.json", JSON.stringify(events, null, 2), message, token);
-      dirtyTracks = dirtyEvents = false;
+      if (dirtyReview) await commitFile("main/data/review-tracks.json", JSON.stringify(reviewList, null, 2), message, token);
+      dirtyTracks = dirtyEvents = dirtyReview = false;
       staged.length = 0;
       renderStaged();
       msg.textContent = "Committed ✓ — the site redeploys automatically in about a minute.";
@@ -462,6 +543,7 @@
     const files = [];
     if (dirtyTracks) files.push(["tracks.json", JSON.stringify(tracks, null, 2)]);
     if (dirtyEvents) files.push(["events.json", JSON.stringify(events, null, 2)]);
+    if (dirtyReview) files.push(["review-tracks.json", JSON.stringify(reviewList, null, 2)]);
     files.forEach(([name, content]) => {
       const a = document.createElement("a");
       a.href = URL.createObjectURL(new Blob([content], { type: "application/json" }));

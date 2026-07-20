@@ -9,6 +9,13 @@ Newest entries at the top. When work listed in `current-plan.md` is completed, i
 
 ---
 
+## 0.6.2 — 2026-07-20
+- **Admin "Review" tab for possible dead tracks.** When Auto-add refuses a venue as likely closed/defunct, it now moves to a new Review tab (showing the reason — e.g. "Wikipedia describes it in the past tense" — and the flag date) and disappears from Discovered permanently:
+  - Flags persist in a new committed data file, `main/data/review-tracks.json` (published via the existing Publish tab / download fallback), and the nightly pipeline excludes flagged venues when regenerating the discovered list — so they never resurface.
+  - Review tab actions: **Add anyway** (opens the editable form pre-filled) and **Unflag** (returns the venue to Discovered).
+  - Staging a track from either list automatically clears it from both.
+  - Verified in browser: Battersea flag → Review (43→42 in Discovered) → Unflag → back to 43; no console errors.
+
 ## 0.6.1 — 2026-07-20
 - **Discovered venues now add with ONE click and zero manual input.** Each entry in the admin Discovered tab has an **Auto-add** button that: pulls the full Wikidata record, finds a photo (P18 or Commons search), reverse-geocodes town/county/country, **infers venue type and race types** from the entity description + photo filename (e.g. Oliver's Mount correctly comes out as a motorbike circuit from its "Motorcycle racing" photo), writes the summary from the venue's own Wikipedia intro (with a generated fallback), and stages the finished track. "Review" still opens the editable form for manual control.
 - **Defunct-venue guard:** venues with a Wikidata closure date (P576/P3999), "former/closed/defunct" wording, or a past-tense Wikipedia intro ("…**was** a street circuit") are refused by Auto-add and directed to Review — verified with Battersea Park and Brooklands (refused) vs Oliver's Mount (added).

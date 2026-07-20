@@ -32,6 +32,7 @@
       <div class="admin-tabs">
         <button class="mode-btn active" data-tab="add-track">Add Track</button>
         <button class="mode-btn" data-tab="discovered">Discovered <span id="discovered-count"></span></button>
+        <button class="mode-btn" data-tab="review">Review <span id="review-count"></span></button>
         <button class="mode-btn" data-tab="add-event">Add Event</button>
         <button class="mode-btn" data-tab="publish">Publish <span id="staged-count"></span></button>
       </div>
@@ -51,6 +52,12 @@
         <h2>Discovered Venues</h2>
         <p class="admin-hint">UK venues the data pipeline found on Wikidata that aren't on the site yet (includes historic circuits — accept only ones that belong). <strong>Auto-add</strong> pulls everything — location, photo, race types, a summary from Wikipedia — and stages the track with no manual input (venues that look closed/former are refused and need Review). <strong>Review</strong> opens the editable form instead. Once committed, the nightly refresh removes the venue from this list automatically.</p>
         <div id="discovered-list"></div>
+      </section>
+
+      <section class="admin-panel card" id="tab-review" hidden>
+        <h2>Flagged for Review</h2>
+        <p class="admin-hint">Venues Auto-add refused because they look closed or defunct. They stay out of the Discovered tab permanently (publish to make the flags stick beyond this session). <strong>Add anyway</strong> opens the editable form; <strong>Unflag</strong> sends one back to Discovered.</p>
+        <div id="review-list"></div>
       </section>
 
       <section class="admin-panel card" id="tab-add-event" hidden>
