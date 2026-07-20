@@ -9,6 +9,11 @@ Newest entries at the top. When work listed in `current-plan.md` is completed, i
 
 ---
 
+## 0.5.0 — 2026-07-20
+- **Phase 2 COMPLETE — site live and self-updating.** James enabled Pages (Source = GitHub Actions) and the deploy succeeded.
+  - Live site: **https://jameswardvp.github.io/RaceDates/** — all pages and data files verified in the browser (hero photo loads, races page serves the 27 upcoming events from live data).
+  - The full automation loop now runs without any human input: daily GitHub Action → Wikidata + series-site scrapes → data commit → automatic redeploy.
+
 ## 0.4.3 — 2026-07-20
 - **Phase 2 (part 3) — Project on GitHub with automated refresh + deploy workflows:**
   - Repo initialised and pushed to https://github.com/JamesWardVP/RaceDates (branch `main`, full history starts at v0.4.2).

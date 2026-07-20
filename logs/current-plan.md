@@ -9,9 +9,13 @@
 
 ## Work currently underway
 
-**Status: All visitor-facing pages complete through v0.3.1. Phase 2 (automatic data pipeline) is now underway — see worklog below.**
+**Status: Phase 2 COMPLETE (v0.5.0). The site is live at https://jameswardvp.github.io/RaceDates/ and updates itself daily. Next: Phase 5 (admin page).**
 
-### Phase 2 worklog (in progress)
+Phase 5 design notes (to plan properly when started):
+- Password gate on a static site can't be truly secure client-side; realistic approach — admin page is a *authoring tool*: after a password prompt (deterrent only), it lets us add/edit a track (or promote one from `data/discovered-tracks.json`), auto-enriches it in-browser via the Wikidata APIs (same logic as refresh-tracks.ps1), then produces the updated JSON to commit (download file, or GitHub API commit with a personal access token pasted at use-time — never stored).
+- The `discovered-tracks.json` review flow is the future-proofing centrepiece: list candidates, one click to accept → full track entry created.
+
+### Phase 2 worklog (COMPLETE — kept brief for reference)
 - Goal: automatic refresh of tracks/events with no manual input (Wikidata for track facts + images/photos, per-series calendars). Replaces the seed JSON's `verified: false`/`sample: true` flags, fills the photo placeholders on track pages and cover images on the tracks grid.
 - Pipeline language: **PowerShell** — the only runtime on this machine, and GitHub Actions' ubuntu runners include `pwsh`, so the same scripts run locally and in CI.
 - Deployment note: `Releases/` upload is the interim path; the scheduled-refresh half of the pipeline needs the repo pushed to GitHub (git init + remote) before a GitHub Actions workflow can run it — not done yet.
@@ -23,9 +27,7 @@
   - **Gates/prices** — calendar pages don't publish them; all scraped events show TBC. Would need per-event page scraping (later refinement).
   - Adapter pattern to copy: `Get-BtccEvents` in refresh-events.ps1 — fetch page, regex the round blocks, `Parse-DayMonth`/`Parse-DateRange` for dates, `Find-Track` venue guard, emit ordered hashtables, `Merge-SeriesEvents "<id>" (...)` in main. Global dedupe by event id happens before the sorted write.
   - ⚠️ PS 5.1 gotchas (keep in mind for new adapters): scripts must stay pure ASCII (em-dash via `[char]0x2014`); don't wrap `ConvertFrom-Json` in `@()`; write JSON with `ConvertTo-Json -InputObject`.
-- ✅ **Part 3 done (v0.4.3): repo live at github.com/JamesWardVP/RaceDates** with daily refresh workflow + Pages deploy workflow. Local commits push via git credential manager (no gh CLI installed).
-  - ⏳ **BLOCKED on James:** first Pages deploy failed at "Configure Pages" — he must set repo **Settings → Pages → Source = "GitHub Actions"** once. Then re-run the failed "Deploy to GitHub Pages" workflow (or push any commit). Site will be at https://jameswardvp.github.io/RaceDates/ — verify all pages + data load there once up.
-  - Remember to commit + push the logs/ updates that record this (they were written after the initial push).
+- ✅ **Part 3 done (v0.4.3–v0.5.0): repo live at github.com/JamesWardVP/RaceDates**, Pages enabled by James, **site live and verified at https://jameswardvp.github.io/RaceDates/**. Daily refresh → commit → redeploy loop is fully automated. Local commits push via git credential manager (no gh CLI installed).
 
 After Phase 2 (in order):
 - **Phase 5 — Admin page**: password gate, add-track form, auto-enrichment of new venues (design depends on what the Phase 2 pipeline looks like).
@@ -82,7 +84,7 @@ A website about UK motorsport tracks and races (circuit, drag, rally, rallycross
 ## Roadmap
 
 - ~~**Phase 1 — Foundation**~~ ✅ done, v0.1.0.
-- **Phase 2 — Data (IN PROGRESS):** research + build the automatic data pipeline (tracks from Wikipedia/Wikidata; race calendars per series). Seed dataset done in Phase 1.
+- ~~**Phase 2 — Data**~~ ✅ done, v0.5.0 (pipelines + GitHub automation + live hosting; minor loose ends listed in the worklog).
 - ~~**Phase 3 — Core pages**~~ ✅ done, v0.2.0.
 - ~~**Phase 4 — Map page**~~ ✅ done, v0.3.0.
 - **Phase 5 — Admin page:** password gate, add-track flow, auto-enrichment of new tracks.
