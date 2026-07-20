@@ -14,11 +14,70 @@
   <div class="container">
     <div class="page-title">
       <h1>Admin</h1>
-      <p>Password-protected area for adding new tracks.</p>
+      <p>Add tracks and events. New tracks are auto-enriched from Wikidata, Wikimedia Commons and OpenStreetMap.</p>
     </div>
-    <div class="placeholder">Admin page coming in Phase 5 — password gate, add-track form and automatic enrichment of new venues.</div>
+
+    <!-- Password gate (deterrent only — this is a static site, so treat the
+         password as "keep honest people out", not real security) -->
+    <div id="admin-lock" class="card admin-panel">
+      <label class="filter-label" for="admin-password">Password</label>
+      <div style="display:flex;gap:0.6rem;flex-wrap:wrap">
+        <input class="filter-input" id="admin-password" type="password" autocomplete="off">
+        <button class="btn" id="admin-unlock">Unlock</button>
+      </div>
+      <p class="admin-hint" id="admin-lock-msg"></p>
+    </div>
+
+    <div id="admin-app" hidden>
+      <div class="admin-tabs">
+        <button class="mode-btn active" data-tab="add-track">Add Track</button>
+        <button class="mode-btn" data-tab="discovered">Discovered <span id="discovered-count"></span></button>
+        <button class="mode-btn" data-tab="add-event">Add Event</button>
+        <button class="mode-btn" data-tab="publish">Publish <span id="staged-count"></span></button>
+      </div>
+
+      <section class="admin-panel card" id="tab-add-track">
+        <h2>Add a Track</h2>
+        <p class="admin-hint">Type a venue name and search — coordinates, photo, website, opening year and location details are filled in automatically where available. Everything stays editable before staging.</p>
+        <div style="display:flex;gap:0.6rem;flex-wrap:wrap">
+          <input class="filter-input" id="wd-search" type="search" placeholder="Venue name, e.g. Three Sisters Circuit">
+          <button class="btn" id="wd-search-btn">Search</button>
+        </div>
+        <div id="wd-results"></div>
+        <form id="track-form" class="admin-form" autocomplete="off"></form>
+      </section>
+
+      <section class="admin-panel card" id="tab-discovered" hidden>
+        <h2>Discovered Venues</h2>
+        <p class="admin-hint">UK venues the data pipeline found on Wikidata that aren't on the site yet (includes historic circuits — accept only ones that belong). "Use" pre-fills the Add Track form; once committed, the nightly refresh removes the venue from this list automatically.</p>
+        <div id="discovered-list"></div>
+      </section>
+
+      <section class="admin-panel card" id="tab-add-event" hidden>
+        <h2>Add an Event</h2>
+        <p class="admin-hint">For one-off events or series without a scraper yet. Scraped series (BTCC, BSB, British GT, Hillclimb, Santa Pod) are replaced by the nightly refresh — manual events for those series will be overwritten.</p>
+        <form id="event-form" class="admin-form" autocomplete="off"></form>
+      </section>
+
+      <section class="admin-panel card" id="tab-publish" hidden>
+        <h2>Publish Changes</h2>
+        <div id="staged-list"><p class="admin-hint">Nothing staged yet.</p></div>
+        <div id="publish-controls" hidden>
+          <hr class="admin-rule">
+          <p class="admin-hint">Committing pushes the updated data to GitHub, which redeploys the live site automatically (about a minute). The token is used only for these requests and never stored — a fine-grained token with <em>Contents: read &amp; write</em> on the RaceDates repo is enough.</p>
+          <label class="filter-label" for="gh-token">GitHub token</label>
+          <div style="display:flex;gap:0.6rem;flex-wrap:wrap">
+            <input class="filter-input" id="gh-token" type="password" autocomplete="off">
+            <button class="btn" id="commit-btn">Commit to GitHub</button>
+            <button class="btn btn-outline" id="download-btn">Download files instead</button>
+          </div>
+          <p class="admin-hint" id="publish-msg"></p>
+        </div>
+      </section>
+    </div>
   </div>
 
   <script src="js/main.js"></script>
+  <script src="js/admin.js"></script>
 </body>
 </html>

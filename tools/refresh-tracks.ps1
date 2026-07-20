@@ -98,6 +98,49 @@ function Distance-Km($lat1, $lng1, $lat2, $lng2) {
     6371 * 2 * [Math]::Atan2([Math]::Sqrt($a), [Math]::Sqrt(1 - $a))
 }
 
+# Photo fallback: when a venue has no Wikidata image (P18), search Wikimedia
+# Commons — first a TEXT search on the venue name + discipline (finds real
+# venue photos), then a location search that still requires the venue name in
+# the filename (a missing photo is better than a photo of the wrong thing).
+function Format-CommonsUrl([string]$title) {
+    "https://commons.wikimedia.org/wiki/Special:FilePath/" + [System.Uri]::EscapeDataString(($title -replace '^File:', '')) + "?width=900"
+}
+
+function Test-PhotoTitle([string]$title, [string]$coreName) {
+    if ($title -notmatch '\.(jpe?g|png|webp)$') { return $false }
+    if ($title -match 'map|logo|diagram|plan|crest|sign') { return $false }
+    foreach ($word in ($coreName -split ' ' | Where-Object { $_.Length -ge 4 })) {
+        if ($title -match [regex]::Escape($word)) { return $true }
+    }
+    return $false
+}
+
+function Get-CommonsPhoto($track) {
+    $core = Normalize-Name $track.name
+    $discipline = switch ($track.venueType) {
+        "hill-climb" { "hillclimb" }
+        "drag-strip" { "drag racing" }
+        default { "circuit" }
+    }
+    try {
+        $q = [System.Net.WebUtility]::UrlEncode("$core $discipline")
+        $url = "https://commons.wikimedia.org/w/api.php?action=query&list=search&srnamespace=6&srlimit=20&format=json&srsearch=$q"
+        $res = Invoke-RestMethod -Uri $url -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60
+        foreach ($hit in $res.query.search) {
+            if (Test-PhotoTitle $hit.title $core) { return Format-CommonsUrl $hit.title }
+        }
+    } catch { }
+    try {
+        $lat = $track.location.lat; $lng = $track.location.lng
+        $url = "https://commons.wikimedia.org/w/api.php?action=query&list=geosearch&gscoord=$lat%7C$lng&gsradius=900&gsnamespace=6&gslimit=25&format=json"
+        $res = Invoke-RestMethod -Uri $url -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60
+        foreach ($hit in $res.query.geosearch) {
+            if (Test-PhotoTitle $hit.title $core) { return Format-CommonsUrl $hit.title }
+        }
+    } catch { }
+    return $null
+}
+
 $tracks = Get-Content $tracksPath -Raw -Encoding UTF8 | ConvertFrom-Json
 $matchedQids = @{}
 $enriched = 0
@@ -122,6 +165,11 @@ foreach ($track in $tracks) {
 
     if ($best) {
         $matchedQids[$best.qid] = $true
+        # Wikidata coordinates are authoritative over our seeded approximations
+        if ($null -ne $best.lat) {
+            $track.location.lat = [Math]::Round($best.lat, 5)
+            $track.location.lng = [Math]::Round($best.lng, 5)
+        }
         if ($best.image) { $track.image = $best.image }
         if ($best.website -and -not $track.website) { $track.website = $best.website }
         if ($best.opened -and -not $track.opened) { $track.opened = $best.opened }
@@ -189,8 +237,14 @@ foreach ($track in $tracks) {
                 if ($entity.sitelinks -and $entity.sitelinks.enwiki) {
                     $enwiki = "https://en.wikipedia.org/wiki/" + ($entity.sitelinks.enwiki.title -replace " ", "_")
                 }
+                $foundLat = $null; $foundLng = $null
+                if ($coordClaim) {
+                    $cv = $coordClaim[0].mainsnak.datavalue.value
+                    $foundLat = $cv.latitude; $foundLng = $cv.longitude
+                }
                 $found = [pscustomobject]@{
                     qid = $hit.id; name = $hit.label; image = $img; opened = $openedY
+                    lat = $foundLat; lng = $foundLng
                     capacity = if ($claims.P1083) { [int]$claims.P1083[0].mainsnak.datavalue.value.amount.TrimStart("+") } else { $null }
                     website = if ($claims.P856) { $claims.P856[0].mainsnak.datavalue.value } else { $null }
                     article = $enwiki
@@ -201,6 +255,10 @@ foreach ($track in $tracks) {
 
         if ($found) {
             $matchedQids[$found.qid] = $true
+            if ($null -ne $found.lat) {
+                $track.location.lat = [Math]::Round($found.lat, 5)
+                $track.location.lng = [Math]::Round($found.lng, 5)
+            }
             if ($found.image) { $track.image = $found.image }
             if ($found.website -and -not $track.website) { $track.website = $found.website }
             if ($found.opened -and -not $track.opened) { $track.opened = $found.opened }
@@ -217,6 +275,18 @@ foreach ($track in $tracks) {
         }
         else {
             Write-Host ("  NO MATCH {0}" -f $track.name)
+        }
+    }
+}
+
+# Photo fallback pass: any track still without an image gets the nearest
+# suitable Wikimedia Commons photo taken at its location.
+foreach ($track in $tracks) {
+    if (-not $track.image) {
+        $photo = Get-CommonsPhoto $track
+        if ($photo) {
+            $track.image = $photo
+            Write-Host ("  photo    {0}  <- Commons search" -f $track.name.PadRight(32))
         }
     }
 }

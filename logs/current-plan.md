@@ -9,11 +9,14 @@
 
 ## Work currently underway
 
-**Status: Phase 2 COMPLETE (v0.5.0). The site is live at https://jameswardvp.github.io/RaceDates/ and updates itself daily. Next: Phase 5 (admin page).**
+**Status: Phase 5 COMPLETE (v0.6.0) — admin page live with one-name track automation, discovered-venue review, event entry and direct GitHub publishing. Next: Phase 6 (polish & first release to `Releases/` as v1.0.0).**
 
-Phase 5 design notes (to plan properly when started):
-- Password gate on a static site can't be truly secure client-side; realistic approach — admin page is a *authoring tool*: after a password prompt (deterrent only), it lets us add/edit a track (or promote one from `data/discovered-tracks.json`), auto-enriches it in-browser via the Wikidata APIs (same logic as refresh-tracks.ps1), then produces the updated JSON to commit (download file, or GitHub API commit with a personal access token pasted at use-time — never stored).
-- The `discovered-tracks.json` review flow is the future-proofing centrepiece: list candidates, one click to accept → full track entry created.
+Phase 6 checklist (when started):
+- Cross-page click-through test on the live site; mobile/responsive pass (nav wrap, filter bar, admin forms at 375px).
+- Decide whether `Releases/` gets a copy of `main/` per release or a zip; do the v1.0.0 copy + version-history entry.
+- Loose ends worth sweeping: BRX adapter (rallycrossbrx.com), Santa Pod "Ultimate Street Car" parse gap, favicon, per-event page scraping for gates/prices, maybe a 404 page for Pages.
+
+Admin page facts (for future sessions): password is SHA-256-gated in `js/admin.js` (constant `PASSWORD_SHA256`); the password itself was told to James in chat 2026-07-20 and is NOT in the repo — to change it, hash the new password and replace the constant. Publishing uses a fine-grained GitHub token (Contents: read & write on JamesWardVP/RaceDates) pasted at use time.
 
 ### Phase 2 worklog (COMPLETE — kept brief for reference)
 - Goal: automatic refresh of tracks/events with no manual input (Wikidata for track facts + images/photos, per-series calendars). Replaces the seed JSON's `verified: false`/`sample: true` flags, fills the photo placeholders on track pages and cover images on the tracks grid.
@@ -87,5 +90,5 @@ A website about UK motorsport tracks and races (circuit, drag, rally, rallycross
 - ~~**Phase 2 — Data**~~ ✅ done, v0.5.0 (pipelines + GitHub automation + live hosting; minor loose ends listed in the worklog).
 - ~~**Phase 3 — Core pages**~~ ✅ done, v0.2.0.
 - ~~**Phase 4 — Map page**~~ ✅ done, v0.3.0.
-- **Phase 5 — Admin page:** password gate, add-track flow, auto-enrichment of new tracks.
+- ~~**Phase 5 — Admin page**~~ ✅ done, v0.6.0.
 - **Phase 6 — Polish & release:** cross-page testing, responsive/mobile pass, first build copied to `Releases/` as v1.0.0.

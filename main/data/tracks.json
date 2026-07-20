@@ -11,8 +11,8 @@
                          "town":  "Silverstone",
                          "county":  "Northamptonshire",
                          "country":  "England",
-                         "lat":  52.0786,
-                         "lng":  -1.0169
+                         "lat":  52.075,
+                         "lng":  -1.01667
                      },
         "opened":  1948,
         "capacity":  150000,
@@ -36,8 +36,8 @@
                          "town":  "West Kingsdown",
                          "county":  "Kent",
                          "country":  "England",
-                         "lat":  51.3569,
-                         "lng":  0.263
+                         "lat":  51.35667,
+                         "lng":  0.2625
                      },
         "opened":  1950,
         "capacity":  40000,
@@ -61,8 +61,8 @@
                          "town":  "Castle Donington",
                          "county":  "Leicestershire",
                          "country":  "England",
-                         "lat":  52.8306,
-                         "lng":  -1.3756
+                         "lat":  52.82917,
+                         "lng":  -1.375
                      },
         "opened":  1931,
         "capacity":  40000,
@@ -86,8 +86,8 @@
                          "town":  "Little Budworth",
                          "county":  "Cheshire",
                          "country":  "England",
-                         "lat":  53.18,
-                         "lng":  -2.613
+                         "lat":  53.17758,
+                         "lng":  -2.61436
                      },
         "opened":  1953,
         "capacity":  null,
@@ -111,8 +111,8 @@
                          "town":  "Snetterton",
                          "county":  "Norfolk",
                          "country":  "England",
-                         "lat":  52.4636,
-                         "lng":  0.9455
+                         "lat":  52.4665,
+                         "lng":  0.94822
                      },
         "opened":  1953,
         "capacity":  null,
@@ -136,8 +136,8 @@
                          "town":  "Thruxton",
                          "county":  "Hampshire",
                          "country":  "England",
-                         "lat":  51.2079,
-                         "lng":  -1.6089
+                         "lat":  51.21028,
+                         "lng":  -1.60056
                      },
         "opened":  1968,
         "capacity":  null,
@@ -161,8 +161,8 @@
                          "town":  "Louth",
                          "county":  "Lincolnshire",
                          "country":  "England",
-                         "lat":  53.3106,
-                         "lng":  -0.0599
+                         "lat":  53.3089,
+                         "lng":  -0.06306
                      },
         "opened":  1934,
         "capacity":  null,
@@ -187,8 +187,8 @@
                          "town":  "Dunfermline",
                          "county":  "Fife",
                          "country":  "Scotland",
-                         "lat":  56.1305,
-                         "lng":  -3.5081
+                         "lat":  56.12886,
+                         "lng":  -3.50351
                      },
         "opened":  1974,
         "capacity":  null,
@@ -213,8 +213,8 @@
                          "town":  "Dalton-on-Tees",
                          "county":  "North Yorkshire",
                          "country":  "England",
-                         "lat":  54.4554,
-                         "lng":  -1.5556
+                         "lat":  54.45583,
+                         "lng":  -1.56278
                      },
         "opened":  1964,
         "capacity":  null,
@@ -238,8 +238,8 @@
                          "town":  "Ty Croes",
                          "county":  "Anglesey",
                          "country":  "Wales",
-                         "lat":  53.1893,
-                         "lng":  -4.4967
+                         "lat":  53.19004,
+                         "lng":  -4.49766
                      },
         "opened":  1997,
         "capacity":  null,
@@ -262,8 +262,8 @@
                          "town":  "Castle Combe",
                          "county":  "Wiltshire",
                          "country":  "England",
-                         "lat":  51.4926,
-                         "lng":  -2.2151
+                         "lat":  51.4897,
+                         "lng":  -2.2125
                      },
         "opened":  1950,
         "capacity":  null,
@@ -287,8 +287,8 @@
                          "town":  "Kirkby Mallory",
                          "county":  "Leicestershire",
                          "country":  "England",
-                         "lat":  52.5989,
-                         "lng":  -1.3372
+                         "lat":  52.5986,
+                         "lng":  -1.33778
                      },
         "opened":  1956,
         "capacity":  null,
@@ -311,8 +311,8 @@
                          "town":  "Podington",
                          "county":  "Bedfordshire",
                          "country":  "England",
-                         "lat":  52.2181,
-                         "lng":  -0.5921
+                         "lat":  52.23845,
+                         "lng":  -0.59543
                      },
         "opened":  1966,
         "capacity":  null,
@@ -359,8 +359,8 @@
                          "town":  "Gotherington",
                          "county":  "Gloucestershire",
                          "country":  "England",
-                         "lat":  51.9789,
-                         "lng":  -2.0387
+                         "lat":  51.9649,
+                         "lng":  -2.02615
                      },
         "opened":  1938,
         "capacity":  null,
@@ -385,8 +385,8 @@
                          "town":  "Chichester",
                          "county":  "West Sussex",
                          "country":  "England",
-                         "lat":  50.858,
-                         "lng":  -0.7583
+                         "lat":  50.8594,
+                         "lng":  -0.75917
                      },
         "opened":  1948,
         "capacity":  null,
@@ -411,8 +411,8 @@
                          "town":  "Wootton",
                          "county":  "Kent",
                          "country":  "England",
-                         "lat":  51.176,
-                         "lng":  1.193
+                         "lat":  51.1774,
+                         "lng":  1.19964
                      },
         "opened":  1965,
         "capacity":  null,
@@ -438,13 +438,13 @@
                          "county":  "Carmarthenshire",
                          "country":  "Wales",
                          "lat":  51.7056,
-                         "lng":  -4.3236
+                         "lng":  -4.32056
                      },
         "opened":  1989,
         "capacity":  null,
         "lengthMiles":  1.46,
         "website":  "https://www.pembreycircuit.co.uk",
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Pembrey%20Circuit%20-%20geograph.org.uk%20-%206170050.jpg?width=900",
         "summary":  "\u0027The home of Welsh motorsport\u0027 — a busy airfield circuit hosting cars, bikes and rallycross.",
         "verified":  true,
         "wikidata":  "Q7161930",
@@ -461,14 +461,14 @@
                          "town":  "Harewood",
                          "county":  "West Yorkshire",
                          "country":  "England",
-                         "lat":  53.9,
-                         "lng":  -1.527
+                         "lat":  53.9049,
+                         "lng":  -1.49019
                      },
         "opened":  1962,
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Harewood%20Hillclimb%20-%20geograph.org.uk%20-%205062364.jpg?width=900",
         "summary":  "Yorkshire\u0027s speed hillclimb venue, run by the BARC on the Harewood estate.",
         "verified":  true,
         "wikidata":  "Q5656961",
@@ -492,7 +492,7 @@
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Gurston%20Down%20Speed%20Hillclimb%2008%2009%2013%20(9710273296).jpg?width=900",
         "summary":  "A fast, sweeping downhill-start hillclimb on a Wiltshire farm estate.",
         "verified":  false
     },
@@ -507,8 +507,8 @@
                          "town":  "Doune",
                          "county":  "Stirling",
                          "country":  "Scotland",
-                         "lat":  56.183,
-                         "lng":  -4.083
+                         "lat":  56.2087,
+                         "lng":  -4.0739
                      },
         "opened":  1968,
         "capacity":  null,
@@ -531,14 +531,14 @@
                          "town":  "Alberbury",
                          "county":  "Shropshire",
                          "country":  "England",
-                         "lat":  52.703,
-                         "lng":  -2.929
+                         "lat":  52.7233,
+                         "lng":  -2.95003
                      },
         "opened":  1960,
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Loton%20Park%20hillclimb%20downhill.jpg?width=900",
         "summary":  "A parkland hillclimb through the deer park of Loton Hall in Shropshire.",
         "verified":  true,
         "wikidata":  "Q6684816",
@@ -555,8 +555,8 @@
                          "town":  "Southleigh",
                          "county":  "Devon",
                          "country":  "England",
-                         "lat":  50.74,
-                         "lng":  -3.135
+                         "lat":  50.7314,
+                         "lng":  -3.15439
                      },
         "opened":  1958,
         "capacity":  null,
@@ -579,14 +579,14 @@
                          "town":  "Craigantlet",
                          "county":  "County Down",
                          "country":  "Northern Ireland",
-                         "lat":  54.611,
-                         "lng":  -5.796
+                         "lat":  54.616,
+                         "lng":  -5.788
                      },
         "opened":  1913,
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Ballymiscaw%20Road%20near%20Craigantlet%20-%20geograph.org.uk%20-%20448399.jpg?width=900",
         "summary":  "Northern Ireland\u0027s round of the British championship, run on closed public roads.",
         "verified":  true,
         "wikidata":  "Q5181642",
@@ -603,8 +603,8 @@
                          "town":  "Trinity",
                          "county":  "Jersey",
                          "country":  "Jersey",
-                         "lat":  49.24,
-                         "lng":  -2.077
+                         "lat":  49.23937,
+                         "lng":  -2.08191
                      },
         "opened":  1920,
         "capacity":  null,
@@ -627,8 +627,8 @@
                          "town":  "St Peter Port",
                          "county":  "Guernsey",
                          "country":  "Guernsey",
-                         "lat":  49.446,
-                         "lng":  -2.541
+                         "lat":  49.4479,
+                         "lng":  -2.5355
                      },
         "opened":  1935,
         "capacity":  null,

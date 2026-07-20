@@ -36,9 +36,14 @@
 
   const age = new Date().getFullYear() - track.opened;
 
-  const trackEvents = events
-    .filter((e) => e.trackId === track.id && RaceDates.isUpcoming(e))
+  const allTrackEvents = events.filter((e) => e.trackId === track.id);
+  const trackEvents = allTrackEvents
+    .filter((e) => RaceDates.isUpcoming(e))
     .sort((a, b) => a.startDate.localeCompare(b.startDate));
+  const pastEvents = allTrackEvents
+    .filter((e) => !RaceDates.isUpcoming(e))
+    .sort((a, b) => b.startDate.localeCompare(a.startDate))
+    .slice(0, 5);
 
   const hostedSeriesIds = [...new Set(events.filter((e) => e.trackId === track.id).map((e) => e.seriesId))];
 
@@ -87,8 +92,16 @@
       <section class="detail-section">
         <h2>Upcoming Events</h2>
         <ul class="event-list">
-          ${trackEvents.map(eventRowHTML).join("") || '<li class="empty-note">No upcoming events on the calendar.</li>'}
+          ${trackEvents.map(eventRowHTML).join("") ||
+            `<li class="empty-note">${allTrackEvents.length
+              ? "No more events this season."
+              : "No events on the calendar for this track yet — more race series feeds are added over time."}</li>`}
         </ul>
+        ${pastEvents.length ? `
+          <h2 style="margin-top:1.5rem">Earlier This Season</h2>
+          <ul class="event-list past-events">
+            ${pastEvents.map(eventRowHTML).join("")}
+          </ul>` : ""}
       </section>
     </div>`;
 
@@ -117,7 +130,7 @@
   root.addEventListener("click", (ev) => {
     const btn = ev.target.closest(".event-row");
     if (!btn) return;
-    const e = trackEvents.find((x) => x.id === btn.dataset.eventId);
+    const e = allTrackEvents.find((x) => x.id === btn.dataset.eventId);
     if (e) openModal(e);
   });
 

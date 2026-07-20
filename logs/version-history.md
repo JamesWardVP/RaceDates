@@ -9,6 +9,18 @@ Newest entries at the top. When work listed in `current-plan.md` is completed, i
 
 ---
 
+## 0.6.0 — 2026-07-20
+- **Photo & calendar fixes (James's report: Harewood showed no photo/events):**
+  - Every track now has a photo. New pipeline fallback when Wikidata has no image: Wikimedia Commons **text search on venue name + discipline** (finds real venue photos), then a location search that requires the venue name in the filename — a missing photo is better than a wrong one (the naive nearest-photo approach had returned a garden fence for Harewood). Val des Terres is the one venue with no suitable Commons photo; it keeps the styled placeholder.
+  - Wikidata coordinates now overwrite our seeded approximations (better pins and photo searches).
+  - Track pages: when all of a track's events are in the past, the calendar now says so and shows up to 5 recent past events greyed out under "Earlier This Season" (Harewood's two 2026 rounds were simply already run). Tracks with no events at all get an honest "more race series feeds are added over time" note.
+- **Phase 5 — Admin page complete** (`admin.html` + `js/admin.js`):
+  - Password gate (SHA-256, session-scoped; password given to James in chat, not stored in the repo). Deterrent only on a static site — real protection is that publishing requires a GitHub token only James has.
+  - **Add Track with one-name automation:** type a venue name → Wikidata search → picks up coordinates, photo (P18, Commons text-search fallback), website, opening year, capacity, Wikipedia link → OpenStreetMap reverse-geocodes town/county/country. All fields editable before staging. Verified live: "Three Sisters Circuit" auto-filled everything including "Ashton-in-Makerfield, Greater Manchester".
+  - **Discovered venues tab:** the 43 pipeline-found Wikidata venues listed with photos; "Use" pre-fills the add form. Once committed, the nightly refresh automatically drops the venue from the discovered list.
+  - **Add Event tab** for one-off events/series without scrapers (scraped series are flagged as overwritten nightly).
+  - **Publish tab:** staged changes commit straight to GitHub via the API (fine-grained token pasted at use time, never stored) which auto-redeploys the site; or download the JSON files as a fallback.
+
 ## 0.5.0 — 2026-07-20
 - **Phase 2 COMPLETE — site live and self-updating.** James enabled Pages (Source = GitHub Actions) and the deploy succeeded.
   - Live site: **https://jameswardvp.github.io/RaceDates/** — all pages and data files verified in the browser (hero photo loads, races page serves the 27 upcoming events from live data).
