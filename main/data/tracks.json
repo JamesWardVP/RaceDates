@@ -1,643 +1,1262 @@
 [
-    {
-        "id":  "silverstone",
-        "name":  "Silverstone Circuit",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto"
-                      ],
-        "location":  {
-                         "town":  "Silverstone",
-                         "county":  "Northamptonshire",
-                         "country":  "England",
-                         "lat":  52.075,
-                         "lng":  -1.01667
-                     },
-        "opened":  1948,
-        "capacity":  150000,
-        "lengthMiles":  3.66,
-        "website":  "https://www.silverstone.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/McLaren%20MP4-16A%202015%20McLaren%20MP4-16A%20shakedown%20(21219267118).jpg?width=900",
-        "summary":  "The home of British motorsport and the British Grand Prix, built on a former WWII airfield.",
-        "verified":  true,
-        "wikidata":  "Q171402",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Silverstone_Circuit"
+  {
+    "id": "silverstone",
+    "name": "Silverstone Circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto"
+    ],
+    "location": {
+      "town": "Silverstone",
+      "county": "Northamptonshire",
+      "country": "England",
+      "lat": 52.075,
+      "lng": -1.01667
     },
-    {
-        "id":  "brands-hatch",
-        "name":  "Brands Hatch",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto"
-                      ],
-        "location":  {
-                         "town":  "West Kingsdown",
-                         "county":  "Kent",
-                         "country":  "England",
-                         "lat":  51.35667,
-                         "lng":  0.2625
-                     },
-        "opened":  1950,
-        "capacity":  40000,
-        "lengthMiles":  2.43,
-        "website":  "https://www.brandshatch.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Brands-hatch.jpg?width=900",
-        "summary":  "A natural amphitheatre circuit in Kent, former host of the British Grand Prix.",
-        "verified":  true,
-        "wikidata":  "Q172880",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Brands_Hatch"
+    "opened": 1948,
+    "capacity": 150000,
+    "lengthMiles": 3.66,
+    "website": "https://www.silverstone.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/McLaren%20MP4-16A%202015%20McLaren%20MP4-16A%20shakedown%20(21219267118).jpg?width=900",
+    "summary": "The home of British motorsport and the British Grand Prix, built on a former WWII airfield.",
+    "verified": true,
+    "wikidata": "Q171402",
+    "wikipedia": "https://en.wikipedia.org/wiki/Silverstone_Circuit"
+  },
+  {
+    "id": "brands-hatch",
+    "name": "Brands Hatch",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto"
+    ],
+    "location": {
+      "town": "West Kingsdown",
+      "county": "Kent",
+      "country": "England",
+      "lat": 51.35667,
+      "lng": 0.2625
     },
-    {
-        "id":  "donington-park",
-        "name":  "Donington Park",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto"
-                      ],
-        "location":  {
-                         "town":  "Castle Donington",
-                         "county":  "Leicestershire",
-                         "country":  "England",
-                         "lat":  52.82917,
-                         "lng":  -1.375
-                     },
-        "opened":  1931,
-        "capacity":  40000,
-        "lengthMiles":  2.5,
-        "website":  "https://www.donington-park.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Mini%20Challenge%20Clubsport%20Donington%20Park%202024.jpg?width=900",
-        "summary":  "One of Britain\u0027s oldest permanent circuits, host to British Superbikes and historic racing.",
-        "verified":  true,
-        "wikidata":  "Q173202",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Donington_Park"
+    "opened": 1950,
+    "capacity": 40000,
+    "lengthMiles": 2.43,
+    "website": "https://www.brandshatch.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Brands-hatch.jpg?width=900",
+    "summary": "A natural amphitheatre circuit in Kent, former host of the British Grand Prix.",
+    "verified": true,
+    "wikidata": "Q172880",
+    "wikipedia": "https://en.wikipedia.org/wiki/Brands_Hatch"
+  },
+  {
+    "id": "donington-park",
+    "name": "Donington Park",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto"
+    ],
+    "location": {
+      "town": "Castle Donington",
+      "county": "Leicestershire",
+      "country": "England",
+      "lat": 52.82917,
+      "lng": -1.375
     },
-    {
-        "id":  "oulton-park",
-        "name":  "Oulton Park",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto"
-                      ],
-        "location":  {
-                         "town":  "Little Budworth",
-                         "county":  "Cheshire",
-                         "country":  "England",
-                         "lat":  53.17758,
-                         "lng":  -2.61436
-                     },
-        "opened":  1953,
-        "capacity":  null,
-        "lengthMiles":  2.69,
-        "website":  "https://www.oultonpark.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Clay%20Hill%2C%20Oulton%20Park%20(geograph%204939692).jpg?width=900",
-        "summary":  "A fast, undulating parkland circuit in Cheshire set around a country estate.",
-        "verified":  true,
-        "wikidata":  "Q997133",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Oulton_Park"
+    "opened": 1931,
+    "capacity": 40000,
+    "lengthMiles": 2.5,
+    "website": "https://www.donington-park.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Mini%20Challenge%20Clubsport%20Donington%20Park%202024.jpg?width=900",
+    "summary": "One of Britain's oldest permanent circuits, host to British Superbikes and historic racing.",
+    "verified": true,
+    "wikidata": "Q173202",
+    "wikipedia": "https://en.wikipedia.org/wiki/Donington_Park"
+  },
+  {
+    "id": "oulton-park",
+    "name": "Oulton Park",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto"
+    ],
+    "location": {
+      "town": "Little Budworth",
+      "county": "Cheshire",
+      "country": "England",
+      "lat": 53.17758,
+      "lng": -2.61436
     },
-    {
-        "id":  "snetterton",
-        "name":  "Snetterton Circuit",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto"
-                      ],
-        "location":  {
-                         "town":  "Snetterton",
-                         "county":  "Norfolk",
-                         "country":  "England",
-                         "lat":  52.4665,
-                         "lng":  0.94822
-                     },
-        "opened":  1953,
-        "capacity":  null,
-        "lengthMiles":  2.97,
-        "website":  "https://www.snetterton.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Ginetta%20Race%202%20-%2002%20(9454210700).jpg?width=900",
-        "summary":  "Norfolk\u0027s fast airfield circuit, known for its long straights and heavy braking zones.",
-        "verified":  true,
-        "wikidata":  "Q1585125",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Snetterton_Circuit"
+    "opened": 1953,
+    "capacity": null,
+    "lengthMiles": 2.69,
+    "website": "https://www.oultonpark.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Clay%20Hill%2C%20Oulton%20Park%20(geograph%204939692).jpg?width=900",
+    "summary": "A fast, undulating parkland circuit in Cheshire set around a country estate.",
+    "verified": true,
+    "wikidata": "Q997133",
+    "wikipedia": "https://en.wikipedia.org/wiki/Oulton_Park"
+  },
+  {
+    "id": "snetterton",
+    "name": "Snetterton Circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto"
+    ],
+    "location": {
+      "town": "Snetterton",
+      "county": "Norfolk",
+      "country": "England",
+      "lat": 52.4665,
+      "lng": 0.94822
     },
-    {
-        "id":  "thruxton",
-        "name":  "Thruxton Circuit",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto"
-                      ],
-        "location":  {
-                         "town":  "Thruxton",
-                         "county":  "Hampshire",
-                         "country":  "England",
-                         "lat":  51.21028,
-                         "lng":  -1.60056
-                     },
-        "opened":  1968,
-        "capacity":  null,
-        "lengthMiles":  2.36,
-        "website":  "https://thruxtonracing.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Thruxton.jpg?width=900",
-        "summary":  "The fastest circuit in the UK, averaging well over 110 mph a lap in touring cars.",
-        "verified":  true,
-        "wikidata":  "Q2465788",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Thruxton_Circuit"
+    "opened": 1953,
+    "capacity": null,
+    "lengthMiles": 2.97,
+    "website": "https://www.snetterton.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ginetta%20Race%202%20-%2002%20(9454210700).jpg?width=900",
+    "summary": "Norfolk's fast airfield circuit, known for its long straights and heavy braking zones.",
+    "verified": true,
+    "wikidata": "Q1585125",
+    "wikipedia": "https://en.wikipedia.org/wiki/Snetterton_Circuit"
+  },
+  {
+    "id": "thruxton",
+    "name": "Thruxton Circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto"
+    ],
+    "location": {
+      "town": "Thruxton",
+      "county": "Hampshire",
+      "country": "England",
+      "lat": 51.21028,
+      "lng": -1.60056
     },
-    {
-        "id":  "cadwell-park",
-        "name":  "Cadwell Park",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto"
-                      ],
-        "location":  {
-                         "town":  "Louth",
-                         "county":  "Lincolnshire",
-                         "country":  "England",
-                         "lat":  53.3089,
-                         "lng":  -0.06306
-                     },
-        "opened":  1934,
-        "capacity":  null,
-        "lengthMiles":  2.17,
-        "website":  "https://www.cadwellpark.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Mountain%2C%20Cadwell%20Park%20-%20geograph.org.uk%20-%20439661.jpg?width=900",
-        "summary":  "The \u0027Mini-Nürburgring\u0027 — a narrow, hilly circuit famous for bikes jumping at The Mountain.",
-        "verified":  true,
-        "wikidata":  "Q1025346",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Cadwell_Park"
+    "opened": 1968,
+    "capacity": null,
+    "lengthMiles": 2.36,
+    "website": "https://thruxtonracing.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thruxton.jpg?width=900",
+    "summary": "The fastest circuit in the UK, averaging well over 110 mph a lap in touring cars.",
+    "verified": true,
+    "wikidata": "Q2465788",
+    "wikipedia": "https://en.wikipedia.org/wiki/Thruxton_Circuit"
+  },
+  {
+    "id": "cadwell-park",
+    "name": "Cadwell Park",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto"
+    ],
+    "location": {
+      "town": "Louth",
+      "county": "Lincolnshire",
+      "country": "England",
+      "lat": 53.3089,
+      "lng": -0.06306
     },
-    {
-        "id":  "knockhill",
-        "name":  "Knockhill Racing Circuit",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto",
-                          "rallycross"
-                      ],
-        "location":  {
-                         "town":  "Dunfermline",
-                         "county":  "Fife",
-                         "country":  "Scotland",
-                         "lat":  56.12886,
-                         "lng":  -3.50351
-                     },
-        "opened":  1974,
-        "capacity":  null,
-        "lengthMiles":  1.27,
-        "website":  "https://www.knockhill.com",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/IMGP8805%20(51733981222).jpg?width=900",
-        "summary":  "Scotland\u0027s national motorsport centre, a short and dramatic circuit in the Fife hills.",
-        "verified":  true,
-        "wikidata":  "Q524404",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Knockhill"
+    "opened": 1934,
+    "capacity": null,
+    "lengthMiles": 2.17,
+    "website": "https://www.cadwellpark.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Mountain%2C%20Cadwell%20Park%20-%20geograph.org.uk%20-%20439661.jpg?width=900",
+    "summary": "The 'Mini-Nürburgring' — a narrow, hilly circuit famous for bikes jumping at The Mountain.",
+    "verified": true,
+    "wikidata": "Q1025346",
+    "wikipedia": "https://en.wikipedia.org/wiki/Cadwell_Park"
+  },
+  {
+    "id": "knockhill",
+    "name": "Knockhill Racing Circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto",
+      "rallycross"
+    ],
+    "location": {
+      "town": "Dunfermline",
+      "county": "Fife",
+      "country": "Scotland",
+      "lat": 56.12886,
+      "lng": -3.50351
     },
-    {
-        "id":  "croft",
-        "name":  "Croft Circuit",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto",
-                          "rallycross"
-                      ],
-        "location":  {
-                         "town":  "Dalton-on-Tees",
-                         "county":  "North Yorkshire",
-                         "country":  "England",
-                         "lat":  54.45583,
-                         "lng":  -1.56278
-                     },
-        "opened":  1964,
-        "capacity":  null,
-        "lengthMiles":  2.13,
-        "website":  "https://www.croftcircuit.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Croft%20Circuit%20%2C%20North%20Yorkshire%20-%20geograph.org.uk%20-%20137696.jpg?width=900",
-        "summary":  "North Yorkshire\u0027s airfield circuit with a long rallycross heritage.",
-        "verified":  true,
-        "wikidata":  "Q1074573",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Croft_Circuit"
+    "opened": 1974,
+    "capacity": null,
+    "lengthMiles": 1.27,
+    "website": "https://www.knockhill.com",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/IMGP8805%20(51733981222).jpg?width=900",
+    "summary": "Scotland's national motorsport centre, a short and dramatic circuit in the Fife hills.",
+    "verified": true,
+    "wikidata": "Q524404",
+    "wikipedia": "https://en.wikipedia.org/wiki/Knockhill"
+  },
+  {
+    "id": "croft",
+    "name": "Croft Circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto",
+      "rallycross"
+    ],
+    "location": {
+      "town": "Dalton-on-Tees",
+      "county": "North Yorkshire",
+      "country": "England",
+      "lat": 54.45583,
+      "lng": -1.56278
     },
-    {
-        "id":  "anglesey",
-        "name":  "Anglesey Circuit (Trac Môn)",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto"
-                      ],
-        "location":  {
-                         "town":  "Ty Croes",
-                         "county":  "Anglesey",
-                         "country":  "Wales",
-                         "lat":  53.19004,
-                         "lng":  -4.49766
-                     },
-        "opened":  1997,
-        "capacity":  null,
-        "lengthMiles":  2.1,
-        "website":  "https://www.angleseycircuit.com",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Trac-Mon%20Caterhams%201.JPG?width=900",
-        "summary":  "A spectacular coastal circuit overlooking the Irish Sea and Snowdonia.",
-        "verified":  true,
-        "wikidata":  "Q4763391",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Anglesey_Circuit"
+    "opened": 1964,
+    "capacity": null,
+    "lengthMiles": 2.13,
+    "website": "https://www.croftcircuit.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Croft%20Circuit%20%2C%20North%20Yorkshire%20-%20geograph.org.uk%20-%20137696.jpg?width=900",
+    "summary": "North Yorkshire's airfield circuit with a long rallycross heritage.",
+    "verified": true,
+    "wikidata": "Q1074573",
+    "wikipedia": "https://en.wikipedia.org/wiki/Croft_Circuit"
+  },
+  {
+    "id": "anglesey",
+    "name": "Anglesey Circuit (Trac Môn)",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto"
+    ],
+    "location": {
+      "town": "Ty Croes",
+      "county": "Anglesey",
+      "country": "Wales",
+      "lat": 53.19004,
+      "lng": -4.49766
     },
-    {
-        "id":  "castle-combe",
-        "name":  "Castle Combe Circuit",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit"
-                      ],
-        "location":  {
-                         "town":  "Castle Combe",
-                         "county":  "Wiltshire",
-                         "country":  "England",
-                         "lat":  51.4897,
-                         "lng":  -2.2125
-                     },
-        "opened":  1950,
-        "capacity":  null,
-        "lengthMiles":  1.85,
-        "website":  "https://www.castlecombecircuit.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Castle%20Combe%20Circuit%20MMB%20G6%20Castle%20Combe%20Saloon%20Car%20Championship.jpg?width=900",
-        "summary":  "One of the longest continually operating circuits in the UK, largely unchanged since 1950.",
-        "verified":  true,
-        "wikidata":  "Q5050030",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Castle_Combe_Circuit"
+    "opened": 1997,
+    "capacity": null,
+    "lengthMiles": 2.1,
+    "website": "https://www.angleseycircuit.com",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Trac-Mon%20Caterhams%201.JPG?width=900",
+    "summary": "A spectacular coastal circuit overlooking the Irish Sea and Snowdonia.",
+    "verified": true,
+    "wikidata": "Q4763391",
+    "wikipedia": "https://en.wikipedia.org/wiki/Anglesey_Circuit"
+  },
+  {
+    "id": "castle-combe",
+    "name": "Castle Combe Circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "Castle Combe",
+      "county": "Wiltshire",
+      "country": "England",
+      "lat": 51.4897,
+      "lng": -2.2125
     },
-    {
-        "id":  "mallory-park",
-        "name":  "Mallory Park",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto"
-                      ],
-        "location":  {
-                         "town":  "Kirkby Mallory",
-                         "county":  "Leicestershire",
-                         "country":  "England",
-                         "lat":  52.5986,
-                         "lng":  -1.33778
-                     },
-        "opened":  1956,
-        "capacity":  null,
-        "lengthMiles":  1.35,
-        "website":  "https://www.mallorypark.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/The%20hairpin%20and%20circuit%20buildings%20-%20geograph.org.uk%20-%20207828.jpg?width=900",
-        "summary":  "\u0027The friendly circuit\u0027 — a short lakeside track with the famous Gerard\u0027s long right-hander.",
-        "verified":  true,
-        "wikidata":  "Q1583363",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Mallory_Park"
+    "opened": 1950,
+    "capacity": null,
+    "lengthMiles": 1.85,
+    "website": "https://www.castlecombecircuit.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Castle%20Combe%20Circuit%20MMB%20G6%20Castle%20Combe%20Saloon%20Car%20Championship.jpg?width=900",
+    "summary": "One of the longest continually operating circuits in the UK, largely unchanged since 1950.",
+    "verified": true,
+    "wikidata": "Q5050030",
+    "wikipedia": "https://en.wikipedia.org/wiki/Castle_Combe_Circuit"
+  },
+  {
+    "id": "mallory-park",
+    "name": "Mallory Park",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto"
+    ],
+    "location": {
+      "town": "Kirkby Mallory",
+      "county": "Leicestershire",
+      "country": "England",
+      "lat": 52.5986,
+      "lng": -1.33778
     },
-    {
-        "id":  "santa-pod",
-        "name":  "Santa Pod Raceway",
-        "venueType":  "drag-strip",
-        "raceTypes":  [
-                          "drag"
-                      ],
-        "location":  {
-                         "town":  "Podington",
-                         "county":  "Bedfordshire",
-                         "country":  "England",
-                         "lat":  52.23845,
-                         "lng":  -0.59543
-                     },
-        "opened":  1966,
-        "capacity":  null,
-        "lengthMiles":  0.25,
-        "website":  "https://www.santapod.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Santa%20Pod%20Raceway%20finish%20line%20gantry.jpg?width=900",
-        "summary":  "Europe\u0027s first permanent drag strip and home of European championship drag racing.",
-        "verified":  true,
-        "wikidata":  "Q7419829",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Santa_Pod_Raceway"
+    "opened": 1956,
+    "capacity": null,
+    "lengthMiles": 1.35,
+    "website": "https://www.mallorypark.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20hairpin%20and%20circuit%20buildings%20-%20geograph.org.uk%20-%20207828.jpg?width=900",
+    "summary": "'The friendly circuit' — a short lakeside track with the famous Gerard's long right-hander.",
+    "verified": true,
+    "wikidata": "Q1583363",
+    "wikipedia": "https://en.wikipedia.org/wiki/Mallory_Park"
+  },
+  {
+    "id": "santa-pod",
+    "name": "Santa Pod Raceway",
+    "venueType": "drag-strip",
+    "raceTypes": [
+      "drag"
+    ],
+    "location": {
+      "town": "Podington",
+      "county": "Bedfordshire",
+      "country": "England",
+      "lat": 52.23845,
+      "lng": -0.59543
     },
-    {
-        "id":  "shelsley-walsh",
-        "name":  "Shelsley Walsh Hill Climb",
-        "venueType":  "hill-climb",
-        "raceTypes":  [
-                          "hillclimb"
-                      ],
-        "location":  {
-                         "town":  "Shelsley Walsh",
-                         "county":  "Worcestershire",
-                         "country":  "England",
-                         "lat":  52.2547,
-                         "lng":  -2.3086
-                     },
-        "opened":  1905,
-        "capacity":  null,
-        "lengthMiles":  0.57,
-        "website":  "https://www.shelsleywalsh.com",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/-%20Flickr%20-%20andrewbasterfield%20(30).jpg?width=900",
-        "summary":  "The world\u0027s oldest motorsport venue still using its original course, first run in 1905.",
-        "verified":  true,
-        "wikidata":  "Q7493930",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Shelsley_Walsh_Speed_Hill_Climb"
+    "opened": 1966,
+    "capacity": null,
+    "lengthMiles": 0.25,
+    "website": "https://www.santapod.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Santa%20Pod%20Raceway%20finish%20line%20gantry.jpg?width=900",
+    "summary": "Europe's first permanent drag strip and home of European championship drag racing.",
+    "verified": true,
+    "wikidata": "Q7419829",
+    "wikipedia": "https://en.wikipedia.org/wiki/Santa_Pod_Raceway"
+  },
+  {
+    "id": "shelsley-walsh",
+    "name": "Shelsley Walsh Hill Climb",
+    "venueType": "hill-climb",
+    "raceTypes": [
+      "hillclimb"
+    ],
+    "location": {
+      "town": "Shelsley Walsh",
+      "county": "Worcestershire",
+      "country": "England",
+      "lat": 52.2547,
+      "lng": -2.3086
     },
-    {
-        "id":  "prescott",
-        "name":  "Prescott Speed Hill Climb",
-        "venueType":  "hill-climb",
-        "raceTypes":  [
-                          "hillclimb"
-                      ],
-        "location":  {
-                         "town":  "Gotherington",
-                         "county":  "Gloucestershire",
-                         "country":  "England",
-                         "lat":  51.9649,
-                         "lng":  -2.02615
-                     },
-        "opened":  1938,
-        "capacity":  null,
-        "lengthMiles":  0.7,
-        "website":  "https://www.prescotthillclimb.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/1922%20Bugatti%20T22%20(20353134361).jpg?width=900",
-        "summary":  "The Bugatti Owners\u0027 Club hill climb in the Cotswolds, a fixture since 1938.",
-        "verified":  true,
-        "wikidata":  "Q7240870",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Prescott_Speed_Hill_Climb"
+    "opened": 1905,
+    "capacity": null,
+    "lengthMiles": 0.57,
+    "website": "https://www.shelsleywalsh.com",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/-%20Flickr%20-%20andrewbasterfield%20(30).jpg?width=900",
+    "summary": "The world's oldest motorsport venue still using its original course, first run in 1905.",
+    "verified": true,
+    "wikidata": "Q7493930",
+    "wikipedia": "https://en.wikipedia.org/wiki/Shelsley_Walsh_Speed_Hill_Climb"
+  },
+  {
+    "id": "prescott",
+    "name": "Prescott Speed Hill Climb",
+    "venueType": "hill-climb",
+    "raceTypes": [
+      "hillclimb"
+    ],
+    "location": {
+      "town": "Gotherington",
+      "county": "Gloucestershire",
+      "country": "England",
+      "lat": 51.9649,
+      "lng": -2.02615
     },
-    {
-        "id":  "goodwood",
-        "name":  "Goodwood Motor Circuit",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto",
-                          "hillclimb"
-                      ],
-        "location":  {
-                         "town":  "Chichester",
-                         "county":  "West Sussex",
-                         "country":  "England",
-                         "lat":  50.8594,
-                         "lng":  -0.75917
-                     },
-        "opened":  1948,
-        "capacity":  null,
-        "lengthMiles":  2.38,
-        "website":  "https://www.goodwood.com",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Goodwood%20Airfield%20-%20geograph.org.uk%20-%2080659.jpg?width=900",
-        "summary":  "Historic circuit preserved in its 1960s form, home of the Revival and Festival of Speed hill climb.",
-        "verified":  true,
-        "wikidata":  "Q953716",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Goodwood_Circuit"
+    "opened": 1938,
+    "capacity": null,
+    "lengthMiles": 0.7,
+    "website": "https://www.prescotthillclimb.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/1922%20Bugatti%20T22%20(20353134361).jpg?width=900",
+    "summary": "The Bugatti Owners' Club hill climb in the Cotswolds, a fixture since 1938.",
+    "verified": true,
+    "wikidata": "Q7240870",
+    "wikipedia": "https://en.wikipedia.org/wiki/Prescott_Speed_Hill_Climb"
+  },
+  {
+    "id": "goodwood",
+    "name": "Goodwood Motor Circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto",
+      "hillclimb"
+    ],
+    "location": {
+      "town": "Chichester",
+      "county": "West Sussex",
+      "country": "England",
+      "lat": 50.8594,
+      "lng": -0.75917
     },
-    {
-        "id":  "lydden-hill",
-        "name":  "Lydden Hill Race Circuit",
-        "venueType":  "rallycross-circuit",
-        "raceTypes":  [
-                          "rallycross",
-                          "circuit",
-                          "moto"
-                      ],
-        "location":  {
-                         "town":  "Wootton",
-                         "county":  "Kent",
-                         "country":  "England",
-                         "lat":  51.1774,
-                         "lng":  1.19964
-                     },
-        "opened":  1965,
-        "capacity":  null,
-        "lengthMiles":  1.0,
-        "website":  "https://lyddenhill.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Chessons%20Drift%20on%20Lydden%20circuit%20race%20track.jpg?width=900",
-        "summary":  "The birthplace of rallycross — the sport was invented here in 1967.",
-        "verified":  true,
-        "wikidata":  "Q1878589",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Lydden_Hill_Race_Circuit"
+    "opened": 1948,
+    "capacity": null,
+    "lengthMiles": 2.38,
+    "website": "https://www.goodwood.com",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Goodwood%20Airfield%20-%20geograph.org.uk%20-%2080659.jpg?width=900",
+    "summary": "Historic circuit preserved in its 1960s form, home of the Revival and Festival of Speed hill climb.",
+    "verified": true,
+    "wikidata": "Q953716",
+    "wikipedia": "https://en.wikipedia.org/wiki/Goodwood_Circuit"
+  },
+  {
+    "id": "lydden-hill",
+    "name": "Lydden Hill Race Circuit",
+    "venueType": "rallycross-circuit",
+    "raceTypes": [
+      "rallycross",
+      "circuit",
+      "moto"
+    ],
+    "location": {
+      "town": "Wootton",
+      "county": "Kent",
+      "country": "England",
+      "lat": 51.1774,
+      "lng": 1.19964
     },
-    {
-        "id":  "pembrey",
-        "name":  "Pembrey Circuit",
-        "venueType":  "circuit",
-        "raceTypes":  [
-                          "circuit",
-                          "moto",
-                          "rallycross"
-                      ],
-        "location":  {
-                         "town":  "Pembrey",
-                         "county":  "Carmarthenshire",
-                         "country":  "Wales",
-                         "lat":  51.7056,
-                         "lng":  -4.32056
-                     },
-        "opened":  1989,
-        "capacity":  null,
-        "lengthMiles":  1.46,
-        "website":  "https://www.pembreycircuit.co.uk",
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Pembrey%20Circuit%20-%20geograph.org.uk%20-%206170050.jpg?width=900",
-        "summary":  "\u0027The home of Welsh motorsport\u0027 — a busy airfield circuit hosting cars, bikes and rallycross.",
-        "verified":  true,
-        "wikidata":  "Q7161930",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Pembrey_Circuit"
+    "opened": 1965,
+    "capacity": null,
+    "lengthMiles": 1,
+    "website": "https://lyddenhill.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Chessons%20Drift%20on%20Lydden%20circuit%20race%20track.jpg?width=900",
+    "summary": "The birthplace of rallycross — the sport was invented here in 1967.",
+    "verified": true,
+    "wikidata": "Q1878589",
+    "wikipedia": "https://en.wikipedia.org/wiki/Lydden_Hill_Race_Circuit"
+  },
+  {
+    "id": "pembrey",
+    "name": "Pembrey Circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto",
+      "rallycross"
+    ],
+    "location": {
+      "town": "Pembrey",
+      "county": "Carmarthenshire",
+      "country": "Wales",
+      "lat": 51.7056,
+      "lng": -4.32056
     },
-    {
-        "id":  "harewood",
-        "name":  "Harewood Speed Hillclimb",
-        "venueType":  "hill-climb",
-        "raceTypes":  [
-                          "hillclimb"
-                      ],
-        "location":  {
-                         "town":  "Harewood",
-                         "county":  "West Yorkshire",
-                         "country":  "England",
-                         "lat":  53.9049,
-                         "lng":  -1.49019
-                     },
-        "opened":  1962,
-        "capacity":  null,
-        "lengthMiles":  null,
-        "website":  null,
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Harewood%20Hillclimb%20-%20geograph.org.uk%20-%205062364.jpg?width=900",
-        "summary":  "Yorkshire\u0027s speed hillclimb venue, run by the BARC on the Harewood estate.",
-        "verified":  true,
-        "wikidata":  "Q5656961",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Harewood_speed_Hillclimb"
+    "opened": 1989,
+    "capacity": null,
+    "lengthMiles": 1.46,
+    "website": "https://www.pembreycircuit.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Pembrey%20Circuit%20-%20geograph.org.uk%20-%206170050.jpg?width=900",
+    "summary": "'The home of Welsh motorsport' — a busy airfield circuit hosting cars, bikes and rallycross.",
+    "verified": true,
+    "wikidata": "Q7161930",
+    "wikipedia": "https://en.wikipedia.org/wiki/Pembrey_Circuit"
+  },
+  {
+    "id": "harewood",
+    "name": "Harewood Speed Hillclimb",
+    "venueType": "hill-climb",
+    "raceTypes": [
+      "hillclimb"
+    ],
+    "location": {
+      "town": "Harewood",
+      "county": "West Yorkshire",
+      "country": "England",
+      "lat": 53.9049,
+      "lng": -1.49019
     },
-    {
-        "id":  "gurston-down",
-        "name":  "Gurston Down Speed Hillclimb",
-        "venueType":  "hill-climb",
-        "raceTypes":  [
-                          "hillclimb"
-                      ],
-        "location":  {
-                         "town":  "Broad Chalke",
-                         "county":  "Wiltshire",
-                         "country":  "England",
-                         "lat":  51.028,
-                         "lng":  -1.955
-                     },
-        "opened":  1967,
-        "capacity":  null,
-        "lengthMiles":  null,
-        "website":  null,
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Gurston%20Down%20Speed%20Hillclimb%2008%2009%2013%20(9710273296).jpg?width=900",
-        "summary":  "A fast, sweeping downhill-start hillclimb on a Wiltshire farm estate.",
-        "verified":  false
+    "opened": 1962,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Harewood%20Hillclimb%20-%20geograph.org.uk%20-%205062364.jpg?width=900",
+    "summary": "Yorkshire's speed hillclimb venue, run by the BARC on the Harewood estate.",
+    "verified": true,
+    "wikidata": "Q5656961",
+    "wikipedia": "https://en.wikipedia.org/wiki/Harewood_speed_Hillclimb"
+  },
+  {
+    "id": "gurston-down",
+    "name": "Gurston Down Speed Hillclimb",
+    "venueType": "hill-climb",
+    "raceTypes": [
+      "hillclimb"
+    ],
+    "location": {
+      "town": "Broad Chalke",
+      "county": "Wiltshire",
+      "country": "England",
+      "lat": 51.028,
+      "lng": -1.955
     },
-    {
-        "id":  "doune",
-        "name":  "Doune Hillclimb",
-        "venueType":  "hill-climb",
-        "raceTypes":  [
-                          "hillclimb"
-                      ],
-        "location":  {
-                         "town":  "Doune",
-                         "county":  "Stirling",
-                         "country":  "Scotland",
-                         "lat":  56.2087,
-                         "lng":  -4.0739
-                     },
-        "opened":  1968,
-        "capacity":  null,
-        "lengthMiles":  null,
-        "website":  null,
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Ferrari%20250%20GTL.jpg?width=900",
-        "summary":  "Scotland\u0027s premier hillclimb course, set in the grounds of Cambusmore estate.",
-        "verified":  true,
-        "wikidata":  "Q5302273",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Doune_Hillclimb"
+    "opened": 1967,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Gurston%20Down%20Speed%20Hillclimb%2008%2009%2013%20(9710273296).jpg?width=900",
+    "summary": "A fast, sweeping downhill-start hillclimb on a Wiltshire farm estate.",
+    "verified": false
+  },
+  {
+    "id": "doune",
+    "name": "Doune Hillclimb",
+    "venueType": "hill-climb",
+    "raceTypes": [
+      "hillclimb"
+    ],
+    "location": {
+      "town": "Doune",
+      "county": "Stirling",
+      "country": "Scotland",
+      "lat": 56.2087,
+      "lng": -4.0739
     },
-    {
-        "id":  "loton-park",
-        "name":  "Loton Park Hill Climb",
-        "venueType":  "hill-climb",
-        "raceTypes":  [
-                          "hillclimb"
-                      ],
-        "location":  {
-                         "town":  "Alberbury",
-                         "county":  "Shropshire",
-                         "country":  "England",
-                         "lat":  52.7233,
-                         "lng":  -2.95003
-                     },
-        "opened":  1960,
-        "capacity":  null,
-        "lengthMiles":  null,
-        "website":  null,
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Loton%20Park%20hillclimb%20downhill.jpg?width=900",
-        "summary":  "A parkland hillclimb through the deer park of Loton Hall in Shropshire.",
-        "verified":  true,
-        "wikidata":  "Q6684816",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Loton_Park_Hill_Climb"
+    "opened": 1968,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ferrari%20250%20GTL.jpg?width=900",
+    "summary": "Scotland's premier hillclimb course, set in the grounds of Cambusmore estate.",
+    "verified": true,
+    "wikidata": "Q5302273",
+    "wikipedia": "https://en.wikipedia.org/wiki/Doune_Hillclimb"
+  },
+  {
+    "id": "loton-park",
+    "name": "Loton Park Hill Climb",
+    "venueType": "hill-climb",
+    "raceTypes": [
+      "hillclimb"
+    ],
+    "location": {
+      "town": "Alberbury",
+      "county": "Shropshire",
+      "country": "England",
+      "lat": 52.7233,
+      "lng": -2.95003
     },
-    {
-        "id":  "wiscombe-park",
-        "name":  "Wiscombe Park Hill Climb",
-        "venueType":  "hill-climb",
-        "raceTypes":  [
-                          "hillclimb"
-                      ],
-        "location":  {
-                         "town":  "Southleigh",
-                         "county":  "Devon",
-                         "country":  "England",
-                         "lat":  50.7314,
-                         "lng":  -3.15439
-                     },
-        "opened":  1958,
-        "capacity":  null,
-        "lengthMiles":  null,
-        "website":  null,
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Wiscombe%20House%20(geograph%202392933).jpg?width=900",
-        "summary":  "A wooded Devon hillclimb famous for its Martini and Sawbench corners.",
-        "verified":  true,
-        "wikidata":  "Q17361877",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Wiscombe_Park"
+    "opened": 1960,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Loton%20Park%20hillclimb%20downhill.jpg?width=900",
+    "summary": "A parkland hillclimb through the deer park of Loton Hall in Shropshire.",
+    "verified": true,
+    "wikidata": "Q6684816",
+    "wikipedia": "https://en.wikipedia.org/wiki/Loton_Park_Hill_Climb"
+  },
+  {
+    "id": "wiscombe-park",
+    "name": "Wiscombe Park Hill Climb",
+    "venueType": "hill-climb",
+    "raceTypes": [
+      "hillclimb"
+    ],
+    "location": {
+      "town": "Southleigh",
+      "county": "Devon",
+      "country": "England",
+      "lat": 50.7314,
+      "lng": -3.15439
     },
-    {
-        "id":  "craigantlet",
-        "name":  "Craigantlet Hill Climb",
-        "venueType":  "hill-climb",
-        "raceTypes":  [
-                          "hillclimb"
-                      ],
-        "location":  {
-                         "town":  "Craigantlet",
-                         "county":  "County Down",
-                         "country":  "Northern Ireland",
-                         "lat":  54.616,
-                         "lng":  -5.788
-                     },
-        "opened":  1913,
-        "capacity":  null,
-        "lengthMiles":  null,
-        "website":  null,
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Ballymiscaw%20Road%20near%20Craigantlet%20-%20geograph.org.uk%20-%20448399.jpg?width=900",
-        "summary":  "Northern Ireland\u0027s round of the British championship, run on closed public roads.",
-        "verified":  true,
-        "wikidata":  "Q5181642",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Craigantlet_Hillclimb"
+    "opened": 1958,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Wiscombe%20House%20(geograph%202392933).jpg?width=900",
+    "summary": "A wooded Devon hillclimb famous for its Martini and Sawbench corners.",
+    "verified": true,
+    "wikidata": "Q17361877",
+    "wikipedia": "https://en.wikipedia.org/wiki/Wiscombe_Park"
+  },
+  {
+    "id": "craigantlet",
+    "name": "Craigantlet Hill Climb",
+    "venueType": "hill-climb",
+    "raceTypes": [
+      "hillclimb"
+    ],
+    "location": {
+      "town": "Craigantlet",
+      "county": "County Down",
+      "country": "Northern Ireland",
+      "lat": 54.616,
+      "lng": -5.788
     },
-    {
-        "id":  "bouley-bay",
-        "name":  "Bouley Bay Hill Climb",
-        "venueType":  "hill-climb",
-        "raceTypes":  [
-                          "hillclimb"
-                      ],
-        "location":  {
-                         "town":  "Trinity",
-                         "county":  "Jersey",
-                         "country":  "Jersey",
-                         "lat":  49.23937,
-                         "lng":  -2.08191
-                     },
-        "opened":  1920,
-        "capacity":  null,
-        "lengthMiles":  null,
-        "website":  null,
-        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Road%20down%20to%20Bouley%20Bay%2C%201967%20-%20geograph.ci%20-%20189.jpg?width=900",
-        "summary":  "A dramatic climb from a Jersey harbour up cliffside hairpins.",
-        "verified":  true,
-        "wikidata":  "Q4949689",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Bouley_Bay_Hill_Climb"
+    "opened": 1913,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Ballymiscaw%20Road%20near%20Craigantlet%20-%20geograph.org.uk%20-%20448399.jpg?width=900",
+    "summary": "Northern Ireland's round of the British championship, run on closed public roads.",
+    "verified": true,
+    "wikidata": "Q5181642",
+    "wikipedia": "https://en.wikipedia.org/wiki/Craigantlet_Hillclimb"
+  },
+  {
+    "id": "bouley-bay",
+    "name": "Bouley Bay Hill Climb",
+    "venueType": "hill-climb",
+    "raceTypes": [
+      "hillclimb"
+    ],
+    "location": {
+      "town": "Trinity",
+      "county": "Jersey",
+      "country": "Jersey",
+      "lat": 49.23937,
+      "lng": -2.08191
     },
-    {
-        "id":  "val-des-terres",
-        "name":  "Val des Terres Hill Climb",
-        "venueType":  "hill-climb",
-        "raceTypes":  [
-                          "hillclimb"
-                      ],
-        "location":  {
-                         "town":  "St Peter Port",
-                         "county":  "Guernsey",
-                         "country":  "Guernsey",
-                         "lat":  49.4479,
-                         "lng":  -2.5355
-                     },
-        "opened":  1935,
-        "capacity":  null,
-        "lengthMiles":  null,
-        "website":  null,
-        "image":  null,
-        "summary":  "Guernsey\u0027s historic hillclimb rising out of St Peter Port.",
-        "verified":  true,
-        "wikidata":  "Q7909181",
-        "wikipedia":  "https://en.wikipedia.org/wiki/Val_des_Terres_Hill_Climb"
-    }
+    "opened": 1920,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Road%20down%20to%20Bouley%20Bay%2C%201967%20-%20geograph.ci%20-%20189.jpg?width=900",
+    "summary": "A dramatic climb from a Jersey harbour up cliffside hairpins.",
+    "verified": true,
+    "wikidata": "Q4949689",
+    "wikipedia": "https://en.wikipedia.org/wiki/Bouley_Bay_Hill_Climb"
+  },
+  {
+    "id": "val-des-terres",
+    "name": "Val des Terres Hill Climb",
+    "venueType": "hill-climb",
+    "raceTypes": [
+      "hillclimb"
+    ],
+    "location": {
+      "town": "St Peter Port",
+      "county": "Guernsey",
+      "country": "Guernsey",
+      "lat": 49.4479,
+      "lng": -2.5355
+    },
+    "opened": 1935,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": null,
+    "summary": "Guernsey's historic hillclimb rising out of St Peter Port.",
+    "verified": true,
+    "wikidata": "Q7909181",
+    "wikipedia": "https://en.wikipedia.org/wiki/Val_des_Terres_Hill_Climb"
+  },
+  {
+    "id": "aintree-motor-racing-circuit",
+    "name": "Aintree Motor Racing Circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "Litherland",
+      "county": "Liverpool City Region",
+      "country": "England",
+      "lat": 53.476944444444,
+      "lng": -2.9405555555556
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Vanwall%20VW5%20Aintree%201957.jpg?width=900",
+    "summary": "Aintree Motor Racing Circuit is a 3.000 mi (4.828 km) motor-racing circuit in the village of Aintree, Metropolitan Borough of Sefton, Merseyside, England. The circuit is within the Aintree Racecourse, and used the same grandstands as horse racing.",
+    "verified": true,
+    "wikidata": "Q12221467",
+    "wikipedia": "https://en.wikipedia.org/wiki/Aintree_Motor_Racing_Circuit"
+  },
+  {
+    "id": "brooklands-motor-racing-circuit-remains-of-the-pre-world-war-ii-aerodrome-world-war-ii-bofors-tower-and-shelters-and-the-brooklands-memorial",
+    "name": "Brooklands motor racing circuit, remains of the pre-World War II aerodrome, World War II Bofors tower and shelters, and the Brooklands memorial",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "Elmbridge",
+      "county": "Surrey",
+      "country": "England",
+      "lat": 51.3508,
+      "lng": -0.46856
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/A%20section%20of%20high%20speed%20banking%20at%20the%20Brooklands%20motor%20racing%20circuit%2C%20Surrey%2C%20England.jpg?width=900",
+    "summary": "Circuit in Surrey.",
+    "verified": true,
+    "wikidata": "Q17673917"
+  },
+  {
+    "id": "crimond-raceway",
+    "name": "Crimond Raceway",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "",
+      "county": "Aberdeenshire",
+      "country": "Scotland",
+      "lat": 57.6083,
+      "lng": -1.89617
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Ex%20RAF%20Buildings%20-%20geograph.org.uk%20-%202552037.jpg?width=900",
+    "summary": "Crimond Raceway is the most northerly stock car track in the United Kingdom. It is located about a mile from the village of Crimond in Aberdeenshire, Scotland.",
+    "verified": true,
+    "wikidata": "Q5185658",
+    "wikipedia": "https://en.wikipedia.org/wiki/Crimond_Raceway"
+  },
+  {
+    "id": "cwmythig-hill",
+    "name": "Cwmythig Hill",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "Rhayader",
+      "county": "Powys",
+      "country": "Wales",
+      "lat": 52.3261,
+      "lng": -3.49056
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Nantgwyn%20Baptist%20Church%20(19282147660).jpg?width=900",
+    "summary": "Circuit in Powys.",
+    "verified": true,
+    "wikidata": "Q5197264"
+  },
+  {
+    "id": "driftland",
+    "name": "Driftland",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "Cardenden",
+      "county": "Fife",
+      "country": "Scotland",
+      "lat": 56.12781,
+      "lng": -3.2788
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": "http://www.driftlanduk.com/",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thunder%20Valley%20-%20geograph.org.uk%20-%203080477.jpg?width=900",
+    "summary": "Driftland is a purpose-built race track for drifting at the Lochgelly Motorsport Complex, Fife, Scotland, inspired by the drift tracks of Japan.",
+    "verified": true,
+    "wikidata": "Q48772190",
+    "wikipedia": "https://en.wikipedia.org/wiki/Driftland"
+  },
+  {
+    "id": "eddie-wright-raceway",
+    "name": "Eddie Wright Raceway",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit",
+      "moto"
+    ],
+    "location": {
+      "town": "Scunthorpe",
+      "county": "North Lincolnshire",
+      "country": "England",
+      "lat": 53.61639,
+      "lng": -0.65444
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Scunthorpe%20Speedway%20-%20geograph.org.uk%20-%20476688.jpg?width=900",
+    "summary": "The Eddie Wright Raceway is a British race track in Scunthorpe, North Lincolnshire. It is primarily used for motorcycle speedway, but also occasionally hosts stock car racing.",
+    "verified": true,
+    "wikidata": "Q2238063",
+    "wikipedia": "https://en.wikipedia.org/wiki/Eddie_Wright_Raceway"
+  },
+  {
+    "id": "excel-street-circuit",
+    "name": "ExCeL Street Circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "East Ham",
+      "county": "England",
+      "country": "England",
+      "lat": 51.50833333333333,
+      "lng": 0.0275
+    },
+    "opened": 2021,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/BETT%202019.jpg?width=900",
+    "summary": "Circuit in England, first used in 2021.",
+    "verified": true,
+    "wikidata": "Q74677490"
+  },
+  {
+    "id": "foxhill-motocross-circuit",
+    "name": "Foxhill motocross circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "",
+      "county": "Swindon",
+      "country": "England",
+      "lat": 51.537,
+      "lng": -1.673
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Combe%20at%20SU226821%20south%20of%20Hinton%20Parva%20-%20geograph.org.uk%20-%20306160.jpg?width=900",
+    "summary": "Foxhill motocross circuit is a well-known motocross circuit situated near to the small village of Foxhill, around six miles south east of Swindon, Wiltshire, England.",
+    "verified": true,
+    "wikidata": "Q5477172",
+    "wikipedia": "https://en.wikipedia.org/wiki/Foxhill_motocross_circuit"
+  },
+  {
+    "id": "hednesford-hills-raceway",
+    "name": "Hednesford Hills Raceway",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "Cannock",
+      "county": "Staffordshire",
+      "country": "England",
+      "lat": 52.70865278,
+      "lng": -1.977975
+    },
+    "opened": 1952,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Hednesford%20Hills%20Raceway%20-%20geograph.org.uk%20-%208199814.jpg?width=900",
+    "summary": "Hednesford Hills Raceway is an oval, short-circuit motor racing venue. It is situated on Cannock Chase, approximately 1-mile (1.6 km) from the town of Hednesford, Staffordshire, England and is operated by Incarace Ltd.",
+    "verified": true,
+    "wikidata": "Q15223473",
+    "wikipedia": "https://en.wikipedia.org/wiki/Hednesford_Hills_Raceway"
+  },
+  {
+    "id": "king-s-lynn-stadium",
+    "name": "King's Lynn Stadium",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "King's Lynn",
+      "county": "Norfolk",
+      "country": "England",
+      "lat": 52.7302,
+      "lng": 0.389156
+    },
+    "opened": 1951,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/NorfolkArena.jpg?width=900",
+    "summary": "King's Lynn Stadium, also known as the Adrian Flux Arena and previously as the Norfolk Arena, is a short oval stadium situated to the south of King's Lynn, Norfolk, England.",
+    "verified": true,
+    "wikidata": "Q16893472",
+    "wikipedia": "https://en.wikipedia.org/wiki/King's_Lynn_Stadium"
+  },
+  {
+    "id": "ingliston-racing-circuit",
+    "name": "Ingliston Racing Circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "City of Edinburgh",
+      "county": "Scotland",
+      "country": "Scotland",
+      "lat": 55.94305556,
+      "lng": -3.3775
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20best%20goat%20at%20the%202014%20Royal%20Highland%20Show%20-%20geograph.org.uk%20-%204044831.jpg?width=900",
+    "summary": "Ingliston Racing Circuit is a 1.030 mi (1.658 km) motor racing circuit that was built at the Royal Highland Showground at Ingliston, Edinburgh.",
+    "verified": true,
+    "wikidata": "Q19902506",
+    "wikipedia": "https://en.wikipedia.org/wiki/Ingliston_Racing_Circuit"
+  },
+  {
+    "id": "kirkistown-circuit",
+    "name": "Kirkistown Circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "Ards and North Down District Council",
+      "county": "Northern Ireland",
+      "country": "Northern Ireland",
+      "lat": 54.456,
+      "lng": -5.469
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Kirkistown%20Motor%20Racing%20Circuit%20-%20geograph.org.uk%20-%201093480.jpg?width=900",
+    "summary": "Kirkistown Motor Racing Circuit is a permanent motorsport circuit located between the villages of Kirkistown and Portavogie, on the Ards Peninsula of County Down in Northern Ireland.",
+    "verified": true,
+    "wikidata": "Q6415707",
+    "wikipedia": "https://en.wikipedia.org/wiki/Kirkistown_Circuit"
+  },
+  {
+    "id": "lochgelly-raceway",
+    "name": "Lochgelly Raceway",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "Cardenden",
+      "county": "Fife",
+      "country": "Scotland",
+      "lat": 56.126456,
+      "lng": -3.27821
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": "https://www.hardieracepromotions.co.uk/",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thunder%20Valley%20-%20geograph.org.uk%20-%203080477.jpg?width=900",
+    "summary": "Circuit in Fife.",
+    "verified": true,
+    "wikidata": "Q114811655"
+  },
+  {
+    "id": "mendips-raceway",
+    "name": "Mendips Raceway",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "",
+      "county": "Somerset",
+      "country": "England",
+      "lat": 51.2976,
+      "lng": -2.7706
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Banger%20Racing%20track%20blockage%20at%20Mendips%20Raceway.jpg?width=900",
+    "summary": "Mendips Raceway is a motorsport venue in the Mendip Hills in Somerset, England. It is located on the rim of Batts Combe quarry between Shipham and Charterhouse.",
+    "verified": true,
+    "wikidata": "Q6816657",
+    "wikipedia": "https://en.wikipedia.org/wiki/Mendips_Raceway"
+  },
+  {
+    "id": "melbourne-raceway",
+    "name": "Melbourne Raceway",
+    "venueType": "drag-strip",
+    "raceTypes": [
+      "drag"
+    ],
+    "location": {
+      "town": "",
+      "county": "East Riding of Yorkshire",
+      "country": "England",
+      "lat": 53.86755,
+      "lng": -0.83932
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sprint%20at%20York%20Raceway%2C%201995%20-%20geograph.org.uk%20-%206425033.jpg?width=900",
+    "summary": "Drag Strip in East Riding of Yorkshire.",
+    "verified": true,
+    "wikidata": "Q98212688"
+  },
+  {
+    "id": "oliver-s-mount-racing-circuit",
+    "name": "Oliver's Mount racing circuit",
+    "venueType": "circuit",
+    "raceTypes": [
+      "moto"
+    ],
+    "location": {
+      "town": "",
+      "county": "North Yorkshire",
+      "country": "England",
+      "lat": 54.2637,
+      "lng": -0.4056
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Motorcycle%20racing%20-%20Olivers%20Mount%20-%20geograph.org.uk%20-%20126358.jpg?width=900",
+    "summary": "Circuit in North Yorkshire.",
+    "verified": true,
+    "wikidata": "Q115727538"
+  },
+  {
+    "id": "odsal-stadium",
+    "name": "Odsal Stadium",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "Bradford",
+      "county": "West Yorkshire",
+      "country": "England",
+      "lat": 53.765,
+      "lng": -1.756944
+    },
+    "opened": 1933,
+    "capacity": 27491,
+    "lengthMiles": null,
+    "website": "https://odsalstadium.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Bradford%20Bulls%20Stadium%2C%20Odsal%20Top%20(geograph%208265285).jpg?width=900",
+    "summary": "Odsal Stadium is a multipurpose stadium in Bradford, West Yorkshire, England. The stadium is currently the home of Bradford Bulls rugby league football club.",
+    "verified": true,
+    "wikidata": "Q3115714",
+    "wikipedia": "https://en.wikipedia.org/wiki/Odsal_Stadium"
+  },
+  {
+    "id": "shakespeare-county-raceway",
+    "name": "Shakespeare County Raceway",
+    "venueType": "drag-strip",
+    "raceTypes": [
+      "drag"
+    ],
+    "location": {
+      "town": "",
+      "county": "",
+      "country": "",
+      "lat": 52.1374,
+      "lng": -1.75727
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": "https://www.shakespearecountyraceway.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Global%20Gathering%202012%20-%20geograph.org.uk%20-%207072508.jpg?width=900",
+    "summary": "Located near Stratford-upon-Avon in Warwickshire, England, Shakespeare County Raceway became a permanent drag racing facility in 1980 when it was known as 'Long Marston Raceway'.",
+    "verified": true,
+    "wikidata": "Q7462792",
+    "wikipedia": "https://en.wikipedia.org/wiki/Shakespeare_County_Raceway"
+  },
+  {
+    "id": "snaefell-mountain-course",
+    "name": "Snaefell Mountain Course",
+    "venueType": "circuit",
+    "raceTypes": [
+      "moto"
+    ],
+    "location": {
+      "town": "",
+      "county": "",
+      "country": "",
+      "lat": 54.16777778,
+      "lng": -4.47777778
+    },
+    "opened": 1904,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Sidecar%20crew%20at%20Molyneux's%2C%20Isle%20of%20Man.jpg?width=900",
+    "summary": "The Isle of Man TT Mountain Course, also known as the TT Course, Snaefell Mountain Course or Elmo's Mountain Course, is a street and public rural road circuit located in the Isle of Man, used for motorcycle racing.",
+    "verified": true,
+    "wikidata": "Q1350354",
+    "wikipedia": "https://en.wikipedia.org/wiki/Isle_of_Man_TT_Mountain_Course"
+  },
+  {
+    "id": "shakespeare-county-raceway-2",
+    "name": "Shakespeare County Raceway",
+    "venueType": "drag-strip",
+    "raceTypes": [
+      "drag"
+    ],
+    "location": {
+      "town": "",
+      "county": "",
+      "country": "",
+      "lat": 52.1374,
+      "lng": -1.75727
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": "https://www.shakespearecountyraceway.co.uk",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Global%20Gathering%202012%20-%20geograph.org.uk%20-%207072508.jpg?width=900",
+    "summary": "Located near Stratford-upon-Avon in Warwickshire, England, Shakespeare County Raceway became a permanent drag racing facility in 1980 when it was known as 'Long Marston Raceway'.",
+    "verified": true,
+    "wikidata": "Q7462792",
+    "wikipedia": "https://en.wikipedia.org/wiki/Shakespeare_County_Raceway"
+  },
+  {
+    "id": "swaffham-raceway-stadium",
+    "name": "Swaffham Raceway Stadium",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "",
+      "county": "",
+      "country": "",
+      "lat": 52.65482778,
+      "lng": 0.63101111
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Swaffham%20Raceway%20track%20under%20floods.jpg?width=900",
+    "summary": "Swaffham Raceway, originally Swaffham Stadium, is a stock car and banger racing circuit in Swaffham, Norfolk, which also hosted greyhound racing from 1987 until 2000.",
+    "verified": true,
+    "wikidata": "Q24901502",
+    "wikipedia": "https://en.wikipedia.org/wiki/Swaffham_Raceway"
+  },
+  {
+    "id": "three-sisters-race-circuit",
+    "name": "Three Sisters Race Circuit",
+    "venueType": "kart-circuit",
+    "raceTypes": [
+      "karting"
+    ],
+    "location": {
+      "town": "",
+      "county": "",
+      "country": "",
+      "lat": 53.50655555555556,
+      "lng": -2.6326666666666667
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Three%20Sisters%20karting%202.jpg?width=900",
+    "summary": "The Three Sisters Circuit is a motor racing circuit in England, near Wigan in Greater Manchester.",
+    "verified": true,
+    "wikidata": "Q110822362",
+    "wikipedia": "https://en.wikipedia.org/wiki/Three_Sisters_Circuit"
+  },
+  {
+    "id": "swaffham-raceway-stadium-2",
+    "name": "Swaffham Raceway Stadium",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "",
+      "county": "",
+      "country": "",
+      "lat": 52.65482778,
+      "lng": 0.63101111
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Swaffham%20Raceway%20track%20under%20floods.jpg?width=900",
+    "summary": "Swaffham Raceway, originally Swaffham Stadium, is a stock car and banger racing circuit in Swaffham, Norfolk, which also hosted greyhound racing from 1987 until 2000.",
+    "verified": true,
+    "wikidata": "Q24901502",
+    "wikipedia": "https://en.wikipedia.org/wiki/Swaffham_Raceway"
+  },
+  {
+    "id": "tandragee-100",
+    "name": "Tandragee 100",
+    "venueType": "drag-strip",
+    "raceTypes": [
+      "drag"
+    ],
+    "location": {
+      "town": "",
+      "county": "",
+      "country": "",
+      "lat": 54.3289,
+      "lng": -6.4549
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": "https://tandragee100.co.uk/",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tandrageekurs.png?width=900",
+    "summary": "The Tandragee 100 is a motorcycle race that occurs on the public roads which connect Tandragee and Markethill, near the village of Clare, in County Armagh, Northern Ireland. Spanning 5.3 miles, it is sometimes referred to by its organisers as the 'Mini TT'.",
+    "verified": true,
+    "wikidata": "Q26699992",
+    "wikipedia": "https://en.wikipedia.org/wiki/Tandragee_100"
+  },
+  {
+    "id": "top-gear-test-track",
+    "name": "Top Gear test track",
+    "venueType": "circuit",
+    "raceTypes": [
+      "circuit"
+    ],
+    "location": {
+      "town": "",
+      "county": "",
+      "country": "",
+      "lat": 51.1164,
+      "lng": -0.541463
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/TG%20Test%20Track.PNG?width=900",
+    "summary": "The Top Gear test track located at Dunsfold Aerodrome in Surrey, United Kingdom was used by the BBC automotive television programme Top Gear. The track was designed by Lotus Cars as a testing facility, with many of its Formula One cars tested there.",
+    "verified": true,
+    "wikidata": "Q2630372",
+    "wikipedia": "https://en.wikipedia.org/wiki/Top_Gear_test_track"
+  },
+  {
+    "id": "tandragee-100-2",
+    "name": "Tandragee 100",
+    "venueType": "drag-strip",
+    "raceTypes": [
+      "drag"
+    ],
+    "location": {
+      "town": "",
+      "county": "",
+      "country": "",
+      "lat": 54.3289,
+      "lng": -6.4549
+    },
+    "opened": null,
+    "capacity": null,
+    "lengthMiles": null,
+    "website": "https://tandragee100.co.uk/",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Tandrageekurs.png?width=900",
+    "summary": "The Tandragee 100 is a motorcycle race that occurs on the public roads which connect Tandragee and Markethill, near the village of Clare, in County Armagh, Northern Ireland. Spanning 5.3 miles, it is sometimes referred to by its organisers as the 'Mini TT'.",
+    "verified": true,
+    "wikidata": "Q26699992",
+    "wikipedia": "https://en.wikipedia.org/wiki/Tandragee_100"
+  }
 ]
