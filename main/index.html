@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaceDates — UK Motorsport Tracks &amp; Race Calendars</title>
+  <meta name="description" content="Every UK race track and race weekend in one place — circuits, drag strips, hill climbs, rally and rallycross.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Race<em>Dates</em></h1>
+      <p class="tagline">Every UK race track and race weekend in one place — circuits, drag strips, hill climbs, rally stages and rallycross.</p>
+      <div class="hero-actions">
+        <a class="btn" href="map.html">Explore the Map</a>
+        <a class="btn btn-outline" href="races.html">Upcoming Races</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="rt-legend" id="rt-legend" aria-label="Race type colour key"></div>
+
+  <section class="features">
+    <div class="container">
+      <h2>Find Your Next Race Day</h2>
+      <div class="badge-grid">
+        <a class="badge-card" href="map.html">
+          <span class="badge">
+            <span class="badge-flagstrip"></span>
+            <span class="badge-title">Interactive Map</span>
+            <span class="badge-icon">🗺️</span>
+          </span>
+          <p class="badge-desc">Every UK venue pinned and colour-coded. Switch between track view and race view, filter by discipline, and click through to any venue.</p>
+        </a>
+        <a class="badge-card" href="tracks.html">
+          <span class="badge">
+            <span class="badge-flagstrip"></span>
+            <span class="badge-title">Track Guide</span>
+            <span class="badge-icon">🏁</span>
+          </span>
+          <p class="badge-desc">From Silverstone to Shelsley Walsh — history, capacity, location and the full upcoming calendar for every track.</p>
+        </a>
+        <a class="badge-card" href="races.html">
+          <span class="badge">
+            <span class="badge-flagstrip"></span>
+            <span class="badge-title">Race Calendar</span>
+            <span class="badge-icon">📅</span>
+          </span>
+          <p class="badge-desc">All the cups and championships in date order. Filter by race type, cost or series and never miss a round.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Build the race-type colour legend from the shared registry.
+    document.getElementById("rt-legend").innerHTML =
+      Object.keys(RaceDates.RACE_TYPES).map(RaceDates.raceTypeBadge).join("");
+
+    // Hero background: a random real track photo from the data pipeline.
+    RaceDates.getTracks().then((tracks) => {
+      const withPhotos = tracks.filter((t) => t.image);
+      if (!withPhotos.length) return;
+      const pick = withPhotos[Math.floor(Math.random() * withPhotos.length)];
+      const img = new Image();
+      img.onload = () => {
+        document.querySelector(".hero").style.setProperty("--hero-image", `url("${pick.image}")`);
+      };
+      img.src = pick.image;
+    }).catch(() => { /* keep the gradient fallback */ });
+  </script>
+</body>
+</html>

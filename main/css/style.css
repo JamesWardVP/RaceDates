@@ -1,0 +1,881 @@
+/* ==========================================================================
+   RaceDates — Design System
+   Dark "asphalt" motorsport theme. Every race type has its own identifying
+   colour, used consistently for map pins, cards, filter chips and calendar
+   entries across the whole site.
+   ========================================================================== */
+
+/* Fonts (both free from Google Fonts, no licensing restrictions):
+   - Racing Sans One — titles and headings (single weight, 400).
+   - Roboto — everything else.
+   Previously used fonts, logged for future reference: Titillium Web
+   (v0.1.0, free) and Victory Striker Sans Demo (v0.1.1, personal-use only —
+   dropped over licensing). */
+
+:root {
+  /* Core palette */
+  --bg: #0f1115;
+  --bg-alt: #14171d;
+  --surface: #1a1e26;
+  --surface-raised: #222733;
+  --border: #2e3442;
+  --text: #f2f3f5;
+  --text-muted: #9aa1ab;
+  --accent: #e10600;          /* racing red — primary brand accent */
+  --accent-soft: rgba(225, 6, 0, 0.15);
+
+  /* Race-type colours (the category system) */
+  --rt-circuit: #e10600;      /* car circuit racing  */
+  --rt-moto: #00c2d1;         /* motorbike racing    */
+  --rt-rally: #ff8a00;        /* rally               */
+  --rt-rallycross: #f5c518;   /* rallycross          */
+  --rt-hillclimb: #33cc66;    /* hill climb          */
+  --rt-drag: #a55eea;         /* drag racing         */
+  --rt-oval: #3d8bfd;         /* oval / stock        */
+  --rt-karting: #ff5ca8;      /* karting             */
+
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  --font: "Roboto", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Racing Sans One", "Roboto", "Segoe UI", system-ui, sans-serif;
+  --max-width: 1200px;
+
+  /* Wavy-flag silhouette applied to cards and nav boxes (preserveAspectRatio
+     none lets one mask stretch to any element size). */
+  --flag-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 7 C 15 1 35 13 50 7 S 85 1 100 7 L 100 93 C 85 99 65 87 50 93 S 15 99 0 93 Z' fill='black'/%3E%3C/svg%3E");
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.55;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  /* Racing Sans One ships a single weight — 400. Anything heavier gets
+     synthesised (and distorted) by the browser. */
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   Header / navigation (injected by js/main.js)
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(15, 17, 21, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--accent);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 60px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+
+.brand .flag {
+  width: 22px;
+  height: 22px;
+  background:
+    conic-gradient(#fff 90deg, #111 90deg 180deg, #fff 180deg 270deg, #111 270deg) 0 0 / 11px 11px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.brand em {
+  color: var(--accent);
+  font-style: normal;
+}
+
+.site-nav {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.site-nav a {
+  padding: 0.55rem 1rem;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  transition: color 0.15s, background 0.15s;
+  /* Wavy-flag shaped hover/active background */
+  -webkit-mask: var(--flag-mask) center / 100% 100% no-repeat;
+  mask: var(--flag-mask) center / 100% 100% no-repeat;
+}
+
+.site-nav a:hover { color: var(--text); background: var(--surface-raised); }
+
+.site-nav a.active {
+  color: var(--text);
+  background-color: var(--accent-soft);
+  /* Red underline that follows the wavy bottom edge: an SVG stroke tracing
+     the same curve as --flag-mask's bottom, nudged up so it isn't clipped. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M100 89 C 85 95 65 83 50 89 S 15 95 0 89' fill='none' stroke='%23e10600' stroke-width='7'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Footer (injected by js/main.js)
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  margin-top: 4rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.site-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.site-footer a { color: var(--text-muted); }
+
+/* --------------------------------------------------------------------------
+   Race-type badges & chips
+   -------------------------------------------------------------------------- */
+
+.rt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.2em 0.7em;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+}
+
+.rt-badge::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  border-radius: 50%;
+  background: var(--rt, var(--text-muted));
+}
+
+/* Assign colours via data attribute */
+[data-racetype="circuit"]    { --rt: var(--rt-circuit); }
+[data-racetype="moto"]       { --rt: var(--rt-moto); }
+[data-racetype="rally"]      { --rt: var(--rt-rally); }
+[data-racetype="rallycross"] { --rt: var(--rt-rallycross); }
+[data-racetype="hillclimb"]  { --rt: var(--rt-hillclimb); }
+[data-racetype="drag"]       { --rt: var(--rt-drag); }
+[data-racetype="oval"]       { --rt: var(--rt-oval); }
+[data-racetype="karting"]    { --rt: var(--rt-karting); }
+
+/* --------------------------------------------------------------------------
+   Cards & grids
+   -------------------------------------------------------------------------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.card:hover { transform: translateY(-3px); border-color: var(--accent); }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+  transition: filter 0.15s, transform 0.1s;
+}
+
+.btn:hover { filter: brightness(1.15); }
+.btn:active { transform: scale(0.98); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); filter: none; }
+
+/* --------------------------------------------------------------------------
+   Landing page
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(15, 17, 21, 0.55), rgba(15, 17, 21, 0.92) 85%),
+    var(--hero-image, linear-gradient(135deg, #1b2029 0%, #10131a 60%, #201316 100%));
+  background-size: cover;
+  background-position: center;
+  border-bottom: 3px solid var(--accent);
+}
+
+/* Subtle circuit-line decoration behind the hero text */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' fill='none'%3E%3Cpath d='M60 420 C60 300 180 300 260 300 S380 180 420 140 S640 100 700 160 S740 320 640 360 S300 420 60 420 Z' stroke='%23ffffff' stroke-opacity='0.06' stroke-width='26' stroke-linejoin='round'/%3E%3Cpath d='M60 420 C60 300 180 300 260 300 S380 180 420 140 S640 100 700 160 S740 320 640 360 S300 420 60 420 Z' stroke='%23e10600' stroke-opacity='0.12' stroke-width='4' stroke-dasharray='18 14' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+}
+
+.hero-inner { position: relative; padding: 3rem 1.25rem; }
+
+.hero h1 {
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
+  margin-bottom: 0.3rem;
+}
+
+.hero h1 em { color: var(--accent); font-style: normal; }
+
+.hero p.tagline {
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  color: var(--text-muted);
+  max-width: 640px;
+  margin: 0 auto 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.9rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Race-type legend strip on the landing page */
+.rt-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  padding: 1.5rem 1.25rem;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Feature cards on the landing page */
+.features {
+  padding: 3.5rem 0;
+}
+
+.features h2 { text-align: center; margin-bottom: 2rem; }
+
+/* Racing badges on the landing page — shield/crest shapes with a chequered
+   strip across the top, a title, and a large central icon. */
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+.badge-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  max-width: 300px;
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 230px;
+  padding: 0 1.25rem 3rem;
+  background: linear-gradient(180deg, var(--surface-raised), var(--surface) 75%);
+  border: 3px solid var(--border);
+  /* Straight shoulders tapering into a curved shield point */
+  border-radius: 14px 14px 50% 50% / 14px 14px 42% 42%;
+  overflow: hidden;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.badge-flagstrip {
+  align-self: stretch;
+  height: 14px;
+  margin: 0 -1.25rem 1.2rem;
+  background:
+    conic-gradient(#e8e8e8 90deg, #14171d 90deg 180deg, #e8e8e8 180deg 270deg, #14171d 270deg) 0 0 / 14px 14px;
+  border-bottom: 2px solid var(--border);
+}
+
+.badge-title {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 1.05rem;
+  text-align: center;
+  line-height: 1.25;
+}
+
+.badge-icon { font-size: 3.4rem; line-height: 1; margin-top: 0.75rem; }
+
+.badge-desc {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  text-align: center;
+  max-width: 32ch;
+}
+
+.badge-card:hover .badge {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px var(--accent-soft);
+}
+
+/* --------------------------------------------------------------------------
+   Page scaffolding / placeholder blocks
+   -------------------------------------------------------------------------- */
+
+.page-title {
+  padding: 2.5rem 0 0.5rem;
+}
+
+.page-title p { color: var(--text-muted); margin-top: 0; }
+
+.placeholder {
+  margin: 2rem auto;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+/* --------------------------------------------------------------------------
+   Filter bar (tracks + races pages)
+   -------------------------------------------------------------------------- */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 0 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.filter-input,
+.filter-select {
+  background: var(--bg-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+  font-family: var(--font);
+  font-size: 0.9rem;
+}
+
+.filter-input:focus,
+.filter-select:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+
+.filter-input { min-width: 200px; flex: 1; }
+
+.filter-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+/* Toggleable race-type chips */
+.rt-chip {
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.55;
+  border: 1px solid var(--border);
+  transition: opacity 0.15s, border-color 0.15s;
+}
+
+.rt-chip:hover { opacity: 0.85; }
+
+.rt-chip.selected {
+  opacity: 1;
+  border-color: var(--rt, var(--accent));
+  box-shadow: inset 0 0 0 1px var(--rt, var(--accent));
+}
+
+.filter-count { color: var(--text-muted); font-size: 0.85rem; margin-left: auto; }
+
+.empty-note {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Track cards (tracks page grid)
+   -------------------------------------------------------------------------- */
+
+.track-card { text-decoration: none; display: flex; flex-direction: column; }
+
+.track-cover {
+  height: 145px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--rt, var(--accent)) 38%, var(--bg-alt)), var(--bg-alt) 80%);
+  border-bottom: 3px solid var(--rt, var(--border));
+}
+
+.track-cover.has-image { background-size: cover; background-position: center; }
+
+.track-card-body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.45rem; }
+
+.track-card-body h3 { font-size: 1.05rem; margin: 0; }
+
+.track-card-loc { color: var(--text-muted); font-size: 0.85rem; }
+
+.track-card-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.25rem; }
+
+.track-card-badges .rt-badge { font-size: 0.68rem; }
+
+.venue-type-tag {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Track detail page
+   -------------------------------------------------------------------------- */
+
+.track-hero {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 2rem;
+  align-items: start;
+  margin-top: 2rem;
+}
+
+.track-hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 0.2rem; }
+
+.track-hero .subtitle {
+  display: inline-block;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  text-decoration: none;
+  margin-bottom: 1.25rem;
+}
+
+.track-hero .subtitle:hover { color: var(--accent); }
+
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+/* Real track photo (from the data pipeline) — fills the strip */
+.photo-main {
+  grid-column: 1 / -1;
+  height: 280px;
+  display: block;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-size: cover;
+  background-position: center;
+}
+
+.photo-main:hover { outline: 2px solid var(--accent); }
+
+.photo-placeholder {
+  height: 110px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--text-muted);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--rt, var(--accent)) 25%, var(--surface)), var(--surface) 85%);
+  border: 1px solid var(--border);
+}
+
+.map-box {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.map-box iframe { display: block; width: 100%; height: 260px; border: 0; filter: grayscale(0.25) contrast(1.05); }
+
+.map-box .map-open-link {
+  display: block;
+  text-align: center;
+  padding: 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--surface-raised);
+}
+
+.map-box .map-open-link:hover { color: var(--accent); }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.info-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+}
+
+.info-tile .label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.info-tile .value { font-size: 1.15rem; font-weight: 700; margin-top: 0.15rem; }
+
+.info-tile .value a { color: var(--text); text-decoration: none; }
+.info-tile .value a:hover { color: var(--accent); }
+
+.detail-columns {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 2rem;
+  margin: 1rem 0 2rem;
+}
+
+.detail-section h2 {
+  font-size: 1.2rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent);
+}
+
+.hosted-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+
+.hosted-series { list-style: none; padding: 0; margin: 1.25rem 0 0; display: flex; flex-direction: column; gap: 0.5rem; }
+
+.hosted-series li {
+  padding: 0.6rem 0.9rem;
+  background: var(--surface);
+  border-left: 4px solid var(--rt, var(--border));
+  border-radius: var(--radius-sm);
+  font-size: 0.92rem;
+}
+
+/* Upcoming events calendar */
+.event-list { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-direction: column; gap: 0.65rem; }
+
+.event-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.7rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--rt, var(--border));
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.event-row:hover { background: var(--surface-raised); border-color: var(--rt, var(--accent)); }
+
+.event-date {
+  flex-shrink: 0;
+  text-align: center;
+  min-width: 58px;
+  background: var(--bg-alt);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.5rem;
+  line-height: 1.15;
+}
+
+.event-date .day { font-size: 1.25rem; font-weight: 700; display: block; }
+
+.event-date .month { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); display: block; }
+
+.event-row .event-name { font-weight: 500; }
+
+.event-row .event-series { font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 0.1rem; }
+
+/* --------------------------------------------------------------------------
+   Event modal
+   -------------------------------------------------------------------------- */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(8, 9, 12, 0.75);
+  backdrop-filter: blur(3px);
+}
+
+.modal {
+  width: min(480px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--rt, var(--accent));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 1.6rem;
+  position: relative;
+}
+
+.modal h3 { font-size: 1.25rem; padding-right: 2rem; }
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  color: var(--text);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.modal-close:hover { background: var(--accent); }
+
+.modal-details { margin: 1rem 0 1.4rem; display: flex; flex-direction: column; gap: 0.55rem; font-size: 0.95rem; }
+
+.modal-details .row { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 1px dashed var(--border); padding-bottom: 0.45rem; }
+
+.modal-details .row .k { color: var(--text-muted); }
+
+.modal-details .row .v { font-weight: 500; text-align: right; }
+
+/* --------------------------------------------------------------------------
+   Map page
+   -------------------------------------------------------------------------- */
+
+.mode-toggle {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.mode-btn {
+  border: none;
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.mode-btn:hover { color: var(--text); }
+
+.mode-btn.active { background: var(--accent); color: #fff; }
+
+#map {
+  height: 64vh;
+  min-height: 420px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 2rem;
+  background: var(--bg-alt);
+}
+
+/* Slight lift on the base tiles, stronger boost on the place-name label
+   layer (its own pane) so map names are readable on the dark theme. */
+#map .leaflet-tile-pane { filter: brightness(1.15); }
+#map .leaflet-labels-pane { filter: brightness(2.1) contrast(1.1); }
+
+/* Dark-theme Leaflet popups & tooltips */
+.leaflet-popup-content-wrapper,
+.leaflet-tooltip {
+  background: var(--surface-raised);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+.leaflet-popup-tip { background: var(--surface-raised); }
+
+.leaflet-popup-content { font-family: var(--font); font-size: 0.9rem; margin: 0.9rem 1rem; }
+
+.leaflet-popup-content a { color: var(--text); font-weight: 700; }
+.leaflet-popup-content a:hover { color: var(--accent); }
+
+.leaflet-popup-content .popup-loc { color: var(--text-muted); font-size: 0.82rem; display: block; margin: 0.2rem 0 0.4rem; }
+
+.leaflet-popup-content .popup-events { list-style: none; margin: 0.4rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; }
+
+.leaflet-popup-content .popup-events a { font-weight: 500; }
+
+.leaflet-popup-content .popup-events .ev-date { color: var(--text-muted); font-size: 0.78rem; }
+
+.leaflet-container .leaflet-control-attribution {
+  background: rgba(15, 17, 21, 0.8);
+  color: var(--text-muted);
+}
+
+.leaflet-container .leaflet-control-attribution a { color: var(--text-muted); }
+
+/* --------------------------------------------------------------------------
+   Races page
+   -------------------------------------------------------------------------- */
+
+.race-list { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+
+.race-item {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.85rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--rt, var(--border));
+  border-radius: var(--radius);
+}
+
+.race-item .race-main { flex: 1; min-width: 220px; }
+
+.race-item .race-name { font-weight: 700; font-size: 1.02rem; }
+
+.race-item .race-meta { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.15rem; }
+
+.race-item .race-meta a { color: var(--text-muted); }
+.race-item .race-meta a:hover { color: var(--accent); }
+
+.race-item .race-price { font-weight: 700; min-width: 70px; text-align: right; }
+
+.race-item .race-actions { display: flex; gap: 0.5rem; }
+
+.race-item .btn { padding: 0.45rem 0.9rem; font-size: 0.8rem; }
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .track-hero { grid-template-columns: 1fr; }
+  .detail-columns { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .site-header .container { height: auto; flex-direction: column; padding: 0.6rem 1.25rem; }
+  .site-nav { flex-wrap: wrap; justify-content: center; }
+  .hero { min-height: 65vh; }
+  .photo-strip { grid-template-columns: 1fr 1fr; }
+  .race-item .race-price { text-align: left; }
+}

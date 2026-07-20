@@ -1,0 +1,39 @@
+# RaceDates — scheduled data refresh
+# Runs the PowerShell pipeline daily: track facts/photos from Wikidata and
+# race calendars from official series sites. Commits main/data/*.json only
+# when something actually changed; the push then triggers the Pages deploy.
+name: Refresh data
+
+on:
+  schedule:
+    - cron: "17 5 * * *"   # daily, 05:17 UTC
+  workflow_dispatch: {}     # allow manual runs from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refresh track data (Wikidata)
+        shell: pwsh
+        run: ./tools/refresh-tracks.ps1
+
+      - name: Refresh race calendars (series sites)
+        shell: pwsh
+        run: ./tools/refresh-events.ps1
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "racedates-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add main/data
+          if git diff --cached --quiet; then
+            echo "No data changes."
+          else
+            git commit -m "Automated data refresh"
+            git push
+          fi

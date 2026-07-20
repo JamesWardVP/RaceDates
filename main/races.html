@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Races — RaceDates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="page-title">
+      <h1>Races &amp; Championships</h1>
+      <p>Every cup and championship in date order — next race first, past races hidden.</p>
+    </div>
+
+    <div class="filter-bar">
+      <select class="filter-select" id="filter-racetype" aria-label="Filter by race type"></select>
+      <select class="filter-select" id="filter-group" aria-label="Filter by cup or group"></select>
+      <select class="filter-select" id="filter-series" aria-label="Filter by series"></select>
+      <select class="filter-select" id="filter-cost" aria-label="Filter by cost"></select>
+      <label class="filter-label" style="display:flex;align-items:center;gap:0.4rem;cursor:pointer">
+        <input type="checkbox" id="filter-past"> Include past
+      </label>
+      <span class="filter-count" id="race-count"></span>
+    </div>
+
+    <ul class="race-list" id="race-list"></ul>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/races.js"></script>
+</body>
+</html>
