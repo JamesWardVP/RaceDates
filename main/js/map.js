@@ -116,7 +116,7 @@
     const badges = t.raceTypes.map(RaceDates.raceTypeBadge).join(" ");
     return `
       <a href="track.html?id=${t.id}">${t.name}</a>
-      <span class="popup-loc">${t.location.town}, ${t.location.county} — ${t.location.country}</span>
+      <span class="popup-loc">${[t.location.town, t.location.county].filter(Boolean).join(", ")} — ${t.location.country}</span>
       ${badges}`;
   }
 
@@ -132,7 +132,7 @@
       .join("");
     return `
       <a href="track.html?id=${t.id}">${t.name}</a>
-      <span class="popup-loc">${t.location.town}, ${t.location.county} — ${t.location.country}</span>
+      <span class="popup-loc">${[t.location.town, t.location.county].filter(Boolean).join(", ")} — ${t.location.country}</span>
       <ul class="popup-events">${items}</ul>`;
   }
 

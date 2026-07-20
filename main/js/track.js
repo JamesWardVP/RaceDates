@@ -52,7 +52,7 @@
       <div>
         <h1>${track.name}</h1>
         <a class="subtitle" href="${mapsUrl}" target="_blank" rel="noopener"
-           title="Open in Maps">📍 ${track.location.town}, ${track.location.county}, ${track.location.country}</a>
+           title="Open in Maps">📍 ${[track.location.town, track.location.county, track.location.country].filter(Boolean).join(", ")}</a>
         <div class="photo-strip" data-racetype="${primaryType}">
           ${track.image
             ? `<a class="photo-main" href="${track.image}" target="_blank" rel="noopener"

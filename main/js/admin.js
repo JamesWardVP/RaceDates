@@ -103,16 +103,27 @@
 
   async function useEntity(qid, overrides = {}) {
     $("wd-results").innerHTML = '<p class="admin-hint">Fetching venue details…</p>';
+    const data = await gatherEntityData(qid, overrides);
+    $("wd-results").innerHTML = "";
+    renderTrackForm(data);
+  }
+
+  /* Pull everything we can about a Wikidata entity: claims, Commons photo
+     fallback, and reverse-geocoded town/county/country. */
+  async function gatherEntityData(qid, overrides = {}) {
     const data = { wikidata: qid, ...overrides };
     try {
       const res = await (await fetch(
-        `https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&origin=*&props=claims%7Csitelinks%7Clabels&ids=${qid}`
+        `https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&origin=*&props=claims%7Csitelinks%7Clabels%7Cdescriptions&ids=${qid}`
       )).json();
       const entity = res.entities[qid];
       const claims = entity.claims || {};
       const claim = (p) => claims[p] && claims[p][0].mainsnak.datavalue && claims[p][0].mainsnak.datavalue.value;
 
       data.name = data.name || (entity.labels.en && entity.labels.en.value) || "";
+      data.description = (entity.descriptions && entity.descriptions.en && entity.descriptions.en.value) || "";
+      // P576 = dissolved/abolished, P3999 = date of official closure
+      data.defunct = !!(claims.P576 || claims.P3999);
       const coord = claim("P625");
       if (coord) { data.lat = coord.latitude; data.lng = coord.longitude; }
       const img = claim("P18");
@@ -152,7 +163,7 @@
           `https://nominatim.openstreetmap.org/reverse?format=jsonv2&zoom=12&lat=${data.lat}&lon=${data.lng}`
         )).json();
         const a = res.address || {};
-        data.town = data.town || a.town || a.village || a.city || a.suburb || "";
+        data.town = data.town || a.town || a.village || a.city || a.suburb || a.municipality || a.borough || a.hamlet || "";
         data.county = data.county || a.county || a.state_district || a.state || "";
         const cc = (a.country_code || "").toUpperCase();
         data.country = data.country ||
@@ -160,8 +171,88 @@
       } catch { }
     }
 
-    $("wd-results").innerHTML = "";
-    renderTrackForm(data);
+    return data;
+  }
+
+  /* ---------- fully automatic add (discovered venues) ---------- */
+
+  const inferVenueType = (text) => {
+    if (/hill ?climb/i.test(text)) return "hill-climb";
+    if (/drag/i.test(text)) return "drag-strip";
+    if (/kart/i.test(text)) return "kart-circuit";
+    if (/rallycross/i.test(text)) return "rallycross-circuit";
+    return "circuit";
+  };
+
+  const inferRaceTypes = (venueType, text) => {
+    switch (venueType) {
+      case "hill-climb": return ["hillclimb"];
+      case "drag-strip": return ["drag"];
+      case "kart-circuit": return ["karting"];
+      case "rallycross-circuit": return ["rallycross"];
+    }
+    const moto = /motorcycl|motorbike|superbike|road rac|tt course/i.test(text);
+    const car = /\bcar\b|touring|grand prix|formula/i.test(text);
+    if (moto && !car) return ["moto"];
+    return moto ? ["circuit", "moto"] : ["circuit"];
+  };
+
+  async function autoAddDiscovered(dv, statusEl) {
+    statusEl.textContent = "Gathering data…";
+    const data = await gatherEntityData(dv.qid, {
+      name: dv.name, lat: dv.lat, lng: dv.lng, opened: dv.opened,
+      capacity: dv.capacity, image: dv.image, website: dv.website, wikipedia: dv.wikipedia,
+    });
+
+    /* Summary from the venue's own Wikipedia intro when it has one */
+    let summary = "";
+    if (data.wikipedia) {
+      try {
+        const title = data.wikipedia.split("/wiki/")[1];
+        const res = await (await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${title}`)).json();
+        const extract = (res.extract || "").trim();
+        if (extract) {
+          summary = extract.split(/(?<=\.)\s+/).slice(0, 2).join(" ");
+          if (summary.length > 260) summary = summary.split(/(?<=\.)\s+/)[0];
+        }
+      } catch { }
+    }
+
+    /* The photo filename often names the discipline ("Motorcycle racing -
+       Olivers Mount…"), so include it in the inference text. */
+    const imageName = data.image ? decodeURIComponent(data.image.split("FilePath/")[1] || "") : "";
+    const text = `${data.name} ${data.description || ""} ${summary} ${imageName}`;
+    /* Defunct venues: closure claims, "former/closed" wording, or a Wikipedia
+       intro written in the past tense ("…was a motor racing circuit"). */
+    const pastTense = /\bwas\s+(a|an|the)\b/i.test(summary.split(".")[0] || "");
+    if (data.defunct || pastTense || /former|closed|defunct|demolish|disused/i.test(`${data.description} ${summary}`)) {
+      statusEl.textContent = "Looks like a former/closed venue — use Review to add it deliberately.";
+      return false;
+    }
+
+    const venueType = inferVenueType(text);
+    if (!summary) {
+      summary = `${VENUE_TYPES[venueType]} in ${data.county || data.town || "the UK"}${data.opened ? `, first used in ${data.opened}` : ""}.`;
+    }
+
+    let id = slugify(data.name);
+    while (tracks.some((t) => t.id === id)) id += "-2";
+
+    tracks.push({
+      id, name: data.name, venueType,
+      raceTypes: inferRaceTypes(venueType, text),
+      location: { town: data.town || "", county: data.county || "", country: data.country || "", lat: data.lat, lng: data.lng },
+      opened: data.opened || null, capacity: data.capacity || null, lengthMiles: null,
+      website: data.website || null, image: data.image || null, summary,
+      verified: true, wikidata: data.wikidata,
+      ...(data.wikipedia ? { wikipedia: data.wikipedia } : {}),
+    });
+    dirtyTracks = true;
+    staged.push(`New track (auto): ${data.name}`);
+    renderStaged();
+    renderEventForm();
+    statusEl.textContent = "Added ✓ — staged for publish.";
+    return true;
   }
 
   /* ---------- track form ---------- */
@@ -239,12 +330,27 @@
       <ul class="admin-results">
         ${discovered.map((dv, i) => `
           <li>
-            <button type="button" class="btn btn-outline" data-i="${i}">Use</button>
+            <button type="button" class="btn" data-auto="${i}">Auto-add</button>
+            <button type="button" class="btn btn-outline" data-i="${i}">Review</button>
             ${dv.image ? `<img class="admin-thumb" src="${dv.image}" alt="" loading="lazy">` : '<span class="admin-thumb admin-thumb-empty">—</span>'}
             <strong>${dv.name}</strong>
             <span class="admin-hint">${dv.opened ? "opened " + dv.opened + " · " : ""}${dv.qid}${dv.wikipedia ? " · has Wikipedia page" : ""}</span>
+            <span class="admin-hint" data-status="${i}"></span>
           </li>`).join("")}
       </ul>` : '<p class="admin-hint">Nothing waiting for review.</p>';
+
+    /* Auto-add: pulls everything (location details, photo, race types from the
+       venue's description, summary from its Wikipedia intro) and stages it —
+       no manual input. Review still opens the editable form. */
+    $("discovered-list").querySelectorAll("button[data-auto]").forEach((b) => {
+      b.addEventListener("click", async () => {
+        const i = Number(b.dataset.auto);
+        const statusEl = $("discovered-list").querySelector(`[data-status="${i}"]`);
+        b.disabled = true;
+        const ok = await autoAddDiscovered(discovered[i], statusEl);
+        if (!ok) b.disabled = false;
+      });
+    });
     $("discovered-list").querySelectorAll("button[data-i]").forEach((b) => {
       b.addEventListener("click", () => {
         const dv = discovered[Number(b.dataset.i)];

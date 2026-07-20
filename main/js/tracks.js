@@ -75,7 +75,7 @@
         <div class="track-card-body">
           <span class="venue-type-tag">${VENUE_LABELS[t.venueType] || t.venueType}</span>
           <h3>${t.name}</h3>
-          <span class="track-card-loc">${t.location.town}, ${t.location.county} — ${t.location.country}</span>
+          <span class="track-card-loc">${[t.location.town, t.location.county].filter(Boolean).join(", ")} — ${t.location.country}</span>
           <div class="track-card-badges">${badges}</div>
         </div>
       </a>`;
