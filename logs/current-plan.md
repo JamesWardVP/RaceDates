@@ -9,7 +9,13 @@
 
 ## Work currently underway
 
-**Status: James's calendar-polish batch of 2026-07-21 (uneven grid widths/misaligned headers, two-line chips, multi-day day-tags, hover/tap tooltip, calendar-as-default, wrong "today" date, list-view today indicator) is COMPLETE — logged as v0.9.2, verified in browser (real computed styles + real OS-level hover, not synthetic events). Phase 6 (polish & first release) is next — nothing blocking it now.**
+**Status: Phase 6 COMPLETE — v1.0.0 released 2026-07-21. Favicon, custom 404 page, mobile calendar horizontal-scroll fix, full 375px pass across all 6 pages (no overflow/console errors anywhere), and the first `Releases/1.0.0/` snapshot. All six roadmap phases are now done. Live site: https://jameswardvp.github.io/RaceDates/**
+
+Post-v1.0.0, work is incremental — no active phase in progress. Good entry points for a future session, roughly in priority order:
+1. Live cross-page click-through smoke test on the actual production URL after this release deploys (not yet done this session — deploy takes ~1 min after push, then verify favicon/404/calendar all show correctly live, not just on localhost).
+2. Work through the event-coverage adapter backlog below (Castle Combe, Pembrey, remaining stock-car ovals, motocross, Isle of Man TT/Tandragee).
+3. Add more "Other" cross-country events if James names any (pattern: venueType `other` track + `venue`-series event with a per-event `raceType`).
+4. The 7 tracks still missing photos (Google Maps Places would need an API key — ask James first).
 
 Calendar view internals (for future sessions touching `js/races.js` / the `.cal-*` CSS):
 - Date keys MUST go through `RaceDates.toDateKey(date)` (local Y-M-D), never `date.toISOString()` — the latter reads UTC fields and silently shifts dates during BST. This bit us once already (v0.9.2 "today" bug); the events' own `startDate`/`endDate` strings are already plain, timezone-naive "YYYY-MM-DD" and must be treated that way throughout.
@@ -17,17 +23,11 @@ Calendar view internals (for future sessions touching `js/races.js` / the `.cal-
 - `[hidden]`-toggled elements need checking against any class rule setting their own `display` — a same-specificity author-stylesheet class rule beats the browser's default `[hidden] { display: none }`. `.race-list[hidden] { display: none; }` is the existing fix; apply the same pattern if a new `hidden`-toggled element gets its own `display` rule.
 - Touch-vs-hover branching relies on `matchMedia('(hover: hover)')`, checked at click time (not cached), so it degrades correctly if a device's input capability changes (e.g. a hybrid laptop with a mouse plugged in).
 
-Remaining loose ends, for a future session:
+Other remaining loose ends:
 - BriSCA F1's *own* fixtures page (briscaf1.com/fixtures) redirects to a stale 2020 archive — currently sourced from cayzerracing.co.uk's fixture table instead, which is fine but worth rechecking occasionally in case the official site fixes its URL.
 - Straightliners' own domain (straightliners-events.co.uk) still has broken TLS from every client tested (PS, curl, WebFetch, in-app browser navigation); the mirror straightliners.events works and is what the adapter uses — no action needed unless that mirror also breaks.
-- Isle of Man TT / Manx GP (Snaefell Mountain Course) and Tandragee 100 road-racing calendars — not yet investigated.
-- **More "Other" cross-country events**: only Race the Waves added so far (James's named example). If he names more, add them the same way — a track with venueType `other` if there's no fixed permanent surface, an event on the `venue` series with a per-event `raceType` matching what actually happens there. Don't invent entries without a real source.
-- 7 tracks still have no photo at all (Commons search found nothing suitable) — could try Google Maps Places photos as James suggested, but that needs an API key (cost/setup — ask James before adding).
-
-Phase 6 checklist (when started):
-- Cross-page click-through test on the live site; mobile/responsive pass (nav wrap, filter bar, admin forms at 375px).
-- Decide whether `Releases/` gets a copy of `main/` per release or a zip; do the v1.0.0 copy + version-history entry.
-- Loose ends worth sweeping: BRX adapter (rallycrossbrx.com), Santa Pod "Ultimate Street Car" parse gap, favicon, per-event page scraping for gates/prices, maybe a 404 page for Pages.
+- Santa Pod's "Ultimate Street Car" event still isn't captured by the adapter (site 403s repeat requests, so probe sparingly when investigating).
+- Per-event page scraping for gate times/prices (calendar list pages don't publish them) — later refinement, not blocking.
 
 **Event-coverage adapter backlog** (each source = a small adapter in `tools/refresh-events.ps1`; series pattern = `Get-BtccEvents`, venue-calendar pattern = `Get-LyddenEvents` + `Merge-VenueEvents` with per-event `raceType`):
 - ~~Lydden Hill venue calendar~~ ✅ v0.7.0 (15 events).
@@ -119,4 +119,4 @@ A website about UK motorsport tracks and races (circuit, drag, rally, rallycross
 - ~~**Phase 3 — Core pages**~~ ✅ done, v0.2.0.
 - ~~**Phase 4 — Map page**~~ ✅ done, v0.3.0.
 - ~~**Phase 5 — Admin page**~~ ✅ done, v0.6.0.
-- **Phase 6 — Polish & release:** cross-page testing, responsive/mobile pass, first build copied to `Releases/` as v1.0.0.
+- ~~**Phase 6 — Polish & release**~~ ✅ done, v1.0.0 (2026-07-21). All six phases complete.

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "british-gt",
+    "name": "British GT Championship",
+    "raceType": "circuit",
+    "group": "GT",
+    "website": "https://www.britishgt.com",
+    "summary": "The UK's premier sportscar series for GT3 and GT4 machinery."
+  },
+  {
+    "id": "btcc",
+    "name": "British Touring Car Championship",
+    "raceType": "circuit",
+    "group": "Touring",
+    "website": "https://www.btcc.net",
+    "summary": "Britain's biggest domestic racing series — door-to-door touring car action."
+  },
+  {
+    "id": "british-f4",
+    "name": "British F4 Championship",
+    "raceType": "circuit",
+    "group": "Single Seater",
+    "website": "https://www.britishf4.com",
+    "summary": "The first step on the single-seater ladder for future stars, supporting the BTCC."
+  },
+  {
+    "id": "bsb",
+    "name": "British Superbike Championship",
+    "raceType": "moto",
+    "group": "Superbike",
+    "website": "https://www.britishsuperbike.com",
+    "summary": "The world's most competitive domestic motorcycle racing championship."
+  },
+  {
+    "id": "brc",
+    "name": "British Rally Championship",
+    "raceType": "rally",
+    "group": "Rally",
+    "website": "https://www.thebrc.co.uk",
+    "summary": "The UK's premier rally series, run on closed-road and forest stages."
+  },
+  {
+    "id": "5-nations-brx",
+    "name": "5 Nations British Rallycross Championship",
+    "raceType": "rallycross",
+    "group": "Rallycross",
+    "website": "https://www.rallycrossbrx.com",
+    "summary": "Mixed-surface, short, explosive racing at the UK and Ireland's rallycross venues."
+  },
+  {
+    "id": "british-hillclimb",
+    "name": "British Hillclimb Championship",
+    "raceType": "hillclimb",
+    "group": "Hill Climb",
+    "website": "https://www.britishhillclimb.co.uk",
+    "summary": "Single cars against the clock on the UK's historic hill climb courses."
+  },
+  {
+    "id": "straightliners",
+    "name": "Straightliners",
+    "raceType": "other",
+    "group": "Mobile Events",
+    "website": "https://straightliners.events",
+    "summary": "A travelling event host running drag racing, top-speed and land-speed events at airfields, drag strips and beaches across the UK — from Melbourne Raceway to Pendine Sands."
+  },
+  {
+    "id": "brisca-f1",
+    "name": "BriSCA F1 Stock Cars",
+    "raceType": "oval",
+    "group": "Stock Car",
+    "website": "https://briscaf1.com",
+    "summary": "The UK's premier stock car formula — contact racing on shale and tarmac ovals, culminating in the World Final."
+  },
+  {
+    "id": "venue",
+    "name": "Venue Event",
+    "raceType": "circuit",
+    "group": "Venue Events",
+    "website": null,
+    "summary": "Events published on the venue's own calendar — race meetings, festivals and shows. Each carries its own race-type colour."
+  },
+  {
+    "id": "santa-pod",
+    "name": "Santa Pod Raceway Events",
+    "raceType": "drag",
+    "group": "Drag",
+    "website": "https://www.santapod.co.uk",
+    "summary": "Drag racing and motorsport festivals at Santa Pod — from 300 mph FIA European championship rounds to Bug Jam."
+  }
+]

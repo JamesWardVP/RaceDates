@@ -9,6 +9,16 @@ Newest entries at the top. When work listed in `current-plan.md` is completed, i
 
 ---
 
+## 1.0.0 — 2026-07-21
+- **Phase 6 — Polish & first release. RaceDates v1.0.0.**
+  - **Favicon added**: a small checkered-flag SVG (`main/favicon.svg`, brand colours) linked from every page — the site previously had no tab icon.
+  - **Custom 404 page** (`main/404.html`) — GitHub Pages serves this automatically for any unmatched URL under the site, styled consistently with the rest of the site instead of a bare default error page.
+  - **Mobile calendar fix**: the new month-grid calendar (v0.9.2) measured only ~41px per day cell on a 375px phone screen — event chips would have been unreadable. Rather than shrink the UI further, the calendar (header + grid together, so they scroll in sync) now scrolls horizontally on narrow screens, keeping cells at a legible ~82px. Verified: no page-level horizontal scroll, the internal scroll container has its own, and the weekday header stays pixel-aligned with the day grid at any scroll position.
+  - **Full mobile pass at 375px** across all 6 pages (landing, map, tracks, track detail incl. event modal, races incl. both calendar and list views, admin incl. logged-in tabs) — no horizontal overflow anywhere, grids/forms collapse to single columns correctly, map renders and pins, modal fits on screen. No console errors on any page.
+  - Cache-busting bumped to `?v=1.0.0` on every page.
+  - **First versioned snapshot copied to `Releases/1.0.0/`** — the deployable site (everything under `main/`) as of this release, per the project's standing rule that `Releases/` holds finished, complete builds. The live site itself continues to deploy straight from `main/` via GitHub Actions; this snapshot is an archival copy, not a second deployment target.
+  - Roadmap: all six phases now complete (Foundation, Data, Core pages, Map, Admin, Polish). The site is live, self-updating daily, and has an admin tool for adding new tracks/events. Ongoing work from here is incremental: more calendar-source adapters, more "Other" cross-country events as they're identified, and any further UX requests.
+
 ## 0.9.2 — 2026-07-21
 - **Calendar polish batch — every item from James's follow-up report, all verified in-browser (not just visually):**
   - **Uneven box widths + misaligned day headings — real root cause found and fixed.** CSS Grid items default to `min-width: auto`, which lets their intrinsic content (long nowrap event titles) grow a column past its `1fr` share, throwing every column's width off and breaking alignment with `.cal-weekdays` above (which has no long content, so stayed uniform). Added `min-width: 0` down the chain (`.cal-cell`, `.cal-chips`, `.cal-event`, chip text lines). Verified: all 35 day cells now measure identically (159px), and day-header-to-column horizontal offset is 0px.
