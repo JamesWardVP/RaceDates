@@ -108,7 +108,7 @@
     </div>`;
 
   function venueLabel(v) {
-    return { "circuit": "Circuit", "drag-strip": "Drag Strip", "hill-climb": "Hill Climb", "rallycross-circuit": "Rallycross Circuit", "kart-circuit": "Kart Circuit", "speed-venue": "Speed Venue" }[v] || v;
+    return { "circuit": "Circuit", "drag-strip": "Drag Strip", "hill-climb": "Hill Climb", "rallycross-circuit": "Rallycross Circuit", "kart-circuit": "Kart Circuit", "speed-venue": "Speed Venue", "other": "Other" }[v] || v;
   }
 
   /* Venue-calendar events carry their own raceType; series events inherit

@@ -651,8 +651,8 @@
                          "town":  "Litherland",
                          "county":  "Liverpool City Region",
                          "country":  "England",
-                         "lat":  53.476944444444,
-                         "lng":  -2.9405555555556
+                         "lat":  53.47694,
+                         "lng":  -2.94056
                      },
         "opened":  null,
         "capacity":  null,
@@ -709,7 +709,8 @@
         "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Nantgwyn%20Baptist%20Church%20(19282147660).jpg?width=900",
         "summary":  "Circuit in Powys.",
         "verified":  true,
-        "wikidata":  "Q5197264"
+        "wikidata":  "Q5197264",
+        "wikipedia":  null
     },
     {
         "id":  "driftland",
@@ -771,7 +772,7 @@
                          "town":  "East Ham",
                          "county":  "England",
                          "country":  "England",
-                         "lat":  51.50833333333333,
+                         "lat":  51.50833,
                          "lng":  0.0275
                      },
         "opened":  2021,
@@ -781,7 +782,8 @@
         "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/BETT%202019.jpg?width=900",
         "summary":  "Circuit in England, first used in 2021.",
         "verified":  true,
-        "wikidata":  "Q74677490"
+        "wikidata":  "Q74677490",
+        "wikipedia":  null
     },
     {
         "id":  "foxhill-motocross-circuit",
@@ -818,8 +820,8 @@
                          "town":  "Cannock",
                          "county":  "Staffordshire",
                          "country":  "England",
-                         "lat":  52.70865278,
-                         "lng":  -1.977975
+                         "lat":  52.70865,
+                         "lng":  -1.97798
                      },
         "opened":  1952,
         "capacity":  null,
@@ -843,7 +845,7 @@
                          "county":  "Norfolk",
                          "country":  "England",
                          "lat":  52.7302,
-                         "lng":  0.389156
+                         "lng":  0.38916
                      },
         "opened":  1951,
         "capacity":  null,
@@ -853,7 +855,7 @@
         "summary":  "King\u0027s Lynn Stadium, also known as the Adrian Flux Arena and previously as the Norfolk Arena, is a short oval stadium situated to the south of King\u0027s Lynn, Norfolk, England.",
         "verified":  true,
         "wikidata":  "Q16893472",
-        "wikipedia":  "https://en.wikipedia.org/wiki/King\u0027s_Lynn_Stadium"
+        "wikipedia":  "https://en.wikipedia.org/wiki/King%27s_Lynn_Stadium"
     },
     {
         "id":  "ingliston-racing-circuit",
@@ -866,7 +868,7 @@
                          "town":  "City of Edinburgh",
                          "county":  "Scotland",
                          "country":  "Scotland",
-                         "lat":  55.94305556,
+                         "lat":  55.94306,
                          "lng":  -3.3775
                      },
         "opened":  null,
@@ -914,8 +916,8 @@
                          "town":  "Cardenden",
                          "county":  "Fife",
                          "country":  "Scotland",
-                         "lat":  56.126456,
-                         "lng":  -3.27821
+                         "lat":  56.12781,
+                         "lng":  -3.2788
                      },
         "opened":  null,
         "capacity":  null,
@@ -924,7 +926,8 @@
         "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Thunder%20Valley%20-%20geograph.org.uk%20-%203080477.jpg?width=900",
         "summary":  "Circuit in Fife.",
         "verified":  true,
-        "wikidata":  "Q114811655"
+        "wikidata":  "Q48772190",
+        "wikipedia":  "https://en.wikipedia.org/wiki/Driftland"
     },
     {
         "id":  "mendips-raceway",
@@ -971,7 +974,8 @@
         "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Sprint%20at%20York%20Raceway%2C%201995%20-%20geograph.org.uk%20-%206425033.jpg?width=900",
         "summary":  "Drag Strip in East Riding of Yorkshire.",
         "verified":  true,
-        "wikidata":  "Q98212688"
+        "wikidata":  "Q98212688",
+        "wikipedia":  null
     },
     {
         "id":  "oliver-s-mount-racing-circuit",
@@ -994,7 +998,8 @@
         "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Motorcycle%20racing%20-%20Olivers%20Mount%20-%20geograph.org.uk%20-%20126358.jpg?width=900",
         "summary":  "Circuit in North Yorkshire.",
         "verified":  true,
-        "wikidata":  "Q115727538"
+        "wikidata":  "Q115727538",
+        "wikipedia":  null
     },
     {
         "id":  "odsal-stadium",
@@ -1008,7 +1013,7 @@
                          "county":  "West Yorkshire",
                          "country":  "England",
                          "lat":  53.765,
-                         "lng":  -1.756944
+                         "lng":  -1.75694
                      },
         "opened":  1933,
         "capacity":  27491,
@@ -1031,8 +1036,8 @@
                          "town":  "",
                          "county":  "",
                          "country":  "",
-                         "lat":  54.16777778,
-                         "lng":  -4.47777778
+                         "lat":  54.16778,
+                         "lng":  -4.47778
                      },
         "opened":  1904,
         "capacity":  null,
@@ -1055,8 +1060,8 @@
                          "town":  "",
                          "county":  "",
                          "country":  "",
-                         "lat":  52.65482778,
-                         "lng":  0.63101111
+                         "lat":  52.65483,
+                         "lng":  0.63101
                      },
         "opened":  null,
         "capacity":  null,
@@ -1079,8 +1084,8 @@
                          "town":  "",
                          "county":  "",
                          "country":  "",
-                         "lat":  53.50655555555556,
-                         "lng":  -2.6326666666666667
+                         "lat":  53.50656,
+                         "lng":  -2.63267
                      },
         "opened":  null,
         "capacity":  null,
@@ -1128,7 +1133,7 @@
                          "county":  "",
                          "country":  "",
                          "lat":  51.1164,
-                         "lng":  -0.541463
+                         "lng":  -0.54146
                      },
         "opened":  null,
         "capacity":  null,
@@ -1158,7 +1163,7 @@
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Elvington%20Airfield%20-%20geograph.org.uk%20-%202467733.jpg?width=900",
         "summary":  "A 2-mile former RAF runway near York hosting Straightliners top-speed and land-speed record events.",
         "verified":  false
     },
@@ -1195,16 +1200,18 @@
                          "town":  "Pendine",
                          "county":  "Carmarthenshire",
                          "country":  "Wales",
-                         "lat":  51.7411,
-                         "lng":  -4.5482
+                         "lat":  51.7325,
+                         "lng":  -4.4975
                      },
         "opened":  null,
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Pendine%20Sands%20in%20September%202008.jpg?width=900",
         "summary":  "The legendary seven-mile Welsh beach where land speed records have been chased since the 1920s.",
-        "verified":  false
+        "verified":  true,
+        "wikidata":  "Q1800335",
+        "wikipedia":  "https://en.wikipedia.org/wiki/Pendine_Sands"
     },
     {
         "id":  "dishforth-airfield",
@@ -1217,16 +1224,18 @@
                          "town":  "Dishforth",
                          "county":  "North Yorkshire",
                          "country":  "England",
-                         "lat":  54.1372,
-                         "lng":  -1.42
+                         "lat":  54.13722,
+                         "lng":  -1.42028
                      },
         "opened":  null,
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Control%20Tower%2C%20RAF%20Dishforth%20-%20geograph.org.uk%20-%20415129.jpg?width=900",
         "summary":  "Yorkshire airfield used for Straightliners top-speed and sprint events.",
-        "verified":  false
+        "verified":  true,
+        "wikidata":  "Q5282207",
+        "wikipedia":  "https://en.wikipedia.org/wiki/Dishforth_Airfield"
     },
     {
         "id":  "campbeltown-airfield",
@@ -1246,7 +1255,7 @@
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Machrihanish%20airfield%2C%20by%20Campbeltown%2C%20Kintyre.%20-%20geograph.org.uk%20-%2061052.jpg?width=900",
         "summary":  "One of Europe\u0027s longest runways, on the Kintyre peninsula, used for top-speed events.",
         "verified":  false
     },
@@ -1268,7 +1277,7 @@
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Jurby%20Airfield%20-%20geograph.org.uk%20-%202388922.jpg?width=900",
         "summary":  "Former RAF airfield in the north of the Isle of Man hosting straight-line speed events.",
         "verified":  false
     },
@@ -1290,7 +1299,7 @@
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Llanbedr%20Airfield%20-%20geograph.org.uk%20-%20420935.jpg?width=900",
         "summary":  "A coastal Snowdonia airfield used for Straightliners speed events.",
         "verified":  false
     },
@@ -1312,7 +1321,7 @@
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/South%20Solway%20Mosses%20Nature%20Reserve%20and%20Kilbride%20Airfield%2C%20aerial%202016%20-%20geograph.org.uk%20-%205089054.jpg?width=900",
         "summary":  "Cumbrian airfield at Kirkbride hosting straight-line speed events.",
         "verified":  false
     },
@@ -1334,7 +1343,7 @@
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Ramsey%20North%20Shore%20-%20geograph.org.uk%20-%203936633.jpg?width=900",
         "summary":  "The famous promenade sprint along Ramsey\u0027s Mooragh, run during TT and Manx GP fortnights.",
         "verified":  false
     },
@@ -1356,9 +1365,11 @@
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Buxton%20Raceway%20-%20geograph.org.uk%20-%20335934.jpg?width=900",
         "summary":  "A Derbyshire stock car oval hosting BriSCA F1, F2 and Ministox racing.",
-        "verified":  false
+        "verified":  true,
+        "wikidata":  "Q124830365",
+        "wikipedia":  "https://en.wikipedia.org/wiki/Buxton_Raceway"
     },
     {
         "id":  "foxhall-stadium",
@@ -1466,7 +1477,7 @@
         "capacity":  null,
         "lengthMiles":  null,
         "website":  null,
-        "image":  null,
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Skegness%20Stadium%20-%20geograph.org.uk%20-%20216451.jpg?width=900",
         "summary":  "A Lincolnshire coastal stock car stadium, a fixture on the BriSCA F1 calendar.",
         "verified":  false
     },
@@ -1491,5 +1502,29 @@
         "image":  null,
         "summary":  "Northern Ireland\u0027s stock car venue, host of the BriSCA F1 Irish rounds.",
         "verified":  false
+    },
+    {
+        "id":  "bridlington-south-beach",
+        "name":  "Bridlington South Beach",
+        "venueType":  "other",
+        "raceTypes":  [
+                          "drag"
+                      ],
+        "location":  {
+                         "town":  "Bridlington",
+                         "county":  "East Riding of Yorkshire",
+                         "country":  "England",
+                         "lat":  54.0772,
+                         "lng":  -0.1987
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  "https://backfireinfo.weebly.com/welcome-to-race-the-waves-2026.html",
+        "image":  "https://commons.wikimedia.org/wiki/Special:FilePath/Beach%20huts%20at%20Bridlington%20South%20Sands%20-%20geograph.org.uk%20-%205785160.jpg?width=900",
+        "summary":  "A tidal sand beach that becomes a 200-yard drag strip once a year for Race the Waves, echoing the earliest UK land-speed record runs.",
+        "verified":  true,
+        "wikidata":  "Q107105246",
+        "wikipedia":  null
     }
 ]

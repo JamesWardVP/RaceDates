@@ -106,13 +106,25 @@ function Format-CommonsUrl([string]$title) {
     "https://commons.wikimedia.org/wiki/Special:FilePath/" + [System.Uri]::EscapeDataString(($title -replace '^File:', '')) + "?width=900"
 }
 
-function Test-PhotoTitle([string]$title, [string]$coreName) {
+function Get-PhotoCore([string]$name) {
+    $n = $name.ToLowerInvariant() -replace "['’]", ""
+    ($n -replace "[^a-z0-9]", " " -replace "\s+", " ").Trim()
+}
+
+# Verifies a Commons photo title actually depicts the venue, not just its
+# town. Uses the FULL name (not the track-matching Normalize-Name, which
+# strips "raceway"/"stadium" etc.) — a title matching only a shared town name
+# ("Northampton Power Station" for "Northampton International Raceway") is
+# rejected; matching 2+ distinguishing words is required whenever available.
+function Test-PhotoTitle([string]$title, [string]$fullName) {
     if ($title -notmatch '\.(jpe?g|png|webp)$') { return $false }
     if ($title -match 'map|logo|diagram|plan|crest|sign') { return $false }
-    foreach ($word in ($coreName -split ' ' | Where-Object { $_.Length -ge 4 })) {
-        if ($title -match [regex]::Escape($word)) { return $true }
-    }
-    return $false
+    $titleNorm = " " + (Get-PhotoCore $title) + " "
+    $words = @((Get-PhotoCore $fullName) -split ' ' | Where-Object { $_.Length -ge 4 -and $_ -ne "the" })
+    if ($words.Count -eq 0) { return $false }
+    if ($words.Count -eq 1) { return $titleNorm -match [regex]::Escape(" $($words[0]) ") }
+    $hits = @($words | Where-Object { $titleNorm -match [regex]::Escape(" $_ ") }).Count
+    return $hits -ge [Math]::Min(2, $words.Count)
 }
 
 function Get-CommonsPhoto($track) {
@@ -120,6 +132,10 @@ function Get-CommonsPhoto($track) {
     $discipline = switch ($track.venueType) {
         "hill-climb" { "hillclimb" }
         "drag-strip" { "drag racing" }
+        "rallycross-circuit" { "rallycross" }
+        "kart-circuit" { "karting" }
+        "speed-venue" { "airfield" }
+        "other" { "beach" }
         default { "circuit" }
     }
     try {
@@ -127,7 +143,7 @@ function Get-CommonsPhoto($track) {
         $url = "https://commons.wikimedia.org/w/api.php?action=query&list=search&srnamespace=6&srlimit=20&format=json&srsearch=$q"
         $res = Invoke-RestMethod -Uri $url -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60
         foreach ($hit in $res.query.search) {
-            if (Test-PhotoTitle $hit.title $core) { return Format-CommonsUrl $hit.title }
+            if (Test-PhotoTitle $hit.title $track.name) { return Format-CommonsUrl $hit.title }
         }
     } catch { }
     try {
@@ -135,7 +151,7 @@ function Get-CommonsPhoto($track) {
         $url = "https://commons.wikimedia.org/w/api.php?action=query&list=geosearch&gscoord=$lat%7C$lng&gsradius=900&gsnamespace=6&gslimit=25&format=json"
         $res = Invoke-RestMethod -Uri $url -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60
         foreach ($hit in $res.query.geosearch) {
-            if (Test-PhotoTitle $hit.title $core) { return Format-CommonsUrl $hit.title }
+            if (Test-PhotoTitle $hit.title $track.name) { return Format-CommonsUrl $hit.title }
         }
     } catch { }
     return $null

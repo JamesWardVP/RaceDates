@@ -9,13 +9,15 @@
 
 ## Work currently underway
 
-**Status: James's 2026-07-20 batch (map alignment, road/stock adapters, Straightliners mobile-host model, calendar toggle) is COMPLETE — logged as v0.8.0, verified in browser, ready to commit+push. Phase 6 (polish & first release) is next.**
+**Status: James's follow-up batch of 2026-07-21 (live calendar bug, load-time fix, cross-country events, better "other"-venue photos) is COMPLETE — logged as v0.9.0, verified in browser, ready to commit+push. Phase 6 (polish & first release) is next — nothing blocking it now.**
 
-Remaining loose ends from this batch, for a future session:
+Remaining loose ends, for a future session:
+- **Calendar toggle report couldn't be reproduced** — current best theory is browser cache of the pre-deploy JS/CSS (now mitigated with `?v=` cache-busting on every asset link, bumped each release). If James reports it again *after* a hard refresh on the current version, treat it as a real bug and investigate further (browser/OS, ad blockers, etc.) rather than assuming cache again.
 - BriSCA F1's *own* fixtures page (briscaf1.com/fixtures) redirects to a stale 2020 archive — currently sourced from cayzerracing.co.uk's fixture table instead, which is fine but worth rechecking occasionally in case the official site fixes its URL.
 - Straightliners' own domain (straightliners-events.co.uk) still has broken TLS from every client tested (PS, curl, WebFetch, in-app browser navigation); the mirror straightliners.events works and is what the adapter uses — no action needed unless that mirror also breaks.
 - Isle of Man TT / Manx GP (Snaefell Mountain Course) and Tandragee 100 road-racing calendars — not yet investigated.
-- The `speed-venue` and `other` additions (venue type + race type) are new — worth a visual sanity check that the grey "Other" badge/pin doesn't get lost against the dark theme once more `other` events accumulate.
+- **More "Other" cross-country events**: only Race the Waves added so far (James's named example). If he names more, add them the same way — a track with venueType `other` if there's no fixed permanent surface, an event on the `venue` series with a per-event `raceType` matching what actually happens there. Don't invent entries without a real source.
+- 7 tracks still have no photo at all (Commons search found nothing suitable) — could try Google Maps Places photos as James suggested, but that needs an API key (cost/setup — ask James before adding).
 
 Phase 6 checklist (when started):
 - Cross-page click-through test on the live site; mobile/responsive pass (nav wrap, filter bar, admin forms at 375px).

@@ -20,6 +20,7 @@
     "rallycross-circuit": "Rallycross Circuit",
     "kart-circuit": "Kart Circuit",
     "speed-venue": "Speed Venue",
+    "other": "Other",
   };
 
   const $ = (id) => document.getElementById(id);

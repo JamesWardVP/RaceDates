@@ -18,6 +18,7 @@
     "rallycross-circuit": "Rallycross Circuit",
     "kart-circuit": "Kart Circuit",
     "speed-venue": "Speed Venue",
+    "other": "Other",
   };
 
   const VENUE_ICONS = {
@@ -27,6 +28,7 @@
     "rallycross-circuit": "💨",
     "kart-circuit": "🏎️",
     "speed-venue": "🛫",
+    "other": "🏖️",
   };
 
   /* Populate the location + venue-type dropdowns from the data itself. */
@@ -68,8 +70,11 @@
   function cardHTML(t) {
     const primaryType = t.raceTypes[0];
     const badges = t.raceTypes.map(RaceDates.raceTypeBadge).join("");
+    /* Real <img loading="lazy"> rather than a CSS background-image: the
+       browser only fetches it once the card nears the viewport, instead of
+       every track's photo downloading at once on page load. */
     const cover = t.image
-      ? `<div class="track-cover has-image" data-racetype="${primaryType}" style="background-image:url('${t.image}')"></div>`
+      ? `<img class="track-cover has-image" data-racetype="${primaryType}" src="${t.image}" alt="" loading="lazy" decoding="async">`
       : `<div class="track-cover" data-racetype="${primaryType}">${VENUE_ICONS[t.venueType] || "🏁"}</div>`;
     return `
       <a class="card track-card" href="track.html?id=${t.id}">
