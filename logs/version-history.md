@@ -9,6 +9,16 @@ Newest entries at the top. When work listed in `current-plan.md` is completed, i
 
 ---
 
+## 0.6.3 — 2026-07-20
+- **Data cleanup after James's first big admin session** (he triaged all 43 discovered venues — 26 added, the rest flagged):
+  - Removed 3 duplicate tracks (Shakespeare County Raceway, Swaffham Raceway Stadium, Tandragee 100 were each added twice) and deduped the review list.
+  - Moved 2 entries out of tracks and into Review with reasons: Shakespeare County Raceway (venue closed in 2017, website dead — slipped past the defunct guard) and the Brooklands scheduled-monument Wikidata entity (a heritage record, not a venue). Both recoverable from the Review tab. Tracks: 52 → 47.
+  - **Admin guards added so it can't recur:** Auto-add and the manual form both refuse venues whose Wikidata id is already on the site; flagging is idempotent.
+- **Event coverage research (James's ask: auto-events for newly added tracks, e.g. Melbourne Raceway):**
+  - Probed venue websites for machine-readable calendars (schema.org Event JSON-LD): effectively zero coverage across UK venue sites (Castle Combe has JSON-LD but only Place/Organization; Anglesey/Knockhill/Odsal none; Mallory/Shakespeare sites down; Straightliners — Melbourne Raceway's promoter — has broken TLS no client can negotiate). **A universal venue-events scraper is not feasible**; per-source adapters remain the mechanism.
+  - Admin now sets expectations: after staging a track it explains events appear when a series feed covers the venue, pointing to Add Event for one-offs.
+  - Adapter backlog for event coverage recorded in current-plan.
+
 ## 0.6.2 — 2026-07-20
 - **Admin "Review" tab for possible dead tracks.** When Auto-add refuses a venue as likely closed/defunct, it now moves to a new Review tab (showing the reason — e.g. "Wikipedia describes it in the past tense" — and the flag date) and disappears from Discovered permanently:
   - Flags persist in a new committed data file, `main/data/review-tracks.json` (published via the existing Publish tab / download fallback), and the nightly pipeline excludes flagged venues when regenerating the discovered list — so they never resurface.

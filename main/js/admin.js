@@ -204,6 +204,11 @@
   };
 
   async function autoAddDiscovered(dv, statusEl) {
+    if (tracks.some((t) => t.wikidata === dv.qid)) {
+      statusEl.textContent = "Already on the site.";
+      clearVenueLists(dv.qid);
+      return false;
+    }
     statusEl.textContent = "Gathering data…";
     const data = await gatherEntityData(dv.qid, {
       name: dv.name, lat: dv.lat, lng: dv.lng, opened: dv.opened,
@@ -263,7 +268,7 @@
     clearVenueLists(data.wikidata);
     renderStaged();
     renderEventForm();
-    statusEl.textContent = "Added ✓ — staged for publish.";
+    statusEl.textContent = "Added ✓ — staged for publish. Events will appear when a race-series feed covers this venue; use Add Event for one-offs.";
     return true;
   }
 
@@ -315,6 +320,7 @@
     const msg = $("track-form-msg");
     const id = v("id");
     if (tracks.some((t) => t.id === id)) { msg.textContent = `A track with id "${id}" already exists.`; return; }
+    if (v("wikidata") && tracks.some((t) => t.wikidata === v("wikidata"))) { msg.textContent = "That venue is already on the site."; return; }
     const raceTypes = [...f.querySelectorAll('input[name="rt"]:checked')].map((c) => c.value);
     if (!raceTypes.length) { msg.textContent = "Tick at least one race type."; return; }
 
@@ -339,6 +345,7 @@
   /* ---------- review flow (possible dead tracks) ---------- */
 
   function flagForReview(dv, reason) {
+    if (reviewList.some((r) => r.qid === dv.qid)) return;
     reviewList.push({ ...dv, reason, flagged: new Date().toISOString().slice(0, 10) });
     discovered = discovered.filter((d) => d.qid !== dv.qid);
     dirtyReview = true;
