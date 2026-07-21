@@ -17,6 +17,7 @@
     "hill-climb": "Hill Climb",
     "rallycross-circuit": "Rallycross Circuit",
     "kart-circuit": "Kart Circuit",
+    "speed-venue": "Speed Venue",
   };
 
   const VENUE_ICONS = {
@@ -25,6 +26,7 @@
     "hill-climb": "⛰️",
     "rallycross-circuit": "💨",
     "kart-circuit": "🏎️",
+    "speed-venue": "🛫",
   };
 
   /* Populate the location + venue-type dropdowns from the data itself. */

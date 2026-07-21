@@ -48,11 +48,13 @@
   const hostedSeriesIds = [...new Set(events.filter((e) => e.trackId === track.id).map((e) => e.seriesId))];
 
   root.innerHTML = `
+    <div class="track-title">
+      <h1>${track.name}</h1>
+      <a class="subtitle" href="${mapsUrl}" target="_blank" rel="noopener"
+         title="Open in Maps">📍 ${[track.location.town, track.location.county, track.location.country].filter(Boolean).join(", ")}</a>
+    </div>
     <div class="track-hero">
       <div>
-        <h1>${track.name}</h1>
-        <a class="subtitle" href="${mapsUrl}" target="_blank" rel="noopener"
-           title="Open in Maps">📍 ${[track.location.town, track.location.county, track.location.country].filter(Boolean).join(", ")}</a>
         <div class="photo-strip" data-racetype="${primaryType}">
           ${track.image
             ? `<a class="photo-main" href="${track.image}" target="_blank" rel="noopener"
@@ -106,7 +108,7 @@
     </div>`;
 
   function venueLabel(v) {
-    return { "circuit": "Circuit", "drag-strip": "Drag Strip", "hill-climb": "Hill Climb", "rallycross-circuit": "Rallycross Circuit", "kart-circuit": "Kart Circuit" }[v] || v;
+    return { "circuit": "Circuit", "drag-strip": "Drag Strip", "hill-climb": "Hill Climb", "rallycross-circuit": "Rallycross Circuit", "kart-circuit": "Kart Circuit", "speed-venue": "Speed Venue" }[v] || v;
   }
 
   /* Venue-calendar events carry their own raceType; series events inherit

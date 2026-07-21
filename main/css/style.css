@@ -33,6 +33,7 @@
   --rt-drag: #a55eea;         /* drag racing         */
   --rt-oval: #3d8bfd;         /* oval / stock        */
   --rt-karting: #ff5ca8;      /* karting             */
+  --rt-other: #9aa4b0;        /* other (top speed, sprints, shows) */
 
   --radius: 10px;
   --radius-sm: 6px;
@@ -214,6 +215,7 @@ h1, h2, h3, h4 {
 [data-racetype="drag"]       { --rt: var(--rt-drag); }
 [data-racetype="oval"]       { --rt: var(--rt-oval); }
 [data-racetype="karting"]    { --rt: var(--rt-karting); }
+[data-racetype="other"]      { --rt: var(--rt-other); }
 
 /* --------------------------------------------------------------------------
    Cards & grids
@@ -531,25 +533,29 @@ h1, h2, h3, h4 {
    Track detail page
    -------------------------------------------------------------------------- */
 
+.track-title { margin-top: 2rem; }
+
+.track-title h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 0.2rem; }
+
+.track-title .subtitle {
+  display: inline-block;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  text-decoration: none;
+}
+
+.track-title .subtitle:hover { color: var(--accent); }
+
+/* Title sits above; the grid's two columns (photos | map) start level */
 .track-hero {
   display: grid;
   grid-template-columns: 1fr 340px;
   gap: 2rem;
   align-items: start;
-  margin-top: 2rem;
+  margin-top: 1.25rem;
 }
 
-.track-hero h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 0.2rem; }
-
-.track-hero .subtitle {
-  display: inline-block;
-  color: var(--text-muted);
-  font-size: 1.05rem;
-  text-decoration: none;
-  margin-bottom: 1.25rem;
-}
-
-.track-hero .subtitle:hover { color: var(--accent); }
+.track-hero .photo-strip { margin-top: 0; }
 
 .photo-strip {
   display: grid;
@@ -945,6 +951,86 @@ h1, h2, h3, h4 {
 .admin-staged li { margin-bottom: 0.3rem; }
 
 .admin-rule { border: 0; border-top: 1px solid var(--border); margin: 1.25rem 0; }
+
+/* --------------------------------------------------------------------------
+   Races page — calendar view
+   -------------------------------------------------------------------------- */
+
+.cal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.cal-nav h2 { margin: 0; min-width: 12ch; text-align: center; font-size: 1.3rem; }
+.cal-nav .btn { padding: 0.35rem 0.9rem; }
+
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.cal-cell {
+  min-height: 96px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.cal-cell-outside { background: transparent; border-color: transparent; opacity: 0.4; }
+
+.cal-cell-today { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+
+.cal-daynum { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); }
+
+.cal-cell-today .cal-daynum { color: var(--accent); }
+
+.cal-chips { display: flex; flex-direction: column; gap: 0.2rem; overflow: hidden; }
+
+.cal-chip {
+  display: block;
+  padding: 0.12rem 0.4rem;
+  border-radius: 4px;
+  background: var(--rt, var(--surface-raised));
+  color: #0f1115;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cal-chip:hover { filter: brightness(1.15); }
+
+.cal-more { font-size: 0.66rem; color: var(--text-muted); padding-left: 0.2rem; }
+
+@media (max-width: 700px) {
+  .cal-weekdays span:nth-child(n) { font-size: 0.65rem; }
+  .cal-cell { min-height: 64px; padding: 0.25rem; }
+  .cal-chip { font-size: 0.6rem; }
+}
 
 /* --------------------------------------------------------------------------
    Responsive

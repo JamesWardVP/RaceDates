@@ -19,6 +19,7 @@
     "hill-climb": "Hill Climb",
     "rallycross-circuit": "Rallycross Circuit",
     "kart-circuit": "Kart Circuit",
+    "speed-venue": "Speed Venue",
   };
 
   const $ = (id) => document.getElementById(id);

@@ -15,7 +15,21 @@
   const seriesSelect = document.getElementById("filter-series");
   const costSelect = document.getElementById("filter-cost");
   const pastCheckbox = document.getElementById("filter-past");
+  const pastLabel = document.getElementById("filter-past-label");
   const countEl = document.getElementById("race-count");
+
+  const viewListBtn = document.getElementById("view-list");
+  const viewCalBtn = document.getElementById("view-calendar");
+  const calendarView = document.getElementById("calendar-view");
+  const calGrid = document.getElementById("cal-grid");
+  const calLabel = document.getElementById("cal-label");
+  const calPrev = document.getElementById("cal-prev");
+  const calNext = document.getElementById("cal-next");
+
+  let view = "list";
+  const today = new Date();
+  let calYear = today.getFullYear();
+  let calMonth = today.getMonth(); // 0-indexed
 
   const tracksById = Object.fromEntries(tracks.map((t) => [t.id, t]));
   const seriesById = Object.fromEntries(series.map((s) => [s.id, s]));
@@ -74,14 +88,16 @@
       </li>`;
   }
 
-  function render() {
+  /* Filters shared by both views. In calendar mode "include past" is ignored
+     (a month grid always shows every day; past ones just render dimmed). */
+  function filteredEvents({ ignorePast } = {}) {
     const type = typeSelect.value;
     const group = groupSelect.value;
     const seriesId = seriesSelect.value;
     const maxCost = costSelect.value ? Number(costSelect.value) : null;
-    const includePast = pastCheckbox.checked;
+    const includePast = ignorePast || pastCheckbox.checked;
 
-    const visible = events
+    return events
       .filter((e) => {
         const s = seriesById[e.seriesId];
         if (!includePast && !RaceDates.isUpcoming(e)) return false;
@@ -92,12 +108,105 @@
         return true;
       })
       .sort((a, b) => a.startDate.localeCompare(b.startDate));
+  }
 
+  function renderList() {
+    const visible = filteredEvents();
     countEl.textContent = `${visible.length} race${visible.length === 1 ? "" : "s"}`;
     listEl.innerHTML = visible.length
       ? visible.map(itemHTML).join("")
       : '<li class="empty-note">No races match those filters.</li>';
   }
+
+  /* ---------- calendar view ---------- */
+
+  const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  function renderCalendar() {
+    const visible = filteredEvents({ ignorePast: true });
+    const byDate = {};
+    const monthIds = new Set();
+    const monthStart = new Date(calYear, calMonth, 1);
+    const monthEnd = new Date(calYear, calMonth + 1, 0);
+    visible.forEach((e) => {
+      const start = RaceDates.parseISO(e.startDate);
+      const end = RaceDates.parseISO(e.endDate || e.startDate);
+      if (end < monthStart || start > monthEnd) return; // doesn't touch this month
+      for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+        const key = d.toISOString().slice(0, 10);
+        (byDate[key] = byDate[key] || []).push(e);
+      }
+      monthIds.add(e.id);
+    });
+
+    calLabel.textContent = `${MONTH_NAMES[calMonth]} ${calYear}`;
+    countEl.textContent = `${monthIds.size} race${monthIds.size === 1 ? "" : "s"} in ${MONTH_NAMES[calMonth]}`;
+
+    const first = new Date(calYear, calMonth, 1);
+    const startOffset = (first.getDay() + 6) % 7; // Monday = 0
+    const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    const daysInPrevMonth = new Date(calYear, calMonth, 0).getDate();
+    const todayKey = new Date().toISOString().slice(0, 10);
+
+    const cells = [];
+    for (let i = startOffset - 1; i >= 0; i--) {
+      cells.push({ day: daysInPrevMonth - i, otherMonth: true, key: null });
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const key = new Date(calYear, calMonth, d).toISOString().slice(0, 10);
+      cells.push({ day: d, otherMonth: false, key });
+    }
+    while (cells.length % 7 !== 0 || cells.length < 35) {
+      const d = cells.length - (startOffset + daysInMonth) + 1;
+      cells.push({ day: d, otherMonth: true, key: null });
+    }
+
+    calGrid.innerHTML = cells.map((c) => {
+      if (c.otherMonth) return `<div class="cal-cell cal-cell-outside"><span class="cal-daynum">${c.day}</span></div>`;
+      const dayEvents = (byDate[c.key] || []).sort((a, b) => a.startDate.localeCompare(b.startDate));
+      const isToday = c.key === todayKey;
+      const chips = dayEvents.slice(0, 3).map((e) => {
+        const s = seriesById[e.seriesId];
+        const rt = eventRaceType(e, s);
+        return `<a class="cal-chip" data-racetype="${rt}" href="track.html?id=${e.trackId}" title="${e.name} — ${RaceDates.formatDateRange(e.startDate, e.endDate)}">${e.name}</a>`;
+      }).join("");
+      const more = dayEvents.length > 3 ? `<span class="cal-more">+${dayEvents.length - 3} more</span>` : "";
+      return `
+        <div class="cal-cell${isToday ? " cal-cell-today" : ""}">
+          <span class="cal-daynum">${c.day}</span>
+          <div class="cal-chips">${chips}${more}</div>
+        </div>`;
+    }).join("");
+  }
+
+  function render() {
+    if (view === "list") renderList(); else renderCalendar();
+  }
+
+  function setView(next) {
+    view = next;
+    const listActive = view === "list";
+    viewListBtn.classList.toggle("active", listActive);
+    viewCalBtn.classList.toggle("active", !listActive);
+    viewListBtn.setAttribute("aria-selected", listActive);
+    viewCalBtn.setAttribute("aria-selected", !listActive);
+    listEl.hidden = !listActive;
+    calendarView.hidden = listActive;
+    pastLabel.style.display = listActive ? "flex" : "none";
+    render();
+  }
+
+  viewListBtn.addEventListener("click", () => setView("list"));
+  viewCalBtn.addEventListener("click", () => setView("calendar"));
+
+  calPrev.addEventListener("click", () => {
+    calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; }
+    renderCalendar();
+  });
+  calNext.addEventListener("click", () => {
+    calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; }
+    renderCalendar();
+  });
 
   [typeSelect, groupSelect, seriesSelect, costSelect].forEach((el) => el.addEventListener("change", render));
   pastCheckbox.addEventListener("change", render);

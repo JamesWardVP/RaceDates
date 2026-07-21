@@ -16,6 +16,7 @@ const RaceDates = (() => {
     drag:       { label: "Drag Racing" },
     oval:       { label: "Oval / Stock" },
     karting:    { label: "Karting" },
+    other:      { label: "Other" },
   };
 
   const NAV_LINKS = [

@@ -56,6 +56,22 @@
     "summary": "Single cars against the clock on the UK's historic hill climb courses."
   },
   {
+    "id": "straightliners",
+    "name": "Straightliners",
+    "raceType": "other",
+    "group": "Mobile Events",
+    "website": "https://straightliners.events",
+    "summary": "A travelling event host running drag racing, top-speed and land-speed events at airfields, drag strips and beaches across the UK — from Melbourne Raceway to Pendine Sands."
+  },
+  {
+    "id": "brisca-f1",
+    "name": "BriSCA F1 Stock Cars",
+    "raceType": "oval",
+    "group": "Stock Car",
+    "website": "https://briscaf1.com",
+    "summary": "The UK's premier stock car formula — contact racing on shale and tarmac ovals, culminating in the World Final."
+  },
+  {
     "id": "venue",
     "name": "Venue Event",
     "raceType": "circuit",

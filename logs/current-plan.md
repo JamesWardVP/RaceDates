@@ -9,22 +9,13 @@
 
 ## Work currently underway
 
-**Status: working through James's requested batch of 2026-07-20 (below). Phase 6 (polish & first release) follows after.**
+**Status: James's 2026-07-20 batch (map alignment, road/stock adapters, Straightliners mobile-host model, calendar toggle) is COMPLETE — logged as v0.8.0, verified in browser, ready to commit+push. Phase 6 (polish & first release) is next.**
 
-### ACTIVE BATCH — James's requests 2026-07-20 (work in this order; tick off as completed)
-1. **Track page map alignment (quick CSS/markup):** on `track.html` the map box currently top-aligns with the page title; James wants its top level with the top of the photo. Fix: move the `<h1>` + location subtitle OUT of the `.track-hero` grid (render them above it); grid then holds [photo strip + summary] | [map box], so both columns start level. Files: `js/track.js` (markup), maybe `css/style.css`.
-2. **Road-racing + stock-car adapters (backlog priority):**
-   - Stock car: probe **briscaf1stockcars.com** fixtures first — BriSCA F1's central fixture list covers many ovals (Odsal, King's Lynn, etc.) in one adapter. Also: hardieracepromotions.co.uk (Lochgelly), trackstar-racing.co.uk (King's Lynn/Swaffham?), startrax.co.uk (Odsal?), mendipsraceway.com. New series entries per promoter/championship, group "Stock Car"? (raceType `oval`).
-   - Road racing: probe iomttraces.com (TT + Manx GP dates → Snaefell Mountain Course), oliversmountracing.com (Oliver's Mount meetings), tandragee100.co.uk. raceType `moto`.
-3. **Straightliners = first "mobile event host"** (promoters who run events at many venues):
-   - Their site straightliners-events.co.uk has **broken TLS** for PS/pwsh/WebFetch — try `curl.exe` (schannel), `http://` variant, and the Browser pane (Chrome stack). If unreachable from CI (ubuntu pwsh = OpenSSL), hand-enter current events from whatever the browser can read and document the blocker.
-   - Model: new series entry per host (e.g. id `straightliners`, name "Straightliners", **group "Mobile Events"**); events carry per-event `raceType` (mechanism exists since v0.7.0): Melbourne = `drag`, Elvington top-speed runs = **new race type `other`** — add `other` to `RaceDates.RACE_TYPES` in js/main.js + `--rt-other` colour (grey) in css/style.css + `[data-racetype="other"]` rule.
-   - **Add Elvington Airfield as a track** (venue for Straightliners top-speed events; near York, lat≈53.923, lng≈-0.991, venueType circuit? it's an airfield — venueType `circuit`, raceTypes [`other`,`drag`]) so its events pin on the map. Any other Straightliners venues found → add likewise.
-4. **Races page "List / Calendar" toggle:**
-   - Toggle (reuse `.mode-toggle` styling) between the current list and a **month calendar**: 7-column grid (Mon–Sun), one square per day, weekday header, days outside the month dimmed; events render as small chips coloured by race type (`data-racetype`), spanning events appear on each day of their range; chips link to the event's track page (tooltip: name + dates).
-   - Month navigation: ‹ / › buttons + "Month YYYY" label; default = current month. Existing filters (type/group/series/cost) apply to the calendar too; "include past" not needed in calendar (a month view naturally shows past days greyed).
-   - Files: `races.html` (toggle + calendar container), `js/races.js` (render functions + state), `css/style.css` (`.cal-*` styles).
-5. After each item: verify in browser, version-bump log entry, commit+push (admin may be publishing from the live site — `git pull` before pushing).
+Remaining loose ends from this batch, for a future session:
+- BriSCA F1's *own* fixtures page (briscaf1.com/fixtures) redirects to a stale 2020 archive — currently sourced from cayzerracing.co.uk's fixture table instead, which is fine but worth rechecking occasionally in case the official site fixes its URL.
+- Straightliners' own domain (straightliners-events.co.uk) still has broken TLS from every client tested (PS, curl, WebFetch, in-app browser navigation); the mirror straightliners.events works and is what the adapter uses — no action needed unless that mirror also breaks.
+- Isle of Man TT / Manx GP (Snaefell Mountain Course) and Tandragee 100 road-racing calendars — not yet investigated.
+- The `speed-venue` and `other` additions (venue type + race type) are new — worth a visual sanity check that the grey "Other" badge/pin doesn't get lost against the dark theme once more `other` events accumulate.
 
 Phase 6 checklist (when started):
 - Cross-page click-through test on the live site; mobile/responsive pass (nav wrap, filter bar, admin forms at 375px).
@@ -35,13 +26,16 @@ Phase 6 checklist (when started):
 - ~~Lydden Hill venue calendar~~ ✅ v0.7.0 (15 events).
 - ~~Goodwood (MM/FoS/Revival)~~ ✅ v0.7.0 (3 events).
 - ~~5 Nations BRX~~ — rallycrossbrx.com pages carry no dates in HTML; covered by Lydden venue feed + hand-entered Pembrey/finale rounds. Revisit only if their site changes.
+- ~~Oliver's Mount~~ ✅ v0.8.0 (6 events, oliversmount.com/events2).
+- ~~Lochgelly Raceway~~ ✅ v0.8.0 (19 events, hardieracepromotions.co.uk fixtures).
+- ~~BriSCA F1 Stock Cars~~ ✅ v0.8.0 (42 events, 7 new venues added — via cayzerracing.co.uk since briscaf1.com/fixtures redirects to a stale 2020 archive).
+- ~~Straightliners (mobile host)~~ ✅ v0.8.0 (12 events, 9 new venues added — straightliners-events.co.uk has broken TLS on every client tested; the working mirror straightliners.events was used instead).
 - **Castle Combe** — calendar paths return 403 to non-browser clients; try other UAs/paths, or their ticket-shop domain.
 - **Pembrey** — /events is JS-rendered; look for a data endpoint in its page source or an alternative feed.
 - **Anglesey, Mallory Park, Kirkistown, Knockhill non-BSB** — own-site calendars, structure unknown (Mallory site timing out on 2026-07-20).
-- **Melbourne Raceway / Elvington drag** — promoter Straightliners; straightliners-events.co.uk has broken TLS (handshake fails from PS *and* modern fetchers) — recheck occasionally or find an alternative feed.
-- **Stock-car/banger ovals** (Lochgelly, Mendips, Hednesford, Odsal, King's Lynn, Swaffham, Eddie Wright) — promoter sites: hardieracepromotions.co.uk (Lochgelly), trackstar-racing? (King's Lynn), startrax (Odsal?) — research needed.
-- **Motocross (Foxhill, Cwmythig Hill)** — series calendars (British Motocross Championship?) — research needed; note site has no motocross race type yet (would need a new `--rt-*` colour + registry entry).
-- **Snaefell Mountain Course / Oliver's Mount / Tandragee** — road-racing calendars (Isle of Man TT dates, Oliver's Mount events) — research needed.
+- **Remaining stock-car/banger ovals** (Mendips, Odsal, Swaffham, Eddie Wright, Hednesford — Hednesford has a track already but no adapter feeding it) — check whether BriSCA's calendar covers these too, or find their own promoter sites.
+- **Motocross (Foxhill, Cwmythig Hill)** — series calendars (British Motocross Championship?) — research needed; note site has no motocross race type yet (would need a new `--rt-*` colour + registry entry, same pattern as `other` added in v0.8.0).
+- **Snaefell Mountain Course (Isle of Man TT/Manx GP) / Tandragee 100** — road-racing calendars — research needed.
 
 Admin page facts (for future sessions): password is SHA-256-gated in `js/admin.js` (constant `PASSWORD_SHA256`); the password itself was told to James in chat 2026-07-20 and is NOT in the repo — to change it, hash the new password and replace the constant. Publishing uses a fine-grained GitHub token (Contents: read & write on JamesWardVP/RaceDates) pasted at use time.
 

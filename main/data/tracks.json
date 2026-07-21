@@ -908,7 +908,7 @@
         "name":  "Lochgelly Raceway",
         "venueType":  "circuit",
         "raceTypes":  [
-                          "circuit"
+                          "oval"
                       ],
         "location":  {
                          "town":  "Cardenden",
@@ -1139,5 +1139,357 @@
         "verified":  true,
         "wikidata":  "Q2630372",
         "wikipedia":  "https://en.wikipedia.org/wiki/Top_Gear_test_track"
+    },
+    {
+        "id":  "elvington-airfield",
+        "name":  "Elvington Airfield",
+        "venueType":  "speed-venue",
+        "raceTypes":  [
+                          "other"
+                      ],
+        "location":  {
+                         "town":  "Elvington",
+                         "county":  "North Yorkshire",
+                         "country":  "England",
+                         "lat":  53.9236,
+                         "lng":  -0.9917
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "A 2-mile former RAF runway near York hosting Straightliners top-speed and land-speed record events.",
+        "verified":  false
+    },
+    {
+        "id":  "dakota-raceway",
+        "name":  "Dakota Raceway",
+        "venueType":  "drag-strip",
+        "raceTypes":  [
+                          "drag"
+                      ],
+        "location":  {
+                         "town":  "Smeatharpe",
+                         "county":  "Devon",
+                         "country":  "England",
+                         "lat":  50.8669,
+                         "lng":  -3.1569
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "Devon\u0027s drag strip on Smeatharpe airfield, hosting Straightliners drag racing.",
+        "verified":  false
+    },
+    {
+        "id":  "pendine-sands",
+        "name":  "Pendine Sands",
+        "venueType":  "speed-venue",
+        "raceTypes":  [
+                          "other"
+                      ],
+        "location":  {
+                         "town":  "Pendine",
+                         "county":  "Carmarthenshire",
+                         "country":  "Wales",
+                         "lat":  51.7411,
+                         "lng":  -4.5482
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "The legendary seven-mile Welsh beach where land speed records have been chased since the 1920s.",
+        "verified":  false
+    },
+    {
+        "id":  "dishforth-airfield",
+        "name":  "Dishforth Airfield",
+        "venueType":  "speed-venue",
+        "raceTypes":  [
+                          "other"
+                      ],
+        "location":  {
+                         "town":  "Dishforth",
+                         "county":  "North Yorkshire",
+                         "country":  "England",
+                         "lat":  54.1372,
+                         "lng":  -1.42
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "Yorkshire airfield used for Straightliners top-speed and sprint events.",
+        "verified":  false
+    },
+    {
+        "id":  "campbeltown-airfield",
+        "name":  "Campbeltown (Machrihanish) Airfield",
+        "venueType":  "speed-venue",
+        "raceTypes":  [
+                          "other"
+                      ],
+        "location":  {
+                         "town":  "Campbeltown",
+                         "county":  "Argyll and Bute",
+                         "country":  "Scotland",
+                         "lat":  55.4372,
+                         "lng":  -5.6864
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "One of Europe\u0027s longest runways, on the Kintyre peninsula, used for top-speed events.",
+        "verified":  false
+    },
+    {
+        "id":  "jurby-airfield",
+        "name":  "Jurby Airfield",
+        "venueType":  "speed-venue",
+        "raceTypes":  [
+                          "other"
+                      ],
+        "location":  {
+                         "town":  "Jurby",
+                         "county":  "Isle of Man",
+                         "country":  "Isle of Man",
+                         "lat":  54.355,
+                         "lng":  -4.523
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "Former RAF airfield in the north of the Isle of Man hosting straight-line speed events.",
+        "verified":  false
+    },
+    {
+        "id":  "llanbedr-airfield",
+        "name":  "Llanbedr Airfield",
+        "venueType":  "speed-venue",
+        "raceTypes":  [
+                          "other"
+                      ],
+        "location":  {
+                         "town":  "Llanbedr",
+                         "county":  "Gwynedd",
+                         "country":  "Wales",
+                         "lat":  52.8117,
+                         "lng":  -4.1236
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "A coastal Snowdonia airfield used for Straightliners speed events.",
+        "verified":  false
+    },
+    {
+        "id":  "solway-airfield",
+        "name":  "Solway Airfield",
+        "venueType":  "speed-venue",
+        "raceTypes":  [
+                          "other"
+                      ],
+        "location":  {
+                         "town":  "Kirkbride",
+                         "county":  "Cumbria",
+                         "country":  "England",
+                         "lat":  54.908,
+                         "lng":  -3.202
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "Cumbrian airfield at Kirkbride hosting straight-line speed events.",
+        "verified":  false
+    },
+    {
+        "id":  "ramsey-sprint",
+        "name":  "Ramsey Sprint",
+        "venueType":  "speed-venue",
+        "raceTypes":  [
+                          "other"
+                      ],
+        "location":  {
+                         "town":  "Ramsey",
+                         "county":  "Isle of Man",
+                         "country":  "Isle of Man",
+                         "lat":  54.328,
+                         "lng":  -4.381
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "The famous promenade sprint along Ramsey\u0027s Mooragh, run during TT and Manx GP fortnights.",
+        "verified":  false
+    },
+    {
+        "id":  "buxton-raceway",
+        "name":  "Buxton Raceway",
+        "venueType":  "circuit",
+        "raceTypes":  [
+                          "oval"
+                      ],
+        "location":  {
+                         "town":  "Buxton",
+                         "county":  "Derbyshire",
+                         "country":  "England",
+                         "lat":  53.2226,
+                         "lng":  -1.9378
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "A Derbyshire stock car oval hosting BriSCA F1, F2 and Ministox racing.",
+        "verified":  false
+    },
+    {
+        "id":  "foxhall-stadium",
+        "name":  "Foxhall Stadium",
+        "venueType":  "circuit",
+        "raceTypes":  [
+                          "oval"
+                      ],
+        "location":  {
+                         "town":  "Ipswich",
+                         "county":  "Suffolk",
+                         "country":  "England",
+                         "lat":  52.0958,
+                         "lng":  1.1414
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "Suffolk\u0027s stock car stadium, home to BriSCA F1 and Hot Rod racing.",
+        "verified":  false
+    },
+    {
+        "id":  "mildenhall-stadium",
+        "name":  "Mildenhall Stadium",
+        "venueType":  "circuit",
+        "raceTypes":  [
+                          "oval"
+                      ],
+        "location":  {
+                         "town":  "Mildenhall",
+                         "county":  "Suffolk",
+                         "country":  "England",
+                         "lat":  52.339,
+                         "lng":  0.497
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "A long-running Suffolk stock car stadium hosting BriSCA F1 and 1400 Stock Cars.",
+        "verified":  false
+    },
+    {
+        "id":  "northampton-international-raceway",
+        "name":  "Northampton International Raceway",
+        "venueType":  "circuit",
+        "raceTypes":  [
+                          "oval"
+                      ],
+        "location":  {
+                         "town":  "Northampton",
+                         "county":  "Northamptonshire",
+                         "country":  "England",
+                         "lat":  52.2306,
+                         "lng":  -0.8831
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "One of the UK\u0027s biggest stock car venues, home of the BriSCA F1 World Final.",
+        "verified":  false
+    },
+    {
+        "id":  "scunthorpe-stadium",
+        "name":  "Scunthorpe (Gunness) Raceway",
+        "venueType":  "circuit",
+        "raceTypes":  [
+                          "oval"
+                      ],
+        "location":  {
+                         "town":  "Scunthorpe",
+                         "county":  "Lincolnshire",
+                         "country":  "England",
+                         "lat":  53.618,
+                         "lng":  -0.679
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "A Lincolnshire stock car stadium hosting BriSCA F1 and Hot Rod racing.",
+        "verified":  false
+    },
+    {
+        "id":  "skegness-stadium",
+        "name":  "Skegness Stadium",
+        "venueType":  "circuit",
+        "raceTypes":  [
+                          "oval"
+                      ],
+        "location":  {
+                         "town":  "Skegness",
+                         "county":  "Lincolnshire",
+                         "country":  "England",
+                         "lat":  53.144,
+                         "lng":  0.335
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "A Lincolnshire coastal stock car stadium, a fixture on the BriSCA F1 calendar.",
+        "verified":  false
+    },
+    {
+        "id":  "nutts-corner-circuit",
+        "name":  "Nutts Corner Circuit",
+        "venueType":  "circuit",
+        "raceTypes":  [
+                          "oval"
+                      ],
+        "location":  {
+                         "town":  "Crumlin",
+                         "county":  "County Antrim",
+                         "country":  "Northern Ireland",
+                         "lat":  54.65,
+                         "lng":  -6.13
+                     },
+        "opened":  null,
+        "capacity":  null,
+        "lengthMiles":  null,
+        "website":  null,
+        "image":  null,
+        "summary":  "Northern Ireland\u0027s stock car venue, host of the BriSCA F1 Irish rounds.",
+        "verified":  false
     }
 ]

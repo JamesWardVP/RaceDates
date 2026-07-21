@@ -17,17 +17,33 @@
     </div>
 
     <div class="filter-bar">
+      <div class="mode-toggle" role="tablist" aria-label="View mode">
+        <button class="mode-btn active" id="view-list" role="tab" aria-selected="true">List</button>
+        <button class="mode-btn" id="view-calendar" role="tab" aria-selected="false">Calendar</button>
+      </div>
       <select class="filter-select" id="filter-racetype" aria-label="Filter by race type"></select>
       <select class="filter-select" id="filter-group" aria-label="Filter by cup or group"></select>
       <select class="filter-select" id="filter-series" aria-label="Filter by series"></select>
       <select class="filter-select" id="filter-cost" aria-label="Filter by cost"></select>
-      <label class="filter-label" style="display:flex;align-items:center;gap:0.4rem;cursor:pointer">
+      <label class="filter-label" id="filter-past-label" style="display:flex;align-items:center;gap:0.4rem;cursor:pointer">
         <input type="checkbox" id="filter-past"> Include past
       </label>
       <span class="filter-count" id="race-count"></span>
     </div>
 
     <ul class="race-list" id="race-list"></ul>
+
+    <div id="calendar-view" hidden>
+      <div class="cal-nav">
+        <button class="btn btn-outline" id="cal-prev" aria-label="Previous month">‹</button>
+        <h2 id="cal-label"></h2>
+        <button class="btn btn-outline" id="cal-next" aria-label="Next month">›</button>
+      </div>
+      <div class="cal-weekdays">
+        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
   </div>
 
   <script src="js/main.js"></script>

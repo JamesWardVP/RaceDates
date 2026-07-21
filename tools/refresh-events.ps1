@@ -35,9 +35,9 @@ $emDash = [string][char]0x2014
 # ----------------------------------------------------------------- helpers ---
 
 function Normalize-Name([string]$name) {
-    $n = $name.ToLowerInvariant()
+    $n = $name.ToLowerInvariant() -replace "['’]", ""   # "king's" -> "kings"
     # circuit-config suffixes first, then generic venue words
-    foreach ($word in @("international", "national", "indy", "300", "500", "gp", "full circuit", "full", "circuit", "raceway", "racing", "race", "track", "speed", "hill climb", "hillclimb", "motor", "park")) {
+    foreach ($word in @("international", "national", "indy", "300", "500", "gp", "full circuit", "full", "circuit", "raceway", "racing", "race", "stadium", "track", "speed", "hill climb", "hillclimb", "motor", "park")) {
         $n = $n.Replace($word, " ")
     }
     ($n -replace "[^a-z0-9]", " " -replace "\s+", " ").Trim()
@@ -45,6 +45,8 @@ function Normalize-Name([string]$name) {
 
 # Match a scraped venue name to one of our tracks; $null if it isn't a UK
 # venue we list. "brands hatch" must match "Brands Hatch"; "donington" too.
+# Also checks the track's town, since some fixture lists give the town
+# ("Ipswich") rather than the venue name ("Foxhall Stadium").
 function Find-Track([string]$venueName) {
     $vNorm = Normalize-Name $venueName
     if (-not $vNorm) { return $null }
@@ -52,12 +54,17 @@ function Find-Track([string]$venueName) {
         $tNorm = Normalize-Name $t.name
         if ($tNorm -eq $vNorm -or $tNorm.StartsWith($vNorm) -or $vNorm.StartsWith($tNorm)) { return $t }
     }
+    foreach ($t in $tracks) {
+        $townNorm = Normalize-Name $t.location.town
+        if ($townNorm -and $townNorm -eq $vNorm) { return $t }
+    }
     return $null
 }
 
 # "23 May" -> ISO date in the season year (assumed = current year: series
 # publish the current season's calendar on these pages).
 function Parse-DayMonth([string]$text, [int]$year) {
+    $text = $text -replace '(\d)(st|nd|rd|th)\b', '$1'   # "1st Aug" -> "1 Aug"
     $culture = [System.Globalization.CultureInfo]::GetCultureInfo("en-GB")
     foreach ($fmt in @("d MMM", "dd MMM", "d MMMM", "dd MMMM")) {
         try {
@@ -410,6 +417,152 @@ function Get-GoodwoodEvents {
     return $result
 }
 
+# ------------------------------------------- adapter: Straightliners (mobile) ---
+# Straightliners are a "mobile event host": one promoter, many venues. Events
+# are matched to tracks by the card's venue name; each event's raceType comes
+# from the venue (drag at drag strips, "other" for top-speed venues).
+
+function Get-StraightlinersEvents {
+    Write-Host "Straightliners: fetching straightliners.events/all-events..."
+    $html = (Invoke-WebRequest -Uri "https://straightliners.events/all-events/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    $result = @()
+    $pattern = '(?s)<a href="([^"]+)" class="events-section-box">.*?<h3>([^<]+)</h3>\s*<div class="event-date">\s*([^<]+?)\s*</div>\s*<div class="event-location">.*?</i>\s*([^<]+)</div>'
+    foreach ($m in [regex]::Matches($html, $pattern)) {
+        $url = $m.Groups[1].Value
+        $title = [System.Net.WebUtility]::HtmlDecode($m.Groups[2].Value.Trim())
+        $dateText = [System.Net.WebUtility]::HtmlDecode($m.Groups[3].Value.Trim())
+        $venueName = [System.Net.WebUtility]::HtmlDecode($m.Groups[4].Value.Trim())
+
+        $track = Find-Track $venueName
+        if (-not $track) { Write-Host "  Straightliners: skipped '$title' (venue '$venueName' not on the site)"; continue }
+
+        # "1st Aug 2026" or "6th - 7th Jun 2026"
+        $year = (Get-Date).Year
+        if ($dateText -match '(\d{4})') { $year = [int]$Matches[1] }
+        $core = ($dateText -replace '\d{4}', '').Trim() -replace ',', ''
+        $range = Parse-DateRange $core $year
+        if (-not $range[0]) { Write-Host "  Straightliners: skipped '$title' (unparseable date '$dateText')"; continue }
+
+        $rt = if ($track.raceTypes -contains "drag") { "drag" } else { "other" }
+        $result += [ordered]@{
+            id        = "straightliners-$($track.id)-$($range[0])"
+            name      = $title
+            trackId   = $track.id
+            seriesId  = "straightliners"
+            raceType  = $rt
+            startDate = $range[0]
+            endDate   = $range[1]
+            gates     = $null
+            price     = $null
+            ticketUrl = $url
+            sample    = $false
+        }
+    }
+    return $result
+}
+
+# --------------------------------------- adapter: Oliver's Mount (venue) ---
+
+function Get-OliversMountEvents {
+    Write-Host "Oliver's Mount: fetching oliversmount.com/events2..."
+    $html = (Invoke-WebRequest -Uri "https://oliversmount.com/events2/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    $result = @()
+    $pattern = '(?s)omr-event-card data-end-date=([\d-]+)>.*?omr-event-date>([^<]+)</div>\s*<h3 class=omr-event-title>([^<]+)</h3>.*?<a href="([^"]+)" class=omr-book-button'
+    foreach ($m in [regex]::Matches($html, $pattern)) {
+        $endIso = $m.Groups[1].Value
+        $dateText = $m.Groups[2].Value.Trim()
+        $name = [System.Net.WebUtility]::HtmlDecode($m.Groups[3].Value.Trim())
+        $year = [int]$endIso.Substring(0, 4)
+        $range = Parse-DateRange (($dateText -replace '\d{4}', '').Trim()) $year
+        $start = if ($range[0]) { $range[0] } else { $endIso }
+        $result += [ordered]@{
+            id        = "venue-olivers-mount-$start"
+            name      = $name
+            trackId   = "oliver-s-mount-racing-circuit"
+            seriesId  = "venue"
+            raceType  = Infer-EventRaceType $name "moto"
+            startDate = $start
+            endDate   = $endIso
+            gates     = $null
+            price     = $null
+            ticketUrl = $m.Groups[4].Value
+            sample    = $false
+        }
+    }
+    return $result
+}
+
+# ------------------------------------- adapter: Lochgelly / Hardie (venue) ---
+
+function Get-LochgellyEvents {
+    Write-Host "Lochgelly: fetching hardieracepromotions.co.uk/pages/fixtures..."
+    $html = (Invoke-WebRequest -Uri "https://www.hardieracepromotions.co.uk/pages/fixtures/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    $result = @()
+    $pattern = '(?s)<div id="fixtureDetails">\s*<h2>[^<]+</h2>.*?<h3>([^<]+)</h3>\s*<h4>First Race:\s*([^<]+)</h4>.*?href="https://www\.hardieracepromotions\.co\.uk/pages/fixture/(\d{4}-\d{2}-\d{2})/'
+    foreach ($m in [regex]::Matches($html, $pattern)) {
+        $name = [System.Net.WebUtility]::HtmlDecode($m.Groups[1].Value.Trim())
+        $iso = $m.Groups[3].Value
+        # "5.15pm" -> "17:15" for gates
+        $gates = $null
+        if ($m.Groups[2].Value.Trim() -match '(\d{1,2})[.:](\d{2})\s*(am|pm)') {
+            $hh = [int]$Matches[1]; if ($Matches[3] -eq "pm" -and $hh -lt 12) { $hh += 12 }
+            $gates = [ordered]@{ open = ("{0:d2}:{1}" -f $hh, $Matches[2]); close = $null }
+        }
+        $result += [ordered]@{
+            id        = "venue-lochgelly-$iso"
+            name      = $name
+            trackId   = "lochgelly-raceway"
+            seriesId  = "venue"
+            raceType  = "oval"
+            startDate = $iso
+            endDate   = $iso
+            gates     = $gates
+            price     = $null
+            ticketUrl = "https://www.hardieracepromotions.co.uk/pages/fixture/$iso/"
+            sample    = $false
+        }
+    }
+    return $result
+}
+
+# --------------------------------------------- adapter: BriSCA F1 stock car ---
+
+function Get-BriscaEvents {
+    Write-Host "BriSCA F1: fetching cayzerracing.co.uk fixture list..."
+    $html = (Invoke-WebRequest -Uri "https://cayzerracing.co.uk/brisca-f1-fixture-lists/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    $year = (Get-Date).Year
+    $result = @()
+    $pattern = '<td class="column-1">([^<]*)</td>\s*<td class="column-2">([^<]*)</td>\s*<td class="column-3">([^<]*)</td>\s*<td class="column-4">([^<]*)</td>\s*<td class="column-5">([^<]*)</td>'
+    foreach ($m in [regex]::Matches($html, $pattern)) {
+        $dateText = $m.Groups[1].Value.Trim()
+        $venueName = $m.Groups[3].Value.Trim()
+        $eventName = [System.Net.WebUtility]::HtmlDecode($m.Groups[4].Value.Trim()) -replace '\s+', ' '
+        $classes = [System.Net.WebUtility]::HtmlDecode($m.Groups[5].Value.Trim()) -replace '\s+', ' '
+        if (-not $dateText -or $venueName -match "TBC") { continue }   # placeholder rows
+
+        $start = Parse-DayMonth $dateText $year
+        if (-not $start) { continue }
+
+        $track = Find-Track $venueName
+        if (-not $track) { Write-Host "  BriSCA F1: skipped '$venueName' (no matching UK track)"; continue }
+
+        if (-not $eventName) { $eventName = "BriSCA F1 Race Night" }
+        $result += [ordered]@{
+            id        = "brisca-f1-$($track.id)-$start"
+            name      = "$eventName ($classes)"
+            trackId   = $track.id
+            seriesId  = "brisca-f1"
+            startDate = $start
+            endDate   = $start
+            gates     = $null
+            price     = $null
+            ticketUrl = $track.website
+            sample    = $false
+        }
+    }
+    return $result
+}
+
 # -------------------------------------------------------------------- main ---
 
 Write-Host "Refreshing race calendars..."
@@ -422,6 +575,17 @@ $events = @($events | Where-Object { $_.seriesId -ne "euro-drag" })
 $events = Merge-SeriesEvents "santa-pod" (Get-SantaPodEvents)
 $events = Merge-VenueEvents "lydden-hill" (Get-LyddenEvents)
 $events = Merge-VenueEvents "goodwood" (Get-GoodwoodEvents)
+$events = Merge-VenueEvents "oliver-s-mount-racing-circuit" (Get-OliversMountEvents)
+$events = Merge-VenueEvents "lochgelly-raceway" (Get-LochgellyEvents)
+
+# Straightliners is a series (mobile host) but must not duplicate events other
+# feeds already cover at the same track+date (e.g. their Santa Pod meetings).
+$slEvents = @(Get-StraightlinersEvents | Where-Object {
+    $ev = $_
+    -not ($events | Where-Object { $_.seriesId -ne "straightliners" -and $_.trackId -eq $ev.trackId -and $_.startDate -eq $ev.startDate })
+})
+$events = Merge-SeriesEvents "straightliners" $slEvents
+$events = Merge-SeriesEvents "brisca-f1" (Get-BriscaEvents)
 
 # dedupe (a page can list the same event in featured + grid slots), then sort
 $events = @($events | Group-Object { $_.id } | ForEach-Object { $_.Group[0] } | Sort-Object { $_.startDate })
