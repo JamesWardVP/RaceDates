@@ -186,8 +186,11 @@
 
   const inferVenueType = (text) => {
     if (/hill ?climb/i.test(text)) return "hill-climb";
-    if (/drag/i.test(text)) return "drag-strip";
-    if (/kart/i.test(text)) return "kart-circuit";
+    // Lookbehind (not \b) so suffixes like "strip"/"way"/"ing" still match,
+    // but a mid-word hit like "tanDRAGee" or a hypothetical "...KARTon" can't
+    // — those aren't preceded by a non-letter the way a real "drag strip" is.
+    if (/(?<![a-z])drag/i.test(text)) return "drag-strip";
+    if (/(?<![a-z])kart/i.test(text)) return "kart-circuit";
     if (/rallycross/i.test(text)) return "rallycross-circuit";
     return "circuit";
   };

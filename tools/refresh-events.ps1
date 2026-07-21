@@ -349,11 +349,35 @@ function Merge-VenueEvents([string]$trackId, [array]$newEvents) {
 
 function Infer-EventRaceType([string]$name, [string]$default) {
     if ($name -match "rallycross|rally ?x") { return "rallycross" }
+    if ($name -match "\brally\b") { return "rally" }
     if ($name -match "bike|motorcycle|moto") { return "moto" }
     if ($name -match "drag") { return "drag" }
     if ($name -match "kart") { return "karting" }
     if ($name -match "hill ?climb|hillclimb") { return "hillclimb" }
     return $default
+}
+
+# "MONDAY 31st AUGUST 2026" or "SATURDAY 12th & SUNDAY 13th SEPTEMBER 2026"
+# -> @(startISO, endISO). Year is embedded in the text (unlike Parse-DateRange's
+# callers, which pass year separately), so this is a standalone parser.
+function Parse-WeekdayDateRange([string]$text) {
+    $t = $text -replace '(\d)(st|nd|rd|th)\b', '$1'
+    $t = $t -replace '\b(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b', ''
+    $t = ($t -replace '\s+', ' ').Trim()
+    if ($t -notmatch '(\d{4})\s*$') { return @($null, $null) }
+    $year = [int]$Matches[1]
+    $t = ($t -replace '\d{4}\s*$', '').Trim()
+
+    if ($t -match '^(\d{1,2})\s*&\s*(\d{1,2})\s+([A-Za-z]+)$') {
+        $start = Parse-DayMonth "$($Matches[1]) $($Matches[3])" $year
+        $end = Parse-DayMonth "$($Matches[2]) $($Matches[3])" $year
+        return @($start, $end)
+    }
+    if ($t -match '^(\d{1,2}\s+[A-Za-z]+)\s*&\s*(\d{1,2}\s+[A-Za-z]+)$') {
+        return @((Parse-DayMonth $Matches[1] $year), (Parse-DayMonth $Matches[2] $year))
+    }
+    $d = Parse-DayMonth $t $year
+    return @($d, $d)
 }
 
 function Get-LyddenEvents {
@@ -563,6 +587,94 @@ function Get-BriscaEvents {
     return $result
 }
 
+# -------------------------------------------- adapter: Castle Combe (venue) ---
+# Their calendar paths intermittently 403 non-browser clients (bot/rate
+# protection observed even across successive requests) - single attempt per
+# run, browser-like headers, graceful fallback to existing data on failure.
+
+function Get-CastleCombeEvents {
+    Write-Host "Castle Combe: fetching castlecombecircuit.co.uk/all-racing..."
+    try {
+        # Their bot-protection specifically filters our normal $userAgent's
+        # "RaceDatesBot" signature (confirmed: identical request passes with a
+        # plain browser UA, 403s with the bot one) - this is the one adapter
+        # that needs it, just to read a public read-only calendar page.
+        $html = (Invoke-WebRequest -Uri "https://castlecombecircuit.co.uk/all-racing/" -UseBasicParsing -Headers @{
+            "User-Agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+            "Accept" = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
+            "Accept-Language" = "en-GB,en;q=0.9"
+        } -TimeoutSec 60).Content
+    } catch {
+        Write-Host "  Castle Combe: fetch failed ($($_.Exception.Message)) - keeping existing events."
+        return @()
+    }
+    $track = $tracks | Where-Object { $_.id -eq "castle-combe" }
+    $result = @()
+    $rows = $html -split '<tr class="wptb-row"'
+    foreach ($row in ($rows | Select-Object -Skip 1)) {
+        $strongs = [regex]::Matches($row, '<strong>([^<]+)</strong>')
+        if ($strongs.Count -lt 2) { continue }
+        $dateText = [System.Net.WebUtility]::HtmlDecode($strongs[0].Groups[1].Value.Trim())
+        $titleText = [System.Net.WebUtility]::HtmlDecode($strongs[1].Groups[1].Value.Trim())
+        if ($dateText -notmatch '\d{4}') { continue }   # skip non-event rows
+
+        $range = Parse-WeekdayDateRange $dateText
+        if (-not $range[0]) { Write-Host "  Castle Combe: skipped '$titleText' (unparseable date '$dateText')"; continue }
+
+        $hrefMatch = [regex]::Match($row, 'href="(https://castlecombecircuit\.co\.uk/[^"]+/)"')
+        $ticketUrl = if ($hrefMatch.Success) { $hrefMatch.Groups[1].Value } else { $track.website }
+
+        $result += [ordered]@{
+            id        = "venue-castle-combe-$($range[0])"
+            name      = $titleText
+            trackId   = "castle-combe"
+            seriesId  = "venue"
+            raceType  = Infer-EventRaceType $titleText "circuit"
+            startDate = $range[0]
+            endDate   = $range[1]
+            gates     = $null
+            price     = $null
+            ticketUrl = $ticketUrl
+            sample    = $false
+        }
+    }
+    return $result
+}
+
+# --------------------------------------------------- adapter: Pembrey (venue) ---
+# Their /events page is JS-rendered, but it calls a clean JSON API underneath
+# (found via the network panel) that returns startDate/endDate/title/price
+# directly - no HTML scraping needed at all.
+
+function Get-PembreyEvents {
+    Write-Host "Pembrey: fetching pembreycircuit.co.uk/api/events..."
+    try {
+        $res = Invoke-RestMethod -Uri "https://pembreycircuit.co.uk/api/events" -Method Post -Body '{"page":1}' -ContentType "application/json" -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60
+    } catch {
+        Write-Host "  Pembrey: fetch failed ($($_.Exception.Message)) - keeping existing events."
+        return @()
+    }
+    $result = @()
+    foreach ($e in $res.results) {
+        if (-not $e.startDate) { continue }
+        $ticketUrl = if ($e.href -match '^https?://') { $e.href } else { "https://www.pembreycircuit.co.uk/$($e.href)" }
+        $result += [ordered]@{
+            id        = "venue-pembrey-$($e.startDate)-$($e.id)"
+            name      = $e.title
+            trackId   = "pembrey"
+            seriesId  = "venue"
+            raceType  = Infer-EventRaceType $e.title "circuit"
+            startDate = $e.startDate
+            endDate   = if ($e.endDate) { $e.endDate } else { $e.startDate }
+            gates     = $null
+            price     = if ($e.price) { [ordered]@{ adult = [double]$e.price; currency = "GBP" } } else { $null }
+            ticketUrl = $ticketUrl
+            sample    = $false
+        }
+    }
+    return $result
+}
+
 # -------------------------------------------------------------------- main ---
 
 Write-Host "Refreshing race calendars..."
@@ -577,6 +689,8 @@ $events = Merge-VenueEvents "lydden-hill" (Get-LyddenEvents)
 $events = Merge-VenueEvents "goodwood" (Get-GoodwoodEvents)
 $events = Merge-VenueEvents "oliver-s-mount-racing-circuit" (Get-OliversMountEvents)
 $events = Merge-VenueEvents "lochgelly-raceway" (Get-LochgellyEvents)
+$events = Merge-VenueEvents "castle-combe" (Get-CastleCombeEvents)
+$events = Merge-VenueEvents "pembrey" (Get-PembreyEvents)
 
 # Straightliners is a series (mobile host) but must not duplicate events other
 # feeds already cover at the same track+date (e.g. their Santa Pod meetings).

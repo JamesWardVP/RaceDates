@@ -1100,14 +1100,14 @@
     {
         "id":  "tandragee-100",
         "name":  "Tandragee 100",
-        "venueType":  "drag-strip",
+        "venueType":  "circuit",
         "raceTypes":  [
-                          "drag"
+                          "moto"
                       ],
         "location":  {
-                         "town":  "",
-                         "county":  "",
-                         "country":  "",
+                         "town":  "Tandragee",
+                         "county":  "County Armagh",
+                         "country":  "Northern Ireland",
                          "lat":  54.3289,
                          "lng":  -6.4549
                      },

@@ -9,13 +9,17 @@
 
 ## Work currently underway
 
-**Status: Phase 6 COMPLETE — v1.0.0 released 2026-07-21. Favicon, custom 404 page, mobile calendar horizontal-scroll fix, full 375px pass across all 6 pages (no overflow/console errors anywhere), and the first `Releases/1.0.0/` snapshot. All six roadmap phases are now done. Live site: https://jameswardvp.github.io/RaceDates/**
+**Status: v1.0.0 (Phase 6) + v1.1.0 (adapter backlog round 2) both complete and live-verified. Live site: https://jameswardvp.github.io/RaceDates/. No active phase in progress — all work is now incremental adapter/data-quality sweeps.**
 
-Post-v1.0.0, work is incremental — no active phase in progress. Good entry points for a future session, roughly in priority order:
-1. Live cross-page click-through smoke test on the actual production URL after this release deploys (not yet done this session — deploy takes ~1 min after push, then verify favicon/404/calendar all show correctly live, not just on localhost).
-2. Work through the event-coverage adapter backlog below (Castle Combe, Pembrey, remaining stock-car ovals, motocross, Isle of Man TT/Tandragee).
-3. Add more "Other" cross-country events if James names any (pattern: venueType `other` track + `venue`-series event with a per-event `raceType`).
-4. The 7 tracks still missing photos (Google Maps Places would need an API key — ask James first).
+v1.1.0 follow-ups for a future session:
+1. **Castle Combe event count unverified live** — the adapter is written and logic-checked against real captured HTML, but got rate-limited during dev testing before I could confirm the actual scraped count from a real run. Check the next nightly Action's log (or trigger one manually) for a `venue/castle-combe : N events` line with N > 0.
+2. Re-verify Isle of Man TT / Manx GP / Tandragee 100 dates around March–April 2027 and update the hand-entered events for next season (no adapter exists for these — see backlog notes below for why).
+3. More "Race the Waves"-style cross-country events and Anglesey's date-less REST API are both parked — see backlog below.
+
+Good entry points beyond that, roughly in priority order:
+1. Continue the event-coverage adapter backlog below (Mallory Park, Kirkistown, Knockhill non-BSB, remaining stock-car ovals, motocross).
+2. Add more "Other" cross-country events if James names any (pattern: venueType `other` track + `venue`-series event with a per-event `raceType`).
+3. The 7 tracks still missing photos (Google Maps Places would need an API key — ask James first).
 
 Calendar view internals (for future sessions touching `js/races.js` / the `.cal-*` CSS):
 - Date keys MUST go through `RaceDates.toDateKey(date)` (local Y-M-D), never `date.toISOString()` — the latter reads UTC fields and silently shifts dates during BST. This bit us once already (v0.9.2 "today" bug); the events' own `startDate`/`endDate` strings are already plain, timezone-naive "YYYY-MM-DD" and must be treated that way throughout.
@@ -37,12 +41,13 @@ Other remaining loose ends:
 - ~~Lochgelly Raceway~~ ✅ v0.8.0 (19 events, hardieracepromotions.co.uk fixtures).
 - ~~BriSCA F1 Stock Cars~~ ✅ v0.8.0 (42 events, 7 new venues added — via cayzerracing.co.uk since briscaf1.com/fixtures redirects to a stale 2020 archive).
 - ~~Straightliners (mobile host)~~ ✅ v0.8.0 (12 events, 9 new venues added — straightliners-events.co.uk has broken TLS on every client tested; the working mirror straightliners.events was used instead).
-- **Castle Combe** — calendar paths return 403 to non-browser clients; try other UAs/paths, or their ticket-shop domain.
-- **Pembrey** — /events is JS-rendered; look for a data endpoint in its page source or an alternative feed.
-- **Anglesey, Mallory Park, Kirkistown, Knockhill non-BSB** — own-site calendars, structure unknown (Mallory site timing out on 2026-07-20).
+- ~~Castle Combe~~ ✅ v1.1.0 — adapter written for `castlecombecircuit.co.uk/all-racing` (WP Table Builder listing, handles their "Weekday Nth [& Weekday Nth] Month Year" date format). Needs a browser-style UA (their bot-protection blocks our normal `RaceDatesBot` UA specifically) — implemented as a one-off exception in just this adapter. Logic hand-verified against captured real HTML; live event count not yet confirmed (got rate-limited testing) — check on next run.
+- ~~Pembrey~~ ✅ v1.1.0 — turned out to have a clean JSON API (`pembreycircuit.co.uk/api/events`, POST `{"page":1}`) behind its JS-rendered page, found via the browser network panel. 15 events, self-dedupes against the BRX hand-entered round.
+- ~~Isle of Man TT / Manx GP / Classic TT / Tandragee 100~~ ✅ v1.1.0 (hand-entered, real dates) — no adapter: both official sites (iomttraces.com, tandragee100.co.uk) are prose news pages with no scrapable structure found. Will go stale each year; re-verify dates annually (see follow-up #2 above).
+- **Anglesey** — investigated v1.1.0: `/events` is a client-rendered SPA with no visible data API; a WordPress REST API exists (`wp-json/wp/v2/event`) but doesn't expose event dates in a clean field (dates are only in image filenames on the front end — too fragile). Parked; revisit if a better source turns up.
+- **Mallory Park, Kirkistown, Knockhill non-BSB** — own-site calendars, structure unknown (Mallory site was timing out on 2026-07-20).
 - **Remaining stock-car/banger ovals** (Mendips, Odsal, Swaffham, Eddie Wright, Hednesford — Hednesford has a track already but no adapter feeding it) — check whether BriSCA's calendar covers these too, or find their own promoter sites.
 - **Motocross (Foxhill, Cwmythig Hill)** — series calendars (British Motocross Championship?) — research needed; note site has no motocross race type yet (would need a new `--rt-*` colour + registry entry, same pattern as `other` added in v0.8.0).
-- **Snaefell Mountain Course (Isle of Man TT/Manx GP) / Tandragee 100** — road-racing calendars — research needed.
 
 Admin page facts (for future sessions): password is SHA-256-gated in `js/admin.js` (constant `PASSWORD_SHA256`); the password itself was told to James in chat 2026-07-20 and is NOT in the repo — to change it, hash the new password and replace the constant. Publishing uses a fine-grained GitHub token (Contents: read & write on JamesWardVP/RaceDates) pasted at use time.
 
