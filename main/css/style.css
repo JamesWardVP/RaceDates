@@ -847,6 +847,12 @@ h1, h2, h3, h4 {
 
 .race-list { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
 
+/* The [hidden] attribute is only styled display:none by the browser's
+   default (user-agent) stylesheet, which the class rule above — same
+   specificity, but author origin beats user-agent — silently overrides.
+   This reasserts it so JS's `.hidden = true` actually hides the list. */
+.race-list[hidden] { display: none; }
+
 .race-item {
   display: flex;
   align-items: center;

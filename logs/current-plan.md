@@ -12,7 +12,7 @@
 **Status: James's follow-up batch of 2026-07-21 (live calendar bug, load-time fix, cross-country events, better "other"-venue photos) is COMPLETE — logged as v0.9.0, verified in browser, ready to commit+push. Phase 6 (polish & first release) is next — nothing blocking it now.**
 
 Remaining loose ends, for a future session:
-- **Calendar toggle report couldn't be reproduced** — current best theory is browser cache of the pre-deploy JS/CSS (now mitigated with `?v=` cache-busting on every asset link, bumped each release). If James reports it again *after* a hard refresh on the current version, treat it as a real bug and investigate further (browser/OS, ad blockers, etc.) rather than assuming cache again.
+- ~~Calendar toggle~~ ✅ actually fixed in v0.9.1 — it was a genuine CSS bug (`.race-list[hidden]` needed explicit `display:none` to beat the class's own `display:flex`), not a caching issue as first assumed in v0.9.0. Lesson: when a user reports a UI bug and it can't be reproduced, don't stop at a plausible-sounding theory (caching) — check computed styles / DOM state directly before concluding.
 - BriSCA F1's *own* fixtures page (briscaf1.com/fixtures) redirects to a stale 2020 archive — currently sourced from cayzerracing.co.uk's fixture table instead, which is fine but worth rechecking occasionally in case the official site fixes its URL.
 - Straightliners' own domain (straightliners-events.co.uk) still has broken TLS from every client tested (PS, curl, WebFetch, in-app browser navigation); the mirror straightliners.events works and is what the adapter uses — no action needed unless that mirror also breaks.
 - Isle of Man TT / Manx GP (Snaefell Mountain Course) and Tandragee 100 road-racing calendars — not yet investigated.
