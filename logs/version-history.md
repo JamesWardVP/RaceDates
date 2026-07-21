@@ -9,6 +9,15 @@ Newest entries at the top. When work listed in `current-plan.md` is completed, i
 
 ---
 
+## 0.7.0 — 2026-07-20
+- **Adapter backlog round 1 — venue-calendar mechanism + Lydden Hill & Goodwood adapters. Events: 45 → 63.**
+  - **New generic "venue event" mechanism:** venue-calendar events use seriesId `venue` with a **per-event `raceType`** (schema addition) so each event carries its own colour — a bike track day shows cyan, a rallycross day yellow, at the same venue. Front end (races/track/map pages) now colours and filters by event raceType with series fallback. Venue events that land on the same date as a series round at the same track are skipped automatically (the richer series feed wins).
+  - **Lydden Hill adapter** (lyddenhill.co.uk/events, WordPress `event-item` blocks): 15 events — rallysprints, rallycross experience days, bike/car track days, oval racing — each with inferred race type and per-event ticket links. Its BRX Superprix correctly skipped as already covered by the series entry.
+  - **Goodwood adapter** (three known event pages, date regex): Members' Meeting, Revival 2026 (18–20 Sep) and Festival of Speed — whose page already advertises the 2027 dates, handled fine. FoS carries the hillclimb race type.
+  - Fixed en route: a temporal-dead-zone bug (eventRaceType declared as const after first use) that silently blanked track pages.
+  - **Not scrapable (recorded):** rallycrossbrx.com event pages carry no dates in HTML (BRX stays covered by the Lydden venue feed + hand-entered Pembrey/finale rounds); pembreycircuit.co.uk/events is JS-rendered; Castle Combe blocks non-browser clients (403) on calendar paths.
+  - Verified in browser: races page 44 upcoming (venue group filter = 17; moto filter mixes BSB + Lydden bike days), Goodwood track page shows Revival upcoming / Members' Meeting past, modals carry correct colours, no console errors.
+
 ## 0.6.3 — 2026-07-20
 - **Data cleanup after James's first big admin session** (he triaged all 43 discovered venues — 26 added, the rest flagged):
   - Removed 3 duplicate tracks (Shakespeare County Raceway, Swaffham Raceway Stadium, Tandragee 100 were each added twice) and deduped the review list.

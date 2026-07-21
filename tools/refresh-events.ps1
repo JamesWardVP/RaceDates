@@ -322,6 +322,94 @@ function Get-SantaPodEvents {
     return $result
 }
 
+# ------------------------------------------------- venue-calendar adapters ---
+# Venue calendars use seriesId "venue" with a per-event raceType (the front
+# end colours by event raceType when present). A venue event that lands on
+# the same date as a series event at the same track is skipped — the series
+# feed is richer, so it wins.
+
+function Merge-VenueEvents([string]$trackId, [array]$newEvents) {
+    $kept = @($script:events | Where-Object { -not ($_.seriesId -eq "venue" -and $_.trackId -eq $trackId) })
+    $added = @()
+    foreach ($ev in $newEvents) {
+        $collision = $kept | Where-Object { $_.trackId -eq $trackId -and $_.seriesId -ne "venue" -and $_.startDate -eq $ev.startDate }
+        if ($collision) { Write-Host "  venue/$trackId : skipped '$($ev.name)' (series event already covers $($ev.startDate))"; continue }
+        $added += $ev
+    }
+    Write-Host "  venue/$trackId : $($added.Count) events (replaced $($script:events.Count - $kept.Count) old entries)."
+    return @($kept + $added)
+}
+
+function Infer-EventRaceType([string]$name, [string]$default) {
+    if ($name -match "rallycross|rally ?x") { return "rallycross" }
+    if ($name -match "bike|motorcycle|moto") { return "moto" }
+    if ($name -match "drag") { return "drag" }
+    if ($name -match "kart") { return "karting" }
+    if ($name -match "hill ?climb|hillclimb") { return "hillclimb" }
+    return $default
+}
+
+function Get-LyddenEvents {
+    Write-Host "Lydden Hill: fetching lyddenhill.co.uk/events..."
+    $html = (Invoke-WebRequest -Uri "https://lyddenhill.co.uk/events/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    $result = @()
+    $pattern = '(?s)class="event-item[^"]*">.*?<h3>([^<]+)</h3>\s*<p class="event-date[^"]*">\s*(\d{2}/\d{2}/\d{4})\s*</p>.*?href="([^"]+)"'
+    foreach ($m in [regex]::Matches($html, $pattern)) {
+        $name = [System.Net.WebUtility]::HtmlDecode($m.Groups[1].Value.Trim())
+        $d = [datetime]::ParseExact($m.Groups[2].Value, "dd/MM/yyyy", $null)
+        $iso = $d.ToString("yyyy-MM-dd")
+        $result += [ordered]@{
+            id        = "venue-lydden-hill-$iso-$(($name.ToLower() -replace '[^a-z0-9]+','-').Trim('-'))"
+            name      = $name
+            trackId   = "lydden-hill"
+            seriesId  = "venue"
+            raceType  = Infer-EventRaceType $name "circuit"
+            startDate = $iso
+            endDate   = $iso
+            gates     = $null
+            price     = $null
+            ticketUrl = $m.Groups[3].Value
+            sample    = $false
+        }
+    }
+    return $result
+}
+
+function Get-GoodwoodEvents {
+    Write-Host "Goodwood: fetching headline event pages..."
+    $pages = @(
+        @{ name = "Goodwood Festival of Speed"; url = "https://www.goodwood.com/motorsport/festival-of-speed/"; raceType = "hillclimb" },
+        @{ name = "Goodwood Revival"; url = "https://www.goodwood.com/motorsport/goodwood-revival/"; raceType = "circuit" },
+        @{ name = "Goodwood Members' Meeting"; url = "https://www.goodwood.com/motorsport/members-meeting/"; raceType = "circuit" }
+    )
+    $result = @()
+    foreach ($p in $pages) {
+        try {
+            $html = (Invoke-WebRequest -Uri $p.url -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+        } catch { Write-Host "  Goodwood: $($p.name) page failed ($($_.Exception.Message))"; continue }
+        $m = [regex]::Match($html, '(\d{1,2})\s*[-–]\s*(\d{1,2})\s+(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{4})')
+        if (-not $m.Success) { Write-Host "  Goodwood: no date found on $($p.name) page"; continue }
+        $year = [int]$m.Groups[4].Value
+        $start = Parse-DayMonth "$($m.Groups[1].Value) $($m.Groups[3].Value)" $year
+        $end = Parse-DayMonth "$($m.Groups[2].Value) $($m.Groups[3].Value)" $year
+        if (-not $start) { continue }
+        $result += [ordered]@{
+            id        = "venue-goodwood-$start"
+            name      = "$($p.name) $year"
+            trackId   = "goodwood"
+            seriesId  = "venue"
+            raceType  = $p.raceType
+            startDate = $start
+            endDate   = $end
+            gates     = $null
+            price     = $null
+            ticketUrl = $p.url
+            sample    = $false
+        }
+    }
+    return $result
+}
+
 # -------------------------------------------------------------------- main ---
 
 Write-Host "Refreshing race calendars..."
@@ -332,6 +420,8 @@ $events = Merge-SeriesEvents "british-hillclimb" (Get-HillclimbEvents)
 # one-time cleanup: the old euro-drag sample series was folded into santa-pod
 $events = @($events | Where-Object { $_.seriesId -ne "euro-drag" })
 $events = Merge-SeriesEvents "santa-pod" (Get-SantaPodEvents)
+$events = Merge-VenueEvents "lydden-hill" (Get-LyddenEvents)
+$events = Merge-VenueEvents "goodwood" (Get-GoodwoodEvents)
 
 # dedupe (a page can list the same event in featured + grid slots), then sort
 $events = @($events | Group-Object { $_.id } | ForEach-Object { $_.Group[0] } | Sort-Object { $_.startDate })

@@ -46,12 +46,17 @@
   ];
   costSelect.innerHTML = COST_BANDS.map((b) => `<option value="${b.value}">${b.label}</option>`).join("");
 
+  /* Venue-calendar events carry their own raceType; series events inherit
+     their series' one. */
+  const eventRaceType = (e, s) => e.raceType || (s ? s.raceType : "");
+
   function itemHTML(e) {
     const s = seriesById[e.seriesId];
     const t = tracksById[e.trackId];
     const past = !RaceDates.isUpcoming(e);
+    const rt = eventRaceType(e, s);
     return `
-      <li class="race-item" data-racetype="${s ? s.raceType : ""}"${past ? ' style="opacity:0.55"' : ""}>
+      <li class="race-item" data-racetype="${rt}"${past ? ' style="opacity:0.55"' : ""}>
         <div class="race-main">
           <div class="race-name">${e.name}${past ? " (past)" : ""}</div>
           <div class="race-meta">
@@ -60,7 +65,7 @@
             ${s ? `· ${s.group}` : ""}
           </div>
         </div>
-        ${s ? RaceDates.raceTypeBadge(s.raceType) : ""}
+        ${rt ? RaceDates.raceTypeBadge(rt) : ""}
         <div class="race-price">${RaceDates.formatPrice(e.price)}</div>
         <div class="race-actions">
           <a class="btn btn-outline" href="track.html?id=${e.trackId}">Track</a>
@@ -80,7 +85,7 @@
       .filter((e) => {
         const s = seriesById[e.seriesId];
         if (!includePast && !RaceDates.isUpcoming(e)) return false;
-        if (type && (!s || s.raceType !== type)) return false;
+        if (type && eventRaceType(e, s) !== type) return false;
         if (group && (!s || s.group !== group)) return false;
         if (seriesId && e.seriesId !== seriesId) return false;
         if (maxCost != null && (!e.price || e.price.adult > maxCost)) return false;

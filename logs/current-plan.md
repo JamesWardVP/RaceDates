@@ -16,14 +16,17 @@ Phase 6 checklist (when started):
 - Decide whether `Releases/` gets a copy of `main/` per release or a zip; do the v1.0.0 copy + version-history entry.
 - Loose ends worth sweeping: BRX adapter (rallycrossbrx.com), Santa Pod "Ultimate Street Car" parse gap, favicon, per-event page scraping for gates/prices, maybe a 404 page for Pages.
 
-**Event-coverage adapter backlog** (v0.6.3 research: no universal source exists — UK venue sites have no schema.org Event JSON-LD; each source needs a small adapter in `tools/refresh-events.ps1`, pattern = `Get-BtccEvents`). 25 of 47 tracks currently have no events. Priority sources to investigate, by venue cluster:
-- **Castle Combe** — own race calendar on castlecombecircuit.co.uk (site up, JSON-LD is Place-only; scrape the calendar page HTML).
-- **Goodwood** — goodwood.com (Members' Meeting / Festival of Speed / Revival).
+**Event-coverage adapter backlog** (each source = a small adapter in `tools/refresh-events.ps1`; series pattern = `Get-BtccEvents`, venue-calendar pattern = `Get-LyddenEvents` + `Merge-VenueEvents` with per-event `raceType`):
+- ~~Lydden Hill venue calendar~~ ✅ v0.7.0 (15 events).
+- ~~Goodwood (MM/FoS/Revival)~~ ✅ v0.7.0 (3 events).
+- ~~5 Nations BRX~~ — rallycrossbrx.com pages carry no dates in HTML; covered by Lydden venue feed + hand-entered Pembrey/finale rounds. Revisit only if their site changes.
+- **Castle Combe** — calendar paths return 403 to non-browser clients; try other UAs/paths, or their ticket-shop domain.
+- **Pembrey** — /events is JS-rendered; look for a data endpoint in its page source or an alternative feed.
 - **Anglesey, Mallory Park, Kirkistown, Knockhill non-BSB** — own-site calendars, structure unknown (Mallory site timing out on 2026-07-20).
-- **Melbourne Raceway / Elvington drag** — promoter is Straightliners; straightliners-events.co.uk has broken TLS (handshake fails from PS *and* modern fetchers) — recheck occasionally or find their Facebook/alternative feed.
+- **Melbourne Raceway / Elvington drag** — promoter Straightliners; straightliners-events.co.uk has broken TLS (handshake fails from PS *and* modern fetchers) — recheck occasionally or find an alternative feed.
 - **Stock-car/banger ovals** (Lochgelly, Mendips, Hednesford, Odsal, King's Lynn, Swaffham, Eddie Wright) — promoter sites: hardieracepromotions.co.uk (Lochgelly), trackstar-racing? (King's Lynn), startrax (Odsal?) — research needed.
 - **Motocross (Foxhill, Cwmythig Hill)** — series calendars (British Motocross Championship?) — research needed; note site has no motocross race type yet (would need a new `--rt-*` colour + registry entry).
-- **Snaefell Mountain Course / Oliver's Mount / Tandragee** — road-racing calendars (Isle of Man TT dates, Oliver's Mount events on olivers-mount site?) — research needed.
+- **Snaefell Mountain Course / Oliver's Mount / Tandragee** — road-racing calendars (Isle of Man TT dates, Oliver's Mount events) — research needed.
 
 Admin page facts (for future sessions): password is SHA-256-gated in `js/admin.js` (constant `PASSWORD_SHA256`); the password itself was told to James in chat 2026-07-20 and is NOT in the repo — to change it, hash the new password and replace the constant. Publishing uses a fine-grained GitHub token (Contents: read & write on JamesWardVP/RaceDates) pasted at use time.
 

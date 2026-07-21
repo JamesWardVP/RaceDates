@@ -155,7 +155,7 @@
     const matching = events.filter((e) => {
       const s = seriesById[e.seriesId];
       if (!RaceDates.isUpcoming(e)) return false;
-      if (type && (!s || s.raceType !== type)) return false;
+      if (type && (e.raceType || (s ? s.raceType : "")) !== type) return false;
       if (seriesId && e.seriesId !== seriesId) return false;
       if (q) {
         const hay = `${e.name} ${s ? s.name + " " + s.group : ""}`.toLowerCase();

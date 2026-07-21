@@ -56,6 +56,14 @@
     "summary": "Single cars against the clock on the UK's historic hill climb courses."
   },
   {
+    "id": "venue",
+    "name": "Venue Event",
+    "raceType": "circuit",
+    "group": "Venue Events",
+    "website": null,
+    "summary": "Events published on the venue's own calendar — race meetings, festivals and shows. Each carries its own race-type colour."
+  },
+  {
     "id": "santa-pod",
     "name": "Santa Pod Raceway Events",
     "raceType": "drag",

@@ -109,13 +109,18 @@
     return { "circuit": "Circuit", "drag-strip": "Drag Strip", "hill-climb": "Hill Climb", "rallycross-circuit": "Rallycross Circuit", "kart-circuit": "Kart Circuit" }[v] || v;
   }
 
+  /* Venue-calendar events carry their own raceType; series events inherit
+     their series' one. (Function declaration so it hoists — it's called
+     during the initial page render above.) */
+  function eventRaceType(e, s) { return e.raceType || (s ? s.raceType : ""); }
+
   function eventRowHTML(e) {
     const s = seriesById[e.seriesId];
     const d = RaceDates.parseISO(e.startDate);
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     return `
       <li>
-        <button class="event-row" data-event-id="${e.id}" data-racetype="${s ? s.raceType : ""}">
+        <button class="event-row" data-event-id="${e.id}" data-racetype="${eventRaceType(e, s)}">
           <span class="event-date"><span class="day">${d.getDate()}</span><span class="month">${months[d.getMonth()]}</span></span>
           <span>
             <span class="event-name">${e.name}</span>
@@ -138,11 +143,12 @@
     const s = seriesById[e.seriesId];
     const backdrop = document.createElement("div");
     backdrop.className = "modal-backdrop";
+    const rt = eventRaceType(e, s);
     backdrop.innerHTML = `
-      <div class="modal" data-racetype="${s ? s.raceType : ""}" role="dialog" aria-modal="true" aria-label="${e.name}">
+      <div class="modal" data-racetype="${rt}" role="dialog" aria-modal="true" aria-label="${e.name}">
         <button class="modal-close" aria-label="Close">✕</button>
         <h3>${e.name}</h3>
-        ${s ? RaceDates.raceTypeBadge(s.raceType) : ""}
+        ${rt ? RaceDates.raceTypeBadge(rt) : ""}
         <div class="modal-details">
           <div class="row"><span class="k">Dates</span><span class="v">${RaceDates.formatDateRange(e.startDate, e.endDate)}</span></div>
           <div class="row"><span class="k">Gates open</span><span class="v">${e.gates ? e.gates.open : "TBC"}</span></div>
