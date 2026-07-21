@@ -9,10 +9,15 @@
 
 ## Work currently underway
 
-**Status: James's follow-up batch of 2026-07-21 (live calendar bug, load-time fix, cross-country events, better "other"-venue photos) is COMPLETE — logged as v0.9.0, verified in browser, ready to commit+push. Phase 6 (polish & first release) is next — nothing blocking it now.**
+**Status: James's calendar-polish batch of 2026-07-21 (uneven grid widths/misaligned headers, two-line chips, multi-day day-tags, hover/tap tooltip, calendar-as-default, wrong "today" date, list-view today indicator) is COMPLETE — logged as v0.9.2, verified in browser (real computed styles + real OS-level hover, not synthetic events). Phase 6 (polish & first release) is next — nothing blocking it now.**
+
+Calendar view internals (for future sessions touching `js/races.js` / the `.cal-*` CSS):
+- Date keys MUST go through `RaceDates.toDateKey(date)` (local Y-M-D), never `date.toISOString()` — the latter reads UTC fields and silently shifts dates during BST. This bit us once already (v0.9.2 "today" bug); the events' own `startDate`/`endDate` strings are already plain, timezone-naive "YYYY-MM-DD" and must be treated that way throughout.
+- Grid items (`.cal-cell` and its descendants) need `min-width: 0` or long nowrap content silently breaks the `1fr` column sizing — this is a general CSS Grid gotcha, worth remembering for any future grid layout on this site.
+- `[hidden]`-toggled elements need checking against any class rule setting their own `display` — a same-specificity author-stylesheet class rule beats the browser's default `[hidden] { display: none }`. `.race-list[hidden] { display: none; }` is the existing fix; apply the same pattern if a new `hidden`-toggled element gets its own `display` rule.
+- Touch-vs-hover branching relies on `matchMedia('(hover: hover)')`, checked at click time (not cached), so it degrades correctly if a device's input capability changes (e.g. a hybrid laptop with a mouse plugged in).
 
 Remaining loose ends, for a future session:
-- ~~Calendar toggle~~ ✅ actually fixed in v0.9.1 — it was a genuine CSS bug (`.race-list[hidden]` needed explicit `display:none` to beat the class's own `display:flex`), not a caching issue as first assumed in v0.9.0. Lesson: when a user reports a UI bug and it can't be reproduced, don't stop at a plausible-sounding theory (caching) — check computed styles / DOM state directly before concluding.
 - BriSCA F1's *own* fixtures page (briscaf1.com/fixtures) redirects to a stale 2020 archive — currently sourced from cayzerracing.co.uk's fixture table instead, which is fine but worth rechecking occasionally in case the official site fixes its URL.
 - Straightliners' own domain (straightliners-events.co.uk) still has broken TLS from every client tested (PS, curl, WebFetch, in-app browser navigation); the mirror straightliners.events works and is what the adapter uses — no action needed unless that mirror also breaks.
 - Isle of Man TT / Manx GP (Snaefell Mountain Course) and Tandragee 100 road-racing calendars — not yet investigated.

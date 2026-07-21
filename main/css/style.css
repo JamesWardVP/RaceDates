@@ -869,6 +869,21 @@ h1, h2, h3, h4 {
 
 .race-item .race-name { font-weight: 700; font-size: 1.02rem; }
 
+/* Small, unobtrusive marker for events running today */
+.today-badge {
+  display: inline-block;
+  margin-right: 0.4rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  vertical-align: middle;
+}
+
 .race-item .race-meta { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.15rem; }
 
 .race-item .race-meta a { color: var(--text-muted); }
@@ -996,6 +1011,11 @@ h1, h2, h3, h4 {
 }
 
 .cal-cell {
+  /* min-width: 0 overrides the grid item's default min-width:auto, which
+     otherwise expands to fit its content's intrinsic width (long event
+     titles) and breaks the 1fr columns' uniformity — throwing off both the
+     box widths and the alignment with .cal-weekdays above. */
+  min-width: 0;
   min-height: 96px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -1004,6 +1024,7 @@ h1, h2, h3, h4 {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  position: relative;
 }
 
 .cal-cell-outside { background: transparent; border-color: transparent; opacity: 0.4; }
@@ -1014,30 +1035,89 @@ h1, h2, h3, h4 {
 
 .cal-cell-today .cal-daynum { color: var(--accent); }
 
-.cal-chips { display: flex; flex-direction: column; gap: 0.2rem; overflow: hidden; }
+.cal-chips { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
 
+.cal-event { position: relative; min-width: 0; }
+
+/* Two-line chip: title first, venue underneath — keeps the box narrow
+   (matching the column width) even for long event names, at the cost of
+   a little extra height. */
 .cal-chip {
-  display: block;
-  padding: 0.12rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.15rem 0.4rem;
   border-radius: 4px;
   background: var(--rt, var(--surface-raised));
   color: #0f1115;
-  font-size: 0.68rem;
-  font-weight: 700;
   text-decoration: none;
+  min-width: 0;
+}
+
+.cal-chip-title, .cal-chip-venue {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
 }
+
+.cal-chip-title { font-size: 0.68rem; font-weight: 700; }
+.cal-chip-venue { font-size: 0.6rem; font-weight: 500; opacity: 0.8; }
 
 .cal-chip:hover { filter: brightness(1.15); }
 
 .cal-more { font-size: 0.66rem; color: var(--text-muted); padding-left: 0.2rem; }
 
+/* Hover/tap tooltip with brief event details. Desktop: CSS :hover reveals
+   it, the chip itself still navigates normally on click. Touch devices have
+   no hover, so races.js intercepts the first tap to add .tt-open instead. */
+.cal-tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.4rem;
+  width: max-content;
+  max-width: 220px;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--rt, var(--accent));
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  padding: 0.6rem 0.7rem;
+  font-size: 0.78rem;
+  text-align: left;
+  z-index: 30;
+}
+
+.cal-tooltip-title { font-weight: 700; margin-bottom: 0.3rem; }
+
+.cal-tooltip-row { color: var(--text-muted); margin-bottom: 0.15rem; }
+
+.cal-tooltip-more {
+  display: inline-block;
+  margin-top: 0.3rem;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.cal-tooltip-more:hover { color: var(--accent); }
+
+.cal-event:hover, .cal-event.tt-open { z-index: 25; }
+
+@media (hover: hover) {
+  .cal-event:hover .cal-tooltip { display: block; }
+}
+
+.cal-event.tt-open .cal-tooltip { display: block; }
+
 @media (max-width: 700px) {
   .cal-weekdays span:nth-child(n) { font-size: 0.65rem; }
   .cal-cell { min-height: 64px; padding: 0.25rem; }
-  .cal-chip { font-size: 0.6rem; }
+  .cal-chip-title { font-size: 0.6rem; }
+  .cal-chip-venue { font-size: 0.55rem; }
 }
 
 /* --------------------------------------------------------------------------

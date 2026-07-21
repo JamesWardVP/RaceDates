@@ -26,7 +26,7 @@
   const calPrev = document.getElementById("cal-prev");
   const calNext = document.getElementById("cal-next");
 
-  let view = "list";
+  let view = "calendar";
   const today = new Date();
   let calYear = today.getFullYear();
   let calMonth = today.getMonth(); // 0-indexed
@@ -64,15 +64,26 @@
      their series' one. */
   const eventRaceType = (e, s) => e.raceType || (s ? s.raceType : "");
 
+  /* Is `today` within [startDate, endDate] inclusive? (Plain string compare
+     is safe here — both sides are "YYYY-MM-DD" so lexical order = date order.) */
+  function isHappeningToday(e) {
+    const key = RaceDates.toDateKey(new Date());
+    return e.startDate <= key && key <= (e.endDate || e.startDate);
+  }
+
   function itemHTML(e) {
     const s = seriesById[e.seriesId];
     const t = tracksById[e.trackId];
     const past = !RaceDates.isUpcoming(e);
     const rt = eventRaceType(e, s);
+    const todayNow = isHappeningToday(e);
     return `
       <li class="race-item" data-racetype="${rt}"${past ? ' style="opacity:0.55"' : ""}>
         <div class="race-main">
-          <div class="race-name">${e.name}${past ? " (past)" : ""}</div>
+          <div class="race-name">
+            ${todayNow ? '<span class="today-badge" title="Happening today">● Today</span>' : ""}
+            ${e.name}${past ? " (past)" : ""}
+          </div>
           <div class="race-meta">
             ${RaceDates.formatDateRange(e.startDate, e.endDate)}
             · <a href="track.html?id=${e.trackId}">${t ? t.name : e.trackId}</a>
@@ -133,7 +144,7 @@
       const end = RaceDates.parseISO(e.endDate || e.startDate);
       if (end < monthStart || start > monthEnd) return; // doesn't touch this month
       for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-        const key = d.toISOString().slice(0, 10);
+        const key = RaceDates.toDateKey(d);
         (byDate[key] = byDate[key] || []).push(e);
       }
       monthIds.add(e.id);
@@ -146,30 +157,57 @@
     const startOffset = (first.getDay() + 6) % 7; // Monday = 0
     const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
     const daysInPrevMonth = new Date(calYear, calMonth, 0).getDate();
-    const todayKey = new Date().toISOString().slice(0, 10);
+    const todayKey = RaceDates.toDateKey(new Date());
 
     const cells = [];
     for (let i = startOffset - 1; i >= 0; i--) {
       cells.push({ day: daysInPrevMonth - i, otherMonth: true, key: null });
     }
     for (let d = 1; d <= daysInMonth; d++) {
-      const key = new Date(calYear, calMonth, d).toISOString().slice(0, 10);
-      cells.push({ day: d, otherMonth: false, key });
+      cells.push({ day: d, otherMonth: false, key: RaceDates.toDateKey(new Date(calYear, calMonth, d)) });
     }
     while (cells.length % 7 !== 0 || cells.length < 35) {
       const d = cells.length - (startOffset + daysInMonth) + 1;
       cells.push({ day: d, otherMonth: true, key: null });
     }
 
+    const MS_DAY = 86400000;
+
+    function chipHTML(e, cellKey) {
+      const s = seriesById[e.seriesId];
+      const t = tracksById[e.trackId];
+      const rt = eventRaceType(e, s);
+      const startD = RaceDates.parseISO(e.startDate);
+      const endD = RaceDates.parseISO(e.endDate || e.startDate);
+      const totalDays = Math.round((endD - startD) / MS_DAY) + 1;
+      const dayIndex = Math.round((RaceDates.parseISO(cellKey) - startD) / MS_DAY) + 1;
+      const dayTag = totalDays > 1 ? ` (Day ${dayIndex} of ${totalDays})` : "";
+      const trackName = t ? t.name : e.trackId;
+      const dateRange = RaceDates.formatDateRange(e.startDate, e.endDate);
+      const price = RaceDates.formatPrice(e.price);
+      const href = `track.html?id=${e.trackId}`;
+      return `
+        <div class="cal-event">
+          <a class="cal-chip" data-racetype="${rt}" href="${href}">
+            <span class="cal-chip-title">${e.name}${dayTag}</span>
+            <span class="cal-chip-venue">${trackName}</span>
+          </a>
+          <div class="cal-tooltip" role="tooltip">
+            <div class="cal-tooltip-title">${e.name}${dayTag}</div>
+            <div class="cal-tooltip-row">${dateRange}</div>
+            <div class="cal-tooltip-row">${trackName}</div>
+            ${s ? `<div class="cal-tooltip-row">${s.group}</div>` : ""}
+            <div class="cal-tooltip-row">${price}</div>
+            <a class="cal-tooltip-more" href="${href}">More info →</a>
+          </div>
+        </div>`;
+    }
+
     calGrid.innerHTML = cells.map((c) => {
       if (c.otherMonth) return `<div class="cal-cell cal-cell-outside"><span class="cal-daynum">${c.day}</span></div>`;
       const dayEvents = (byDate[c.key] || []).sort((a, b) => a.startDate.localeCompare(b.startDate));
       const isToday = c.key === todayKey;
-      const chips = dayEvents.slice(0, 3).map((e) => {
-        const s = seriesById[e.seriesId];
-        const rt = eventRaceType(e, s);
-        return `<a class="cal-chip" data-racetype="${rt}" href="track.html?id=${e.trackId}" title="${e.name} — ${RaceDates.formatDateRange(e.startDate, e.endDate)}">${e.name}</a>`;
-      }).join("");
+      const chips = dayEvents.slice(0, 3).map((e) => chipHTML(e, c.key)).join("");
       const more = dayEvents.length > 3 ? `<span class="cal-more">+${dayEvents.length - 3} more</span>` : "";
       return `
         <div class="cal-cell${isToday ? " cal-cell-today" : ""}">
@@ -178,6 +216,30 @@
         </div>`;
     }).join("");
   }
+
+  /* Tooltip interaction: desktop reveals it on hover via CSS (see
+     style.css) and a normal click on the chip navigates straight through.
+     Touch devices have no hover, so the first tap opens the tooltip instead
+     of navigating; a second tap on the (now-open) chip, or its "More info"
+     link, navigates normally. Tapping elsewhere closes any open tooltip. */
+  const isTouchDevice = () => !window.matchMedia("(hover: hover)").matches;
+
+  calGrid.addEventListener("click", (ev) => {
+    const chip = ev.target.closest(".cal-chip");
+    if (!chip || !isTouchDevice()) return;
+    const wrap = chip.closest(".cal-event");
+    if (!wrap.classList.contains("tt-open")) {
+      ev.preventDefault();
+      calGrid.querySelectorAll(".cal-event.tt-open").forEach((el) => el.classList.remove("tt-open"));
+      wrap.classList.add("tt-open");
+    }
+  });
+
+  document.addEventListener("click", (ev) => {
+    if (!ev.target.closest(".cal-event")) {
+      calGrid.querySelectorAll(".cal-event.tt-open").forEach((el) => el.classList.remove("tt-open"));
+    }
+  });
 
   function render() {
     if (view === "list") renderList(); else renderCalendar();
@@ -218,5 +280,5 @@
   if (params.get("group") && groups.includes(params.get("group"))) groupSelect.value = params.get("group");
   if (params.get("type")) typeSelect.value = params.get("type");
 
-  render();
+  setView("calendar");
 })();

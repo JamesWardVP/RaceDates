@@ -90,6 +90,14 @@ const RaceDates = (() => {
     return new Date(y, m - 1, d);
   }
 
+  /* "YYYY-MM-DD" from a Date's LOCAL calendar fields. Never use
+     Date#toISOString for this — it reads UTC fields, so anywhere west/east
+     of UTC it silently shifts local midnight onto the wrong calendar date
+     (e.g. "today" reading as tomorrow in BST). */
+  function toDateKey(d) {
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  }
+
   /* "2026-08-01".."2026-08-02" -> "1–2 Aug 2026"; spanning months -> "31 Aug – 1 Sep 2026" */
   function formatDateRange(startISO, endISO) {
     const s = parseISO(startISO);
@@ -121,5 +129,5 @@ const RaceDates = (() => {
     renderFooter();
   });
 
-  return { RACE_TYPES, getTracks, getSeries, getEvents, raceTypeBadge, parseISO, formatDateRange, formatPrice, isUpcoming };
+  return { RACE_TYPES, getTracks, getSeries, getEvents, raceTypeBadge, parseISO, toDateKey, formatDateRange, formatPrice, isUpcoming };
 })();
