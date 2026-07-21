@@ -9,7 +9,22 @@
 
 ## Work currently underway
 
-**Status: Phase 5 COMPLETE (v0.6.0) — admin page live with one-name track automation, discovered-venue review, event entry and direct GitHub publishing. Next: Phase 6 (polish & first release to `Releases/` as v1.0.0).**
+**Status: working through James's requested batch of 2026-07-20 (below). Phase 6 (polish & first release) follows after.**
+
+### ACTIVE BATCH — James's requests 2026-07-20 (work in this order; tick off as completed)
+1. **Track page map alignment (quick CSS/markup):** on `track.html` the map box currently top-aligns with the page title; James wants its top level with the top of the photo. Fix: move the `<h1>` + location subtitle OUT of the `.track-hero` grid (render them above it); grid then holds [photo strip + summary] | [map box], so both columns start level. Files: `js/track.js` (markup), maybe `css/style.css`.
+2. **Road-racing + stock-car adapters (backlog priority):**
+   - Stock car: probe **briscaf1stockcars.com** fixtures first — BriSCA F1's central fixture list covers many ovals (Odsal, King's Lynn, etc.) in one adapter. Also: hardieracepromotions.co.uk (Lochgelly), trackstar-racing.co.uk (King's Lynn/Swaffham?), startrax.co.uk (Odsal?), mendipsraceway.com. New series entries per promoter/championship, group "Stock Car"? (raceType `oval`).
+   - Road racing: probe iomttraces.com (TT + Manx GP dates → Snaefell Mountain Course), oliversmountracing.com (Oliver's Mount meetings), tandragee100.co.uk. raceType `moto`.
+3. **Straightliners = first "mobile event host"** (promoters who run events at many venues):
+   - Their site straightliners-events.co.uk has **broken TLS** for PS/pwsh/WebFetch — try `curl.exe` (schannel), `http://` variant, and the Browser pane (Chrome stack). If unreachable from CI (ubuntu pwsh = OpenSSL), hand-enter current events from whatever the browser can read and document the blocker.
+   - Model: new series entry per host (e.g. id `straightliners`, name "Straightliners", **group "Mobile Events"**); events carry per-event `raceType` (mechanism exists since v0.7.0): Melbourne = `drag`, Elvington top-speed runs = **new race type `other`** — add `other` to `RaceDates.RACE_TYPES` in js/main.js + `--rt-other` colour (grey) in css/style.css + `[data-racetype="other"]` rule.
+   - **Add Elvington Airfield as a track** (venue for Straightliners top-speed events; near York, lat≈53.923, lng≈-0.991, venueType circuit? it's an airfield — venueType `circuit`, raceTypes [`other`,`drag`]) so its events pin on the map. Any other Straightliners venues found → add likewise.
+4. **Races page "List / Calendar" toggle:**
+   - Toggle (reuse `.mode-toggle` styling) between the current list and a **month calendar**: 7-column grid (Mon–Sun), one square per day, weekday header, days outside the month dimmed; events render as small chips coloured by race type (`data-racetype`), spanning events appear on each day of their range; chips link to the event's track page (tooltip: name + dates).
+   - Month navigation: ‹ / › buttons + "Month YYYY" label; default = current month. Existing filters (type/group/series/cost) apply to the calendar too; "include past" not needed in calendar (a month view naturally shows past days greyed).
+   - Files: `races.html` (toggle + calendar container), `js/races.js` (render functions + state), `css/style.css` (`.cal-*` styles).
+5. After each item: verify in browser, version-bump log entry, commit+push (admin may be publishing from the live site — `git pull` before pushing).
 
 Phase 6 checklist (when started):
 - Cross-page click-through test on the live site; mobile/responsive pass (nav wrap, filter bar, admin forms at 375px).
