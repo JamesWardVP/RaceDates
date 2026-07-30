@@ -657,15 +657,25 @@ function Get-PembreyEvents {
     $result = @()
     foreach ($e in $res.results) {
         if (-not $e.startDate) { continue }
+        # This is the only adapter that pulls dates from a JSON API rather
+        # than regex-capturing them from HTML. The API returns plain
+        # "yyyy-MM-dd" strings, but pwsh's JSON parser (unlike Windows
+        # PowerShell 5.1's) can auto-materialise ISO-looking date strings
+        # into real [datetime] objects - confirmed live on a different line
+        # in refresh-tracks.ps1, same underlying cause. Force back to a
+        # plain date string either way so the id and stored date stay
+        # consistent regardless of which shape came back.
+        $startDate = if ($e.startDate -is [datetime]) { $e.startDate.ToString("yyyy-MM-dd") } else { [string]$e.startDate }
+        $endDate = if ($e.endDate -is [datetime]) { $e.endDate.ToString("yyyy-MM-dd") } elseif ($e.endDate) { [string]$e.endDate } else { $startDate }
         $ticketUrl = if ($e.href -match '^https?://') { $e.href } else { "https://www.pembreycircuit.co.uk/$($e.href)" }
         $result += [ordered]@{
-            id        = "venue-pembrey-$($e.startDate)-$($e.id)"
+            id        = "venue-pembrey-$startDate-$($e.id)"
             name      = $e.title
             trackId   = "pembrey"
             seriesId  = "venue"
             raceType  = Infer-EventRaceType $e.title "circuit"
-            startDate = $e.startDate
-            endDate   = if ($e.endDate) { $e.endDate } else { $e.startDate }
+            startDate = $startDate
+            endDate   = $endDate
             gates     = $null
             price     = if ($e.price) { [ordered]@{ adult = [double]$e.price; currency = "GBP" } } else { $null }
             ticketUrl = $ticketUrl

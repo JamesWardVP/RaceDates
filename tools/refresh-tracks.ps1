@@ -53,6 +53,20 @@ try {
 
 # One row per item (SPARQL can return duplicates when an item has several
 # values for an optional property — keep the first of each).
+
+# Wikidata date values (P1619/P571 opened/inception, both here and via the
+# entity-claims fallback further down) arrive as an ISO-ish string on
+# Windows PowerShell 5.1's ConvertFrom-Json, but PowerShell 7 (the pwsh used
+# by GitHub Actions' ubuntu runners) auto-materialises them into a real
+# [datetime] - confirmed live: the nightly Action failed with "Method
+# invocation failed because [System.DateTime] does not contain a method
+# named 'Substring'" the moment a track had an opened/inception value, which
+# never showed up testing locally against 5.1. Handle both shapes.
+function Get-YearFromWikidataDate($val) {
+    if ($val -is [datetime]) { return $val.Year }
+    return [int]$val.ToString().TrimStart('+').Substring(0, 4)
+}
+
 $wdItems = @{}
 foreach ($row in $response.results.bindings) {
     $qid = ($row.item.value -split "/")[-1]
@@ -64,8 +78,8 @@ foreach ($row in $response.results.bindings) {
             }
         }
         $openedYear = $null
-        if ($row.opened) { $openedYear = [int]$row.opened.value.Substring(0, 4) }
-        elseif ($row.inception) { $openedYear = [int]$row.inception.value.Substring(0, 4) }
+        if ($row.opened) { $openedYear = Get-YearFromWikidataDate $row.opened.value }
+        elseif ($row.inception) { $openedYear = Get-YearFromWikidataDate $row.inception.value }
 
         $imageUrl = $null
         if ($row.image) {
@@ -258,7 +272,7 @@ foreach ($track in $tracks) {
                 }
                 $openedY = $null
                 foreach ($prop in @("P1619", "P571")) {
-                    if ($claims.$prop) { $openedY = [int]$claims.$prop[0].mainsnak.datavalue.value.time.Substring(1, 4); break }
+                    if ($claims.$prop) { $openedY = Get-YearFromWikidataDate $claims.$prop[0].mainsnak.datavalue.value.time; break }
                 }
                 $enwiki = $null
                 if ($entity.sitelinks -and $entity.sitelinks.enwiki) {
