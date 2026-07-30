@@ -38,7 +38,18 @@ SELECT ?item ?itemLabel ?coord ?opened ?inception ?capacity ?image ?website ?art
 
 Write-Host "Querying Wikidata for UK motorsport venues..."
 $url = "https://query.wikidata.org/sparql?format=json&query=" + [System.Net.WebUtility]::UrlEncode($sparql)
-$response = Invoke-RestMethod -Uri $url -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 120
+try {
+    $response = Invoke-RestMethod -Uri $url -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 120
+} catch {
+    # query.wikidata.org is known to rate-limit/block shared cloud-runner IP
+    # ranges (GitHub Actions included) independently of anything in this repo.
+    # That's a recoverable, external condition, not a bug - log it and exit
+    # cleanly (tracks.json untouched) rather than crashing the whole job and,
+    # with it, blocking the unrelated race-calendar refresh that runs after.
+    Write-Host "Wikidata SPARQL query failed: $($_.Exception.Message)"
+    Write-Host "Skipping track refresh this run - tracks.json left unchanged."
+    exit 0
+}
 
 # One row per item (SPARQL can return duplicates when an item has several
 # values for an optional property — keep the first of each).
@@ -333,8 +344,22 @@ $discovered = @(
 # ------------------------------------------------------------------- write ---
 
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-[System.IO.File]::WriteAllText($tracksPath, ($tracks | ConvertTo-Json -Depth 10), $utf8NoBom)
-[System.IO.File]::WriteAllText($discoveredPath, ($discovered | ConvertTo-Json -Depth 10), $utf8NoBom)
+# Re-wrap with a fresh @(...) right at the call site, passed via -InputObject.
+# Two separate PS 5.1 ConvertTo-Json quirks are both in play here and each
+# needs a different-looking fix that turns out to be the same one:
+#  - piping a 0/1-element array unwraps it to "" / a bare {..} object
+#    instead of "[]" / "[{..}]" (bites discovered-tracks.json, which is
+#    small most of the time - admin.js calls .filter() on it immediately,
+#    so a bare object there throws and breaks the "new venues" panel);
+#  - passing a ConvertFrom-Json-sourced array (even with many elements,
+#    e.g. all 64 tracks) via bare -InputObject serializes it as its
+#    underlying .NET collection shape {"value":[...],"Count":N} instead of
+#    a plain JSON array (bites tracks.json, sourced straight from disk).
+# @(...) fresh at the call site sidesteps both - verified empirically for
+# 0/1/many elements against real ConvertFrom-Json output before relying on
+# it here.
+[System.IO.File]::WriteAllText($tracksPath, (ConvertTo-Json -InputObject @($tracks) -Depth 10), $utf8NoBom)
+[System.IO.File]::WriteAllText($discoveredPath, (ConvertTo-Json -InputObject @($discovered) -Depth 10), $utf8NoBom)
 
 Write-Host ""
 Write-Host "Done: $enriched of $($tracks.Count) tracks enriched from Wikidata."

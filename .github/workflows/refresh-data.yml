@@ -22,11 +22,16 @@ jobs:
         shell: pwsh
         run: ./tools/refresh-tracks.ps1
 
+      # Independent of the step above: an outage/bug on one side (e.g.
+      # Wikidata rate-limiting the runner) must never block the other -
+      # they update different files and have nothing to do with each other.
       - name: Refresh race calendars (series sites)
+        if: always()
         shell: pwsh
         run: ./tools/refresh-events.ps1
 
       - name: Commit and push if changed
+        if: always()
         run: |
           git config user.name "racedates-bot"
           git config user.email "actions@users.noreply.github.com"
