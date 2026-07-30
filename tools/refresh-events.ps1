@@ -336,6 +336,16 @@ function Get-SantaPodEvents {
 # feed is richer, so it wins.
 
 function Merge-VenueEvents([string]$trackId, [array]$newEvents) {
+    # An adapter returning nothing usually means its fetch failed (see the
+    # try/catch in each Get-*Events function, which returns @() on error) -
+    # that must NOT be treated as "this venue now has zero events". Confirmed
+    # this was a real, live bug: a transient failure on the actual GitHub
+    # Actions run wiped Lochgelly Raceway's 19 events and Oliver's Mount's 6
+    # down to zero, because this function used to unconditionally replace.
+    if (-not $newEvents -or $newEvents.Count -eq 0) {
+        Write-Host "  venue\$trackId : adapter returned nothing - keeping existing entries."
+        return $script:events
+    }
     $kept = @($script:events | Where-Object { -not ($_.seriesId -eq "venue" -and $_.trackId -eq $trackId) })
     $added = @()
     foreach ($ev in $newEvents) {
