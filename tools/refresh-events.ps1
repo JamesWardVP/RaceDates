@@ -63,16 +63,29 @@ function Find-Track([string]$venueName) {
 
 # "23 May" -> ISO date in the season year (assumed = current year: series
 # publish the current season's calendar on these pages).
+# Locale-independent by design, deliberately not using [datetime]::ParseExact
+# with a "MMM"/"MMMM" format + CultureInfo. Confirmed live: on this system,
+# en-GB's abbreviated month name for September is "Sept" (4 letters), not the
+# standard 3-letter "Sep" - so ParseExact silently failed for every adapter
+# that built a hardcoded 3-letter month abbreviation itself (British GT's
+# date parsing specifically), even though the exact same text worked fine
+# when a site's own markup happened to already say "Sept". Matching on just
+# the first 3 letters of whatever's given sidesteps that and any other
+# locale/.NET-version surprise entirely, for any 3+ letter month spelling.
+$script:MonthAbbrevMap = @{
+    "jan" = 1; "feb" = 2; "mar" = 3; "apr" = 4; "may" = 5; "jun" = 6
+    "jul" = 7; "aug" = 8; "sep" = 9; "oct" = 10; "nov" = 11; "dec" = 12
+}
+
 function Parse-DayMonth([string]$text, [int]$year) {
-    $text = $text -replace '(\d)(st|nd|rd|th)\b', '$1'   # "1st Aug" -> "1 Aug"
-    $culture = [System.Globalization.CultureInfo]::GetCultureInfo("en-GB")
-    foreach ($fmt in @("d MMM", "dd MMM", "d MMMM", "dd MMMM")) {
-        try {
-            $d = [datetime]::ParseExact($text.Trim(), $fmt, $culture)
-            return (Get-Date -Year $year -Month $d.Month -Day $d.Day).ToString("yyyy-MM-dd")
-        } catch { }
-    }
-    return $null
+    $t = ($text -replace '(\d)(st|nd|rd|th)\b', '$1').Trim().TrimEnd('.')   # "1st Aug" -> "1 Aug"
+    if ($t -notmatch '^(\d{1,2})\s+([A-Za-z]+)$') { return $null }
+    $day = [int]$Matches[1]
+    if ($Matches[2].Length -lt 3) { return $null }
+    $monthKey = $Matches[2].Substring(0, 3).ToLowerInvariant()
+    if (-not $script:MonthAbbrevMap.ContainsKey($monthKey)) { return $null }
+    try { return (Get-Date -Year $year -Month $script:MonthAbbrevMap[$monthKey] -Day $day).ToString("yyyy-MM-dd") }
+    catch { return $null }
 }
 
 # "29 - 31 Aug" / "31 Jul - 02 Aug" / "24-26 April" -> @(startISO, endISO).
@@ -109,10 +122,23 @@ function Merge-SeriesEvents([string]$seriesId, [array]$newEvents) {
 
 function Get-BtccEvents {
     Write-Host "BTCC: fetching btcc.net/calendar..."
-    $html = (Invoke-WebRequest -Uri "https://www.btcc.net/calendar/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    try {
+        $html = (Invoke-WebRequest -Uri "https://www.btcc.net/calendar/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    } catch {
+        Write-Host "  BTCC: fetch failed ($($_.Exception.Message)) - keeping existing events."
+        return @()
+    }
     $year = (Get-Date).Year
 
-    $pattern = '(?s)href="https://btcc\.net/circuit/[a-z0-9-]+/".{0,600}?circuitDatesText.*?ct-span[^>]*>([^<]+)</span>.*?circuitDatesText.*?ct-span[^>]*>([^<]+)</span>.*?mainHeading[^>]*>\s*<span[^>]*>([^<]+)</span>'
+    # btcc.net was fully redesigned at some point after this adapter was
+    # first written - confirmed live, the old selectors (circuitDatesText/
+    # ct-span/mainHeading, absolute hrefs) don't exist anywhere in the
+    # current markup, so this had been matching zero rounds and silently
+    # coasting on stale cached data via Merge-SeriesEvents's "keep existing"
+    # guard. Current structure: <a class="calendar-card" href="/circuit/x/">
+    # <div class="calendar-date"><span>D MMM</span>...<span>D MMM</span></div>
+    # <img class="calendar-track" ...><h2>Venue</h2></a>
+    $pattern = '(?s)<a class="calendar-card" href="[^"]*">\s*<div class="calendar-date">\s*<span>([^<]+)</span>.*?<span>([^<]+)</span>\s*</div>.*?<h2>([^<]+)</h2>'
     $matches = [regex]::Matches($html, $pattern)
 
     $result = @()
@@ -148,7 +174,12 @@ function Get-BtccEvents {
 
 function Get-BsbEvents {
     Write-Host "BSB: fetching britishsuperbike.com/calendar..."
-    $html = (Invoke-WebRequest -Uri "https://www.britishsuperbike.com/calendar" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    try {
+        $html = (Invoke-WebRequest -Uri "https://www.britishsuperbike.com/calendar" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    } catch {
+        Write-Host "  BSB: fetch failed ($($_.Exception.Message)) - keeping existing events."
+        return @()
+    }
 
     $result = @()
     $cards = $html -split 'class="card round-info'
@@ -196,7 +227,12 @@ function Get-BsbEvents {
 
 function Get-BritishGtEvents {
     Write-Host "British GT: fetching britishgt.com/calendar..."
-    $html = (Invoke-WebRequest -Uri "https://www.britishgt.com/calendar" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    try {
+        $html = (Invoke-WebRequest -Uri "https://www.britishgt.com/calendar" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    } catch {
+        Write-Host "  British GT: fetch failed ($($_.Exception.Message)) - keeping existing events."
+        return @()
+    }
 
     $result = @()
     $chunks = $html -split 'calendar__list-item[ "]'
@@ -241,7 +277,12 @@ function Get-BritishGtEvents {
 
 function Get-HillclimbEvents {
     Write-Host "British Hillclimb: fetching britishhillclimb.co.uk/calendar..."
-    $html = (Invoke-WebRequest -Uri "https://www.britishhillclimb.co.uk/calendar" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 90).Content
+    try {
+        $html = (Invoke-WebRequest -Uri "https://www.britishhillclimb.co.uk/calendar" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 90).Content
+    } catch {
+        Write-Host "  British Hillclimb: fetch failed ($($_.Exception.Message)) - keeping existing events."
+        return @()
+    }
 
     # Wix page: walk the text nodes - an UPPERCASE venue name node is followed
     # by its date node ("25/26 April 2026" or "2 May 2026").
@@ -392,7 +433,12 @@ function Parse-WeekdayDateRange([string]$text) {
 
 function Get-LyddenEvents {
     Write-Host "Lydden Hill: fetching lyddenhill.co.uk/events..."
-    $html = (Invoke-WebRequest -Uri "https://lyddenhill.co.uk/events/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    try {
+        $html = (Invoke-WebRequest -Uri "https://lyddenhill.co.uk/events/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    } catch {
+        Write-Host "  Lydden Hill: fetch failed ($($_.Exception.Message)) - keeping existing events."
+        return @()
+    }
     $result = @()
     $pattern = '(?s)class="event-item[^"]*">.*?<h3>([^<]+)</h3>\s*<p class="event-date[^"]*">\s*(\d{2}/\d{2}/\d{4})\s*</p>.*?href="([^"]+)"'
     foreach ($m in [regex]::Matches($html, $pattern)) {
@@ -458,7 +504,12 @@ function Get-GoodwoodEvents {
 
 function Get-StraightlinersEvents {
     Write-Host "Straightliners: fetching straightliners.events/all-events..."
-    $html = (Invoke-WebRequest -Uri "https://straightliners.events/all-events/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    try {
+        $html = (Invoke-WebRequest -Uri "https://straightliners.events/all-events/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    } catch {
+        Write-Host "  Straightliners: fetch failed ($($_.Exception.Message)) - keeping existing events."
+        return @()
+    }
     $result = @()
     $pattern = '(?s)<a href="([^"]+)" class="events-section-box">.*?<h3>([^<]+)</h3>\s*<div class="event-date">\s*([^<]+?)\s*</div>\s*<div class="event-location">.*?</i>\s*([^<]+)</div>'
     foreach ($m in [regex]::Matches($html, $pattern)) {
@@ -499,9 +550,19 @@ function Get-StraightlinersEvents {
 
 function Get-OliversMountEvents {
     Write-Host "Oliver's Mount: fetching oliversmount.com/events2..."
-    $html = (Invoke-WebRequest -Uri "https://oliversmount.com/events2/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    try {
+        $html = (Invoke-WebRequest -Uri "https://oliversmount.com/events2/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    } catch {
+        Write-Host "  Oliver's Mount: fetch failed ($($_.Exception.Message)) - keeping existing events."
+        return @()
+    }
     $result = @()
-    $pattern = '(?s)omr-event-card data-end-date=([\d-]+)>.*?omr-event-date>([^<]+)</div>\s*<h3 class=omr-event-title>([^<]+)</h3>.*?<a href="([^"]+)" class=omr-book-button'
+    # Site markup changed since this adapter was written: attributes are now
+    # quoted (data-end-date="..." not data-end-date=...) and a style="display:
+    # none;" attribute was added between data-end-date and the closing '>' -
+    # confirmed live, this had been matching zero events and silently
+    # relying on Merge-VenueEvents to keep stale cached data.
+    $pattern = '(?s)<div class="omr-event-card" data-end-date="([\d-]+)"[^>]*>.*?<div class="omr-event-date">([^<]+)</div>\s*<h3 class="omr-event-title">([^<]+)</h3>.*?<a href="([^"]+)" class="omr-book-button"'
     foreach ($m in [regex]::Matches($html, $pattern)) {
         $endIso = $m.Groups[1].Value
         $dateText = $m.Groups[2].Value.Trim()
@@ -530,7 +591,12 @@ function Get-OliversMountEvents {
 
 function Get-LochgellyEvents {
     Write-Host "Lochgelly: fetching hardieracepromotions.co.uk/pages/fixtures..."
-    $html = (Invoke-WebRequest -Uri "https://www.hardieracepromotions.co.uk/pages/fixtures/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    try {
+        $html = (Invoke-WebRequest -Uri "https://www.hardieracepromotions.co.uk/pages/fixtures/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    } catch {
+        Write-Host "  Lochgelly: fetch failed ($($_.Exception.Message)) - keeping existing events."
+        return @()
+    }
     $result = @()
     $pattern = '(?s)<div id="fixtureDetails">\s*<h2>[^<]+</h2>.*?<h3>([^<]+)</h3>\s*<h4>First Race:\s*([^<]+)</h4>.*?href="https://www\.hardieracepromotions\.co\.uk/pages/fixture/(\d{4}-\d{2}-\d{2})/'
     foreach ($m in [regex]::Matches($html, $pattern)) {
@@ -563,7 +629,12 @@ function Get-LochgellyEvents {
 
 function Get-BriscaEvents {
     Write-Host "BriSCA F1: fetching cayzerracing.co.uk fixture list..."
-    $html = (Invoke-WebRequest -Uri "https://cayzerracing.co.uk/brisca-f1-fixture-lists/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    try {
+        $html = (Invoke-WebRequest -Uri "https://cayzerracing.co.uk/brisca-f1-fixture-lists/" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 60).Content
+    } catch {
+        Write-Host "  BriSCA F1: fetch failed ($($_.Exception.Message)) - keeping existing events."
+        return @()
+    }
     $year = (Get-Date).Year
     $result = @()
     $pattern = '<td class="column-1">([^<]*)</td>\s*<td class="column-2">([^<]*)</td>\s*<td class="column-3">([^<]*)</td>\s*<td class="column-4">([^<]*)</td>\s*<td class="column-5">([^<]*)</td>'
