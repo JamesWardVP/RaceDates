@@ -107,6 +107,89 @@ function Parse-DateRange([string]$text, [int]$year) {
     return @($start, $end)
 }
 
+# --------------------------------------------------- multi-source fallback ---
+# Each series/venue can list more than one source, tried in order; the first
+# one that returns any events wins for that run. This is what actually keeps
+# the site's data fresh when one site rate-limits us (Vercel/Cloudflare-style
+# bot protection, all confirmed hit repeatedly this session) or goes down -
+# rather than just falling back to yesterday's cached data every time, a
+# second independent source can supply genuinely current data instead.
+function Get-EventsWithFallback([string]$label, [scriptblock[]]$sources) {
+    for ($i = 0; $i -lt $sources.Count; $i++) {
+        $result = @(& $sources[$i])
+        if ($result.Count -gt 0) {
+            if ($i -gt 0) { Write-Host "  $label : primary source(s) unavailable - used fallback #$($i + 1), $($result.Count) events." }
+            return $result
+        }
+    }
+    Write-Host "  $label : every source returned nothing this run."
+    return @()
+}
+
+# --------------------------------------- fallback source: Wikipedia tables ---
+# Wikipedia's season-calendar articles for BTCC/BSB use an identical
+# wikitable structure (confirmed against real wikitext for both), so one
+# parser covers both. Deliberately fetches raw wikitext via the API rather
+# than scraping rendered HTML - much more stable, and Wikipedia's API is
+# built for exactly this kind of use with a proper User-Agent.
+function Parse-WikiDateRange([string]$text, [int]$year) {
+    $t = ($text -replace [char]0x2013, '-').Trim()   # normalise en dash to hyphen
+    if ($t -match '^(\d{1,2})\s*-\s*(\d{1,2})\s+([A-Za-z]+)$') {
+        # same month: "18-19 April"
+        return @((Parse-DayMonth "$($Matches[1]) $($Matches[3])" $year), (Parse-DayMonth "$($Matches[2]) $($Matches[3])" $year))
+    }
+    if ($t -match '^(\d{1,2}\s+[A-Za-z]+)\s*-\s*(\d{1,2}\s+[A-Za-z]+)$') {
+        # cross month: "31 July-2 August"
+        return @((Parse-DayMonth $Matches[1] $year), (Parse-DayMonth $Matches[2] $year))
+    }
+    $d = Parse-DayMonth $t $year
+    return @($d, $d)
+}
+
+function Get-WikiSeriesRounds([string]$wikitext, [int]$year) {
+    $result = @()
+    $pattern = '(?s)\[\[([^\]|]+)(?:\|([^\]]+))?\]\]<br\s*/?>.*?\n\|\s*rowspan="?\d+"?\s*\|\s*([^\n|]+)'
+    foreach ($m in [regex]::Matches($wikitext, $pattern)) {
+        $venue = if ($m.Groups[2].Success) { $m.Groups[2].Value.Trim() } else { $m.Groups[1].Value.Trim() }
+        $range = Parse-WikiDateRange $m.Groups[3].Value.Trim() $year
+        $result += [pscustomobject]@{ venue = $venue; start = $range[0]; end = $range[1] }
+    }
+    return $result
+}
+
+function Get-WikipediaCalendarEvents([string]$page, [string]$seriesId, [string]$namePrefix) {
+    Write-Host "  $namePrefix Wikipedia fallback: fetching en.wikipedia.org/wiki/$page..."
+    try {
+        $res = Invoke-RestMethod -Uri "https://en.wikipedia.org/w/api.php?action=parse&page=$page&prop=wikitext&format=json" -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 30
+        $wikitext = $res.parse.wikitext.'*'
+    } catch {
+        Write-Host "    Wikipedia fallback: fetch failed ($($_.Exception.Message))"
+        return @()
+    }
+    if (-not $wikitext) { Write-Host "    Wikipedia fallback: page/section not found"; return @() }
+
+    $year = (Get-Date).Year
+    $result = @()
+    foreach ($rnd in (Get-WikiSeriesRounds $wikitext $year)) {
+        if (-not $rnd.start) { continue }
+        $track = Find-Track $rnd.venue
+        if (-not $track) { continue }   # non-UK rounds (Assen, Spa, etc.) - same as the primary adapters
+        $result += [ordered]@{
+            id        = "$seriesId-$($track.id)-$($rnd.start)"
+            name      = "$namePrefix $emDash $($rnd.venue)"
+            trackId   = $track.id
+            seriesId  = $seriesId
+            startDate = $rnd.start
+            endDate   = $rnd.end
+            gates     = $null
+            price     = $null
+            ticketUrl = $track.website
+            sample    = $false
+        }
+    }
+    return $result
+}
+
 # Replace all of one series' events with a freshly scraped set.
 function Merge-SeriesEvents([string]$seriesId, [array]$newEvents) {
     if (-not $newEvents -or $newEvents.Count -eq 0) {
@@ -769,8 +852,14 @@ function Get-PembreyEvents {
 # -------------------------------------------------------------------- main ---
 
 Write-Host "Refreshing race calendars..."
-$events = Merge-SeriesEvents "btcc" (Get-BtccEvents)
-$events = Merge-SeriesEvents "bsb" (Get-BsbEvents)
+$events = Merge-SeriesEvents "btcc" (Get-EventsWithFallback "BTCC" @(
+    { Get-BtccEvents },
+    { Get-WikipediaCalendarEvents "2026_British_Touring_Car_Championship" "btcc" "BTCC" }
+))
+$events = Merge-SeriesEvents "bsb" (Get-EventsWithFallback "BSB" @(
+    { Get-BsbEvents },
+    { Get-WikipediaCalendarEvents "2026_British_Superbike_Championship" "bsb" "British Superbikes" }
+))
 $events = Merge-SeriesEvents "british-gt" (Get-BritishGtEvents)
 $events = Merge-SeriesEvents "british-hillclimb" (Get-HillclimbEvents)
 # one-time cleanup: the old euro-drag sample series was folded into santa-pod
