@@ -9,9 +9,11 @@
 
 ## Work currently underway
 
-**Status: v1.0.0 through v1.1.5 all complete. The nightly refresh genuinely works (James confirmed on real GitHub Actions); a full adapter health audit (v1.1.4) fixed several silently-broken adapters; and multi-source fallback (v1.1.5, James's request) now means BTCC/BSB survive their primary site being blocked by falling back to Wikipedia — proved for real this session when it automatically recovered Croft and Silverstone while btcc.net was still fully blocking this machine. Live site: https://jameswardvp.github.io/RaceDates/.**
+**Status: v1.0.0 through v1.1.6 all complete and verified. Live site: https://jameswardvp.github.io/RaceDates/. Next up (James, 2026-07-30): the v1.1.5 follow-ups below — extending multi-source fallback further (British GT, venue-level adapters, Castle Combe specifically).**
 
-v1.1.5 follow-ups for a future session:
+v1.1.6 (2026-07-30): fixed the calendar's "+N more" being a dead end with no way to see the extra events — it's now a real button opening a modal with that day's full event list, verified working on desktop and mobile (375px), all three close paths, no regressions to the existing track-page event modal it shares CSS with.
+
+v1.1.5 follow-ups for a future session — **James asked to tackle these next**:
 1. **Extend the fallback pattern to British GT** — its Wikipedia table has a different structure (extra "Length" column, flag-icon prefixes, variable rowspan) that the current shared parser (`Get-WikiSeriesRounds`) doesn't handle. Would need its own regex variant, or a more flexible generalisation. Not urgent since britishgt.com itself isn't currently broken.
 2. **Venue-level adapters have no equivalent fallback source** — Wikipedia only covers national championship series, not local venue calendars, so Castle Combe/Santa Pod/Oliver's Mount/etc. still have just one source each. A real second source for those would need per-venue research (e.g. a hosting motorsport club's own site, if one separately lists the same fixture) — worth doing for Castle Combe specifically given it's failed every attempt across three sessions now.
 3. **Castle Combe still hasn't produced a single successful scrape** across three sessions of attempts — worth trying a different tactic next time (cookies from a real browser session, a referrer header), or building it a fallback per #2 above, or accepting it may need dropping if it never clears.
@@ -36,6 +38,7 @@ Calendar view internals (for future sessions touching `js/races.js` / the `.cal-
 - Grid items (`.cal-cell` and its descendants) need `min-width: 0` or long nowrap content silently breaks the `1fr` column sizing — this is a general CSS Grid gotcha, worth remembering for any future grid layout on this site.
 - `[hidden]`-toggled elements need checking against any class rule setting their own `display` — a same-specificity author-stylesheet class rule beats the browser's default `[hidden] { display: none }`. `.race-list[hidden] { display: none; }` is the existing fix; apply the same pattern if a new `hidden`-toggled element gets its own `display` rule.
 - Touch-vs-hover branching relies on `matchMedia('(hover: hover)')`, checked at click time (not cached), so it degrades correctly if a device's input capability changes (e.g. a hybrid laptop with a mouse plugged in).
+- **"+N more" day modal (v1.1.6)**: `calByDate` (module-level, set at the end of `renderCalendar()`) is what `openDayModal()` reads from — if `renderCalendar()`'s date-bucketing logic ever changes, make sure `calByDate` still gets assigned, or the modal will silently show stale/empty data. The modal shows *every* event that day, not just the chips-overflow past 3, which is deliberate (showing the full day is clearer than splitting it across visible chips + a separate "extra" list) — don't change that without a reason.
 
 Other remaining loose ends:
 - BriSCA F1's *own* fixtures page (briscaf1.com/fixtures) redirects to a stale 2020 archive — currently sourced from cayzerracing.co.uk's fixture table instead, which is fine but worth rechecking occasionally in case the official site fixes its URL.

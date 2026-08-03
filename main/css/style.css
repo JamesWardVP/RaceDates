@@ -766,6 +766,43 @@ h1, h2, h3, h4 {
 
 .modal-details .row .v { font-weight: 500; text-align: right; }
 
+/* Day-events modal (races.html calendar "+N more") - same .modal shell as
+   the single-event modal above, with its own scrollable list inside. */
+.modal-day { width: min(560px, 100%); border-top-color: var(--border); }
+
+.day-modal-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  max-height: min(60vh, 420px);
+  overflow-y: auto;
+}
+
+.day-modal-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--rt, var(--accent));
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.day-modal-item:hover { filter: brightness(1.1); }
+
+.day-modal-item-main { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+
+.day-modal-item-title { font-weight: 700; font-size: 0.92rem; }
+
+.day-modal-item-venue { font-size: 0.8rem; color: var(--text-muted); }
+
+.day-modal-item-price { font-size: 0.85rem; font-weight: 600; white-space: nowrap; }
+
 /* --------------------------------------------------------------------------
    Map page
    -------------------------------------------------------------------------- */
@@ -1065,7 +1102,19 @@ h1, h2, h3, h4 {
 
 .cal-chip:hover { filter: brightness(1.15); }
 
-.cal-more { font-size: 0.66rem; color: var(--text-muted); padding-left: 0.2rem; }
+.cal-more {
+  font: inherit;
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  padding: 0.15rem 0.2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.cal-more:hover { color: var(--text); }
 
 /* Hover/tap tooltip with brief event details. Desktop: CSS :hover reveals
    it, the chip itself still navigates normally on click. Touch devices have

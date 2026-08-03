@@ -9,6 +9,13 @@ Newest entries at the top. When work listed in `current-plan.md` is completed, i
 
 ---
 
+## 1.1.6 — 2026-07-30
+- **Fixed a real usability gap James found: the calendar's "+N more" indicator on busy days was a dead end** — it correctly showed there were more races that day, but gave no way to actually see them, on desktop or mobile.
+  - "+N more" is now a real button that opens a modal listing *every* event on that day (not just the overflow past the first 3 chips — showing the full day is clearer than splitting it across the visible chips and a separate "extra" list). Each item shows the title (with its "(Day X of Y)" tag for multi-day events), venue, and price, and clicks straight through to that track's page.
+  - Reuses the site's existing single-event modal shell (`.modal`/`.modal-backdrop`, same as the track-page event modal) for visual consistency, with its own scrollable list inside (capped at 60vh/420px so a very busy day doesn't blow out the viewport) rather than inventing a new modal pattern.
+  - Same three close paths as the existing modal: the ✕ button, clicking the backdrop, and Escape — verified all three actually work, not just present in the markup.
+  - Verified on both desktop and at 375px mobile width against a real day with 7 events: modal renders fully within the viewport with no horizontal overflow either way, list scrolling works, and clicking through to a track page works from the modal. No console errors, and confirmed the existing track-page event modal still works unchanged (shares CSS classes, wanted to be sure of no regression there).
+
 ## 1.1.5 — 2026-07-30
 - **Multi-source redundancy for adapters, at James's request** — after a whole session of individual sites (BTCC, Castle Combe, Santa Pod) rate-limiting/bot-blocking repeated requests, added a proper fallback mechanism so one site being down or blocked doesn't mean the data just goes stale until it recovers.
   - **`Get-EventsWithFallback`**: a small wrapper that takes a list of source functions and tries them in order, using the first that returns any events. Wired in for BTCC and BSB so far (the two series most affected this session).

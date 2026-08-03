@@ -203,18 +203,76 @@
         </div>`;
     }
 
+    calByDate = byDate;
+
     calGrid.innerHTML = cells.map((c) => {
       if (c.otherMonth) return `<div class="cal-cell cal-cell-outside"><span class="cal-daynum">${c.day}</span></div>`;
       const dayEvents = (byDate[c.key] || []).sort((a, b) => a.startDate.localeCompare(b.startDate));
       const isToday = c.key === todayKey;
       const chips = dayEvents.slice(0, 3).map((e) => chipHTML(e, c.key)).join("");
-      const more = dayEvents.length > 3 ? `<span class="cal-more">+${dayEvents.length - 3} more</span>` : "";
+      const more = dayEvents.length > 3
+        ? `<button type="button" class="cal-more" data-key="${c.key}">+${dayEvents.length - 3} more</button>`
+        : "";
       return `
         <div class="cal-cell${isToday ? " cal-cell-today" : ""}">
           <span class="cal-daynum">${c.day}</span>
           <div class="cal-chips">${chips}${more}</div>
         </div>`;
     }).join("");
+  }
+
+  /* "+N more" opens a modal listing every event on that day - the calendar
+     cell itself only ever shows 3 chips regardless of screen size, so this
+     is the only way to reach the rest on both desktop and mobile. */
+  let calByDate = {};
+  const DAY_MODAL_DATE_FMT = { weekday: "long", day: "numeric", month: "long", year: "numeric" };
+
+  function dayModalItemHTML(e, cellKey) {
+    const s = seriesById[e.seriesId];
+    const t = tracksById[e.trackId];
+    const rt = eventRaceType(e, s);
+    const startD = RaceDates.parseISO(e.startDate);
+    const endD = RaceDates.parseISO(e.endDate || e.startDate);
+    const totalDays = Math.round((endD - startD) / 86400000) + 1;
+    const dayIndex = Math.round((RaceDates.parseISO(cellKey) - startD) / 86400000) + 1;
+    const dayTag = totalDays > 1 ? ` (Day ${dayIndex} of ${totalDays})` : "";
+    const trackName = t ? t.name : e.trackId;
+    return `
+      <a class="day-modal-item" data-racetype="${rt}" href="track.html?id=${e.trackId}">
+        <div class="day-modal-item-main">
+          <span class="day-modal-item-title">${e.name}${dayTag}</span>
+          <span class="day-modal-item-venue">${trackName}</span>
+        </div>
+        <span class="day-modal-item-price">${RaceDates.formatPrice(e.price)}</span>
+      </a>`;
+  }
+
+  function openDayModal(dateKey) {
+    const dayEvents = (calByDate[dateKey] || []).sort((a, b) => a.startDate.localeCompare(b.startDate));
+    if (!dayEvents.length) return;
+    const dateLabel = RaceDates.parseISO(dateKey).toLocaleDateString("en-GB", DAY_MODAL_DATE_FMT);
+
+    const backdrop = document.createElement("div");
+    backdrop.className = "modal-backdrop";
+    backdrop.innerHTML = `
+      <div class="modal modal-day" role="dialog" aria-modal="true" aria-label="Races on ${dateLabel}">
+        <button class="modal-close" aria-label="Close">✕</button>
+        <h3>${dateLabel}</h3>
+        <div class="day-modal-list">${dayEvents.map((e) => dayModalItemHTML(e, dateKey)).join("")}</div>
+      </div>`;
+
+    function close() {
+      backdrop.remove();
+      document.removeEventListener("keydown", onKey);
+    }
+    function onKey(kev) { if (kev.key === "Escape") close(); }
+
+    backdrop.addEventListener("click", (cev) => {
+      if (cev.target === backdrop || cev.target.closest(".modal-close")) close();
+    });
+    document.addEventListener("keydown", onKey);
+    document.body.appendChild(backdrop);
+    backdrop.querySelector(".modal-close").focus();
   }
 
   /* Tooltip interaction: desktop reveals it on hover via CSS (see
@@ -225,6 +283,9 @@
   const isTouchDevice = () => !window.matchMedia("(hover: hover)").matches;
 
   calGrid.addEventListener("click", (ev) => {
+    const more = ev.target.closest(".cal-more");
+    if (more) { openDayModal(more.dataset.key); return; }
+
     const chip = ev.target.closest(".cal-chip");
     if (!chip || !isTouchDevice()) return;
     const wrap = chip.closest(".cal-event");
