@@ -127,11 +127,9 @@ function Get-EventsWithFallback([string]$label, [scriptblock[]]$sources) {
 }
 
 # --------------------------------------- fallback source: Wikipedia tables ---
-# Wikipedia's season-calendar articles for BTCC/BSB use an identical
-# wikitable structure (confirmed against real wikitext for both), so one
-# parser covers both. Deliberately fetches raw wikitext via the API rather
-# than scraping rendered HTML - much more stable, and Wikipedia's API is
-# built for exactly this kind of use with a proper User-Agent.
+# Wikipedia's season-calendar articles are a good independent second source -
+# well-maintained wikitables, fetched as raw wikitext via Wikipedia's own API
+# rather than scraped HTML, for stability.
 function Parse-WikiDateRange([string]$text, [int]$year) {
     $t = ($text -replace [char]0x2013, '-').Trim()   # normalise en dash to hyphen
     if ($t -match '^(\d{1,2})\s*-\s*(\d{1,2})\s+([A-Za-z]+)$') {
@@ -146,6 +144,28 @@ function Parse-WikiDateRange([string]$text, [int]$year) {
     return @($d, $d)
 }
 
+# Isolates just the calendar wikitable (from its heading to the table's own
+# closing "|}") before any round-extraction regex ever sees the text.
+# Confirmed necessary, not just defensive: without this, British GT's page
+# produced a spurious extra "round" pulled from its unrelated Entry List
+# table further down the page, which happens to have a similar [[link]]-
+# then-table-row shape. The same risk existed for BTCC/BSB too, just hadn't
+# been hit yet - always test against the FULL real page, not a hand-trimmed
+# sample, or this class of false positive won't show up.
+function Get-WikiCalendarTableText([string]$wikitext) {
+    $headingMatch = [regex]::Match($wikitext, '==+[^=\n]*[Cc]alendar[^=\n]*==+')
+    if (-not $headingMatch.Success) { return $null }
+    $afterHeading = $wikitext.Substring($headingMatch.Index + $headingMatch.Length)
+    $tableStart = $afterHeading.IndexOf('{|')
+    if ($tableStart -lt 0) { return $null }
+    $fromTable = $afterHeading.Substring($tableStart)
+    $tableEndMatch = [regex]::Match($fromTable, "`n\|\}")
+    if (-not $tableEndMatch.Success) { return $fromTable }
+    return $fromTable.Substring(0, $tableEndMatch.Index)
+}
+
+# BTCC/BSB's wikitable: venue cell (with <br/><small>...) immediately
+# followed by the date cell, both usually rowspan'd across 3 race rows.
 function Get-WikiSeriesRounds([string]$wikitext, [int]$year) {
     $result = @()
     $pattern = '(?s)\[\[([^\]|]+)(?:\|([^\]]+))?\]\]<br\s*/?>.*?\n\|\s*rowspan="?\d+"?\s*\|\s*([^\n|]+)'
@@ -157,7 +177,24 @@ function Get-WikiSeriesRounds([string]$wikitext, [int]$year) {
     return $result
 }
 
-function Get-WikipediaCalendarEvents([string]$page, [string]$seriesId, [string]$namePrefix) {
+# British GT's wikitable: venue cell (with a flagicon + trailing ", [[Location]]"
+# links, no <br/>) then a "Length" cell, THEN the date cell - one extra cell
+# to skip over compared to BTCC/BSB's layout.
+function Get-WikiGtRounds([string]$wikitext, [int]$year) {
+    $result = @()
+    $pattern = '(?s)\[\[([^\]|]+)(?:\|([^\]]+))?\]\](?:,[^\n]*)?\n\|[^\n]*\n\|\s*(?:rowspan="?\d+"?\s*\|\s*)?([^\n|]+)'
+    foreach ($m in [regex]::Matches($wikitext, $pattern)) {
+        $venue = if ($m.Groups[2].Success) { $m.Groups[2].Value.Trim() } else { $m.Groups[1].Value.Trim() }
+        $range = Parse-WikiDateRange $m.Groups[3].Value.Trim() $year
+        $result += [pscustomobject]@{ venue = $venue; start = $range[0]; end = $range[1] }
+    }
+    return $result
+}
+
+# $roundsParser is one of the Get-Wiki*Rounds functions above, picked per
+# series to match its page's actual table layout (verify against real
+# wikitext before assuming a new series matches either existing shape).
+function Get-WikipediaCalendarEvents([string]$page, [string]$seriesId, [string]$namePrefix, [scriptblock]$roundsParser) {
     Write-Host "  $namePrefix Wikipedia fallback: fetching en.wikipedia.org/wiki/$page..."
     try {
         $res = Invoke-RestMethod -Uri "https://en.wikipedia.org/w/api.php?action=parse&page=$page&prop=wikitext&format=json" -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 30
@@ -166,11 +203,13 @@ function Get-WikipediaCalendarEvents([string]$page, [string]$seriesId, [string]$
         Write-Host "    Wikipedia fallback: fetch failed ($($_.Exception.Message))"
         return @()
     }
-    if (-not $wikitext) { Write-Host "    Wikipedia fallback: page/section not found"; return @() }
+    if (-not $wikitext) { Write-Host "    Wikipedia fallback: page not found"; return @() }
+    $tableText = Get-WikiCalendarTableText $wikitext
+    if (-not $tableText) { Write-Host "    Wikipedia fallback: calendar table not found"; return @() }
 
     $year = (Get-Date).Year
     $result = @()
-    foreach ($rnd in (Get-WikiSeriesRounds $wikitext $year)) {
+    foreach ($rnd in (& $roundsParser $tableText $year)) {
         if (-not $rnd.start) { continue }
         $track = Find-Track $rnd.venue
         if (-not $track) { continue }   # non-UK rounds (Assen, Spa, etc.) - same as the primary adapters
@@ -184,6 +223,72 @@ function Get-WikipediaCalendarEvents([string]$page, [string]$seriesId, [string]$
             gates     = $null
             price     = $null
             ticketUrl = $track.website
+            sample    = $false
+        }
+    }
+    return $result
+}
+
+# --------------------------- fallback source: RacingCalendar.net (venues) ---
+# Wikipedia only covers national championships, not local venue calendars -
+# racingcalendar.net is a community-maintained aggregator that does, and
+# works fine with our normal RaceDatesBot UA (confirmed live) even for sites
+# whose own domain has been blocking us all session (Castle Combe). Data
+# quality is inherently a notch below an official site (community-submitted,
+# per the site's own disclaimer) - fine for a fallback used only when the
+# real source is unreachable, not swapped in as a primary.
+function Get-RacingCalendarNetRounds([string]$html, [int]$year) {
+    $result = @()
+    $rows = $html -split '(?=<tr>\s*<td class="rc-table-date-td)'
+    foreach ($row in ($rows | Select-Object -Skip 1)) {
+        if ($row -notmatch 'rc-table-date-td[^"]*">([^<]+)</td>') { continue }
+        $dateText = [System.Net.WebUtility]::HtmlDecode($Matches[1].Trim())
+        $name = $null
+        if ($row -match 'eventnamecircuit">([^<]+)</span>') {
+            $name = [System.Net.WebUtility]::HtmlDecode($Matches[1].Trim())
+        } elseif ($row -match '<a class="link" href="/championship/[^"]+">([^<]+)</a>') {
+            # "guest" meetings with no branded event name - use the first championship instead
+            $name = [System.Net.WebUtility]::HtmlDecode($Matches[1].Trim())
+        }
+        if (-not $name) { continue }
+        # Each row also tags its discipline with an icon (Cars/Motorcycles/etc) -
+        # more reliable than guessing from the name text alone, since a name
+        # like "NG Road Racing Championship" gives no textual clue it's bikes.
+        $discipline = if ($row -match 'alt="([^"]+)" class="rc-table-discipline-icon"') { $Matches[1] } else { $null }
+        $range = Parse-WikiDateRange $dateText $year
+        $result += [pscustomobject]@{ name = $name; start = $range[0]; end = $range[1]; discipline = $discipline }
+    }
+    return $result
+}
+
+function Get-RacingCalendarNetEvents([string]$slug, [string]$trackId) {
+    Write-Host "  $trackId RacingCalendar.net fallback: fetching racingcalendar.net/circuit/$slug..."
+    $year = (Get-Date).Year
+    try {
+        $html = (Invoke-WebRequest -Uri "https://racingcalendar.net/circuit/$slug/$year" -UseBasicParsing -Headers @{ "User-Agent" = $userAgent } -TimeoutSec 30).Content
+    } catch {
+        Write-Host "    RacingCalendar.net fallback: fetch failed ($($_.Exception.Message))"
+        return @()
+    }
+    $track = $tracks | Where-Object { $_.id -eq $trackId }
+    $result = @()
+    foreach ($rnd in (Get-RacingCalendarNetRounds $html $year)) {
+        if (-not $rnd.start) { continue }
+        $raceType = switch ($rnd.discipline) {
+            "Motorcycles" { "moto" }
+            default { Infer-EventRaceType $rnd.name "circuit" }
+        }
+        $result += [ordered]@{
+            id        = "venue-$trackId-$($rnd.start)"
+            name      = $rnd.name
+            trackId   = $trackId
+            seriesId  = "venue"
+            raceType  = $raceType
+            startDate = $rnd.start
+            endDate   = $rnd.end
+            gates     = $null
+            price     = $null
+            ticketUrl = if ($track) { $track.website } else { $null }
             sample    = $false
         }
     }
@@ -854,13 +959,16 @@ function Get-PembreyEvents {
 Write-Host "Refreshing race calendars..."
 $events = Merge-SeriesEvents "btcc" (Get-EventsWithFallback "BTCC" @(
     { Get-BtccEvents },
-    { Get-WikipediaCalendarEvents "2026_British_Touring_Car_Championship" "btcc" "BTCC" }
+    { Get-WikipediaCalendarEvents "2026_British_Touring_Car_Championship" "btcc" "BTCC" { Get-WikiSeriesRounds @args } }
 ))
 $events = Merge-SeriesEvents "bsb" (Get-EventsWithFallback "BSB" @(
     { Get-BsbEvents },
-    { Get-WikipediaCalendarEvents "2026_British_Superbike_Championship" "bsb" "British Superbikes" }
+    { Get-WikipediaCalendarEvents "2026_British_Superbike_Championship" "bsb" "British Superbikes" { Get-WikiSeriesRounds @args } }
 ))
-$events = Merge-SeriesEvents "british-gt" (Get-BritishGtEvents)
+$events = Merge-SeriesEvents "british-gt" (Get-EventsWithFallback "British GT" @(
+    { Get-BritishGtEvents },
+    { Get-WikipediaCalendarEvents "2026_British_GT_Championship" "british-gt" "British GT" { Get-WikiGtRounds @args } }
+))
 $events = Merge-SeriesEvents "british-hillclimb" (Get-HillclimbEvents)
 # one-time cleanup: the old euro-drag sample series was folded into santa-pod
 $events = @($events | Where-Object { $_.seriesId -ne "euro-drag" })
@@ -869,7 +977,10 @@ $events = Merge-VenueEvents "lydden-hill" (Get-LyddenEvents)
 $events = Merge-VenueEvents "goodwood" (Get-GoodwoodEvents)
 $events = Merge-VenueEvents "oliver-s-mount-racing-circuit" (Get-OliversMountEvents)
 $events = Merge-VenueEvents "lochgelly-raceway" (Get-LochgellyEvents)
-$events = Merge-VenueEvents "castle-combe" (Get-CastleCombeEvents)
+$events = Merge-VenueEvents "castle-combe" (Get-EventsWithFallback "Castle Combe" @(
+    { Get-CastleCombeEvents },
+    { Get-RacingCalendarNetEvents "castle-combe-circuit" "castle-combe" }
+))
 $events = Merge-VenueEvents "pembrey" (Get-PembreyEvents)
 
 # Straightliners is a series (mobile host) but must not duplicate events other
