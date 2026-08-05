@@ -874,7 +874,7 @@
       "adult": 22.0,
       "currency": "GBP"
     },
-    "ticketUrl": "https://www.pembreycircuit.co.uk/racing/drifting-league",
+    "ticketUrl": "https://www.pembreycircuit.co.uk//racing/drifting-league",
     "sample": false
   },
   {
@@ -1032,7 +1032,7 @@
     "endDate": "2026-08-29",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://www.pembreycircuit.co.uk/racing/bike-tracdayz-28-29-august-2026",
+    "ticketUrl": "https://www.pembreycircuit.co.uk//racing/bike-tracdayz-28-29-august-2026",
     "sample": false
   },
   {
@@ -1148,7 +1148,7 @@
     "endDate": "2026-09-04",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://www.pembreycircuit.co.uk/racing/car-tracdayz-4-sept-2026",
+    "ticketUrl": "https://www.pembreycircuit.co.uk//racing/car-tracdayz-4-sept-2026",
     "sample": false
   },
   {
@@ -1242,7 +1242,7 @@
       "adult": 10.0,
       "currency": "GBP"
     },
-    "ticketUrl": "https://www.pembreycircuit.co.uk/racing/september_sprint",
+    "ticketUrl": "https://www.pembreycircuit.co.uk//racing/september_sprint",
     "sample": false
   },
   {
@@ -1352,7 +1352,7 @@
       "adult": 22.0,
       "currency": "GBP"
     },
-    "ticketUrl": "https://www.pembreycircuit.co.uk/event/welsh-motorsport-supercar-festival",
+    "ticketUrl": "https://www.pembreycircuit.co.uk//event/welsh-motorsport-supercar-festival",
     "sample": false
   },
   {
@@ -1368,7 +1368,7 @@
       "adult": 11.0,
       "currency": "GBP"
     },
-    "ticketUrl": "https://www.pembreycircuit.co.uk/event/wmsf-car-clubs-2026",
+    "ticketUrl": "https://www.pembreycircuit.co.uk//event/wmsf-car-clubs-2026",
     "sample": false
   },
   {
@@ -1381,7 +1381,7 @@
     "endDate": "2026-09-13",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://www.pembreycircuit.co.uk/event/wmsf-display-vehicle",
+    "ticketUrl": "https://www.pembreycircuit.co.uk//event/wmsf-display-vehicle",
     "sample": false
   },
   {
@@ -1432,7 +1432,7 @@
     "endDate": "2026-09-19",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://www.pembreycircuit.co.uk/racing/bike-tracdayz-18-19-september",
+    "ticketUrl": "https://www.pembreycircuit.co.uk//racing/bike-tracdayz-18-19-september",
     "sample": false
   },
   {
@@ -1627,7 +1627,7 @@
     "endDate": "2026-10-03",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://www.pembreycircuit.co.uk/racing/car-tracdayz-3-October-2026",
+    "ticketUrl": "https://www.pembreycircuit.co.uk//racing/car-tracdayz-3-October-2026",
     "sample": false
   },
   {
@@ -1842,7 +1842,7 @@
       "adult": 18.0,
       "currency": "GBP"
     },
-    "ticketUrl": "https://www.pembreycircuit.co.uk/racing/supermoto",
+    "ticketUrl": "https://www.pembreycircuit.co.uk//racing/supermoto",
     "sample": false
   },
   {
