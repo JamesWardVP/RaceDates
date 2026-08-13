@@ -1940,8 +1940,8 @@
     "sample": false
   },
   {
-    "id": "venue-lydden-hill-2026-12-05-car-track-day-followed-by-koor-oval-racing",
-    "name": "Car Track Day followed by KOOR Oval Racing",
+    "id": "venue-lydden-hill-2026-12-05-car-track-day",
+    "name": "Car Track Day",
     "trackId": "lydden-hill",
     "seriesId": "venue",
     "raceType": "circuit",
@@ -1949,7 +1949,7 @@
     "endDate": "2026-12-05",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/car-track-day-koor-oval-racing-2/",
+    "ticketUrl": "https://lyddenhill.co.uk/events/car-track-day-dec26/",
     "sample": false
   },
   {
