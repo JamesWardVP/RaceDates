@@ -744,6 +744,18 @@
     "sample": false
   },
   {
+    "id": "british-gt-snetterton-2026-08-14",
+    "name": "British GT — Snetterton",
+    "trackId": "snetterton",
+    "seriesId": "british-gt",
+    "startDate": "2026-08-14",
+    "endDate": "2026-08-16",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.snetterton.co.uk",
+    "sample": false
+  },
+  {
     "id": "bsb-thruxton-2026-08-14",
     "name": "British Superbikes — Thruxton",
     "trackId": "thruxton",
@@ -791,18 +803,6 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://santapod.co.uk/events/6301/",
-    "sample": false
-  },
-  {
-    "id": "british-gt-snetterton-2026-08-15",
-    "name": "British GT — Snetterton",
-    "trackId": "snetterton",
-    "seriesId": "british-gt",
-    "startDate": "2026-08-15",
-    "endDate": "2026-08-16",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.snetterton.co.uk",
     "sample": false
   },
   {
