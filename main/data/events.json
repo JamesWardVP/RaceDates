@@ -572,18 +572,6 @@
     "sample": false
   },
   {
-    "id": "british-hillclimb-val-des-terres-2026-07-18",
-    "name": "British Hillclimb — Val des Terres Hill Climb",
-    "trackId": "val-des-terres",
-    "seriesId": "british-hillclimb",
-    "startDate": "2026-07-18",
-    "endDate": "2026-07-18",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.britishhillclimb.co.uk",
-    "sample": false
-  },
-  {
     "id": "venue-olivers-mount-2026-07-18",
     "name": "HMH Civils Cock o’ The North",
     "trackId": "oliver-s-mount-racing-circuit",
@@ -594,6 +582,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://oliversmount.ticketco.events/uk/en/e/26_cotn",
+    "sample": false
+  },
+  {
+    "id": "british-hillclimb-val-des-terres-2026-07-18",
+    "name": "British Hillclimb — Val des Terres Hill Climb",
+    "trackId": "val-des-terres",
+    "seriesId": "british-hillclimb",
+    "startDate": "2026-07-18",
+    "endDate": "2026-07-18",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.britishhillclimb.co.uk",
     "sample": false
   },
   {
@@ -622,18 +622,6 @@
     "sample": false
   },
   {
-    "id": "brx-lydden-hill-2026-07-25",
-    "name": "5 Nations BRX — 2WD Superprix, Lydden Hill",
-    "trackId": "lydden-hill",
-    "seriesId": "5-nations-brx",
-    "startDate": "2026-07-25",
-    "endDate": "2026-07-25",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk",
-    "sample": false
-  },
-  {
     "id": "brisca-f1-king-s-lynn-stadium-2026-07-25",
     "name": "World Semi Final (F1, F2)",
     "trackId": "king-s-lynn-stadium",
@@ -643,6 +631,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": null,
+    "sample": false
+  },
+  {
+    "id": "brx-lydden-hill-2026-07-25",
+    "name": "5 Nations BRX — 2WD Superprix, Lydden Hill",
+    "trackId": "lydden-hill",
+    "seriesId": "5-nations-brx",
+    "startDate": "2026-07-25",
+    "endDate": "2026-07-25",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://lyddenhill.co.uk",
     "sample": false
   },
   {
@@ -769,6 +769,18 @@
     "sample": false
   },
   {
+    "id": "brisca-f1-king-s-lynn-stadium-2026-08-22",
+    "name": "Shootout Stage 1 (F1, F2, V8 Hotstox)",
+    "trackId": "king-s-lynn-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-08-22",
+    "endDate": "2026-08-22",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
+    "sample": false
+  },
+  {
     "id": "venue-olivers-mount-2026-08-22",
     "name": "GB SuperMoto Championship",
     "trackId": "oliver-s-mount-racing-circuit",
@@ -779,19 +791,6 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://oliversmount.ticketco.events/uk/en/e/26_sm",
-    "sample": false
-  },
-  {
-    "id": "straightliners-elvington-airfield-2026-08-22",
-    "name": "Full Throttle 1/2 Mile 2 Lane CANCELLED",
-    "trackId": "elvington-airfield",
-    "seriesId": "straightliners",
-    "raceType": "other",
-    "startDate": "2026-08-22",
-    "endDate": "2026-08-23",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://straightliners.events/events/full-throttle-1-2-mile-2-lane/",
     "sample": false
   },
   {
@@ -807,30 +806,6 @@
     "sample": false
   },
   {
-    "id": "santa-pod-greenlight-nationals-2026-08-22",
-    "name": "Greenlight Nationals",
-    "trackId": "santa-pod",
-    "seriesId": "santa-pod",
-    "startDate": "2026-08-22",
-    "endDate": "2026-08-23",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://santapod.co.uk/events/greenlight-nationals/",
-    "sample": false
-  },
-  {
-    "id": "brisca-f1-king-s-lynn-stadium-2026-08-22",
-    "name": "Shootout Stage 1 (F1, F2, V8 Hotstox)",
-    "trackId": "king-s-lynn-stadium",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-08-22",
-    "endDate": "2026-08-22",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
-    "sample": false
-  },
-  {
     "id": "venue-pembrey-2026-08-28-12657",
     "name": "Bike Tracdayz",
     "trackId": "pembrey",
@@ -841,6 +816,42 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.pembreycircuit.co.uk//racing/bike-tracdayz-28-29-august-2026",
+    "sample": false
+  },
+  {
+    "id": "brisca-f1-scunthorpe-stadium-2026-08-29",
+    "name": "Shootout Stage 1 (F1, F2, Hot Rods)",
+    "trackId": "scunthorpe-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-08-29",
+    "endDate": "2026-08-29",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
+    "sample": false
+  },
+  {
+    "id": "british-hillclimb-loton-park-2026-08-29",
+    "name": "British Hillclimb — Loton Park Hill Climb",
+    "trackId": "loton-park",
+    "seriesId": "british-hillclimb",
+    "startDate": "2026-08-29",
+    "endDate": "2026-08-30",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.britishhillclimb.co.uk",
+    "sample": false
+  },
+  {
+    "id": "bsb-cadwell-park-2026-08-29",
+    "name": "British Superbikes — Cadwell Park",
+    "trackId": "cadwell-park",
+    "seriesId": "bsb",
+    "startDate": "2026-08-29",
+    "endDate": "2026-08-31",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.cadwellpark.co.uk/2026/august/british-superbike-championship",
     "sample": false
   },
   {
@@ -873,39 +884,28 @@
     "sample": false
   },
   {
-    "id": "bsb-cadwell-park-2026-08-29",
-    "name": "British Superbikes — Cadwell Park",
-    "trackId": "cadwell-park",
-    "seriesId": "bsb",
-    "startDate": "2026-08-29",
+    "id": "venue-castle-combe-2026-08-31",
+    "name": "Midsummer Mania Race Day",
+    "trackId": "castle-combe",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2026-08-31",
     "endDate": "2026-08-31",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://www.cadwellpark.co.uk/2026/august/british-superbike-championship",
+    "ticketUrl": "https://www.castlecombecircuit.co.uk",
     "sample": false
   },
   {
-    "id": "brisca-f1-scunthorpe-stadium-2026-08-29",
-    "name": "Shootout Stage 1 (F1, F2, Hot Rods)",
-    "trackId": "scunthorpe-stadium",
+    "id": "brisca-f1-northampton-international-raceway-2026-08-31",
+    "name": "Shootout Stage 1 (F1, F2, Bangers Back to Basics)",
+    "trackId": "northampton-international-raceway",
     "seriesId": "brisca-f1",
-    "startDate": "2026-08-29",
-    "endDate": "2026-08-29",
+    "startDate": "2026-08-31",
+    "endDate": "2026-08-31",
     "gates": null,
     "price": null,
     "ticketUrl": null,
-    "sample": false
-  },
-  {
-    "id": "british-hillclimb-loton-park-2026-08-29",
-    "name": "British Hillclimb — Loton Park Hill Climb",
-    "trackId": "loton-park",
-    "seriesId": "british-hillclimb",
-    "startDate": "2026-08-29",
-    "endDate": "2026-08-30",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.britishhillclimb.co.uk",
     "sample": false
   },
   {
@@ -922,31 +922,6 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-northampton-international-raceway-2026-08-31",
-    "name": "Shootout Stage 1 (F1, F2, Bangers Back to Basics)",
-    "trackId": "northampton-international-raceway",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-08-31",
-    "endDate": "2026-08-31",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
-    "sample": false
-  },
-  {
-    "id": "venue-castle-combe-2026-08-31",
-    "name": "Midsummer Mania Race Day",
-    "trackId": "castle-combe",
-    "seriesId": "venue",
-    "raceType": "circuit",
-    "startDate": "2026-08-31",
-    "endDate": "2026-08-31",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.castlecombecircuit.co.uk",
-    "sample": false
-  },
-  {
     "id": "venue-pembrey-2026-09-04-12655",
     "name": "Car Tracdayz",
     "trackId": "pembrey",
@@ -957,6 +932,31 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.pembreycircuit.co.uk//racing/car-tracdayz-4-sept-2026",
+    "sample": false
+  },
+  {
+    "id": "santa-pod-kitfest-2026-09-04",
+    "name": "Kitfest",
+    "trackId": "santa-pod",
+    "seriesId": "santa-pod",
+    "startDate": "2026-09-04",
+    "endDate": "2026-09-06",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://santapod.co.uk/events/kitfest/",
+    "sample": false
+  },
+  {
+    "id": "venue-lydden-hill-2026-09-05-car-track-day-followed-by-koor-oval-racing",
+    "name": "Car Track Day followed by KOOR Oval Racing",
+    "trackId": "lydden-hill",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2026-09-05",
+    "endDate": "2026-09-05",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://lyddenhill.co.uk/events/car-track-day-18/",
     "sample": false
   },
   {
@@ -973,18 +973,6 @@
     },
     "price": null,
     "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-09-05/",
-    "sample": false
-  },
-  {
-    "id": "brisca-f1-buxton-raceway-2026-09-05",
-    "name": "Shootout Stage 1 (F1, F2, Ministox, Midgets)",
-    "trackId": "buxton-raceway",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-09-05",
-    "endDate": "2026-09-05",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1017,16 +1005,15 @@
     "sample": false
   },
   {
-    "id": "venue-lydden-hill-2026-09-05-car-track-day-followed-by-koor-oval-racing",
-    "name": "Car Track Day followed by KOOR Oval Racing",
-    "trackId": "lydden-hill",
-    "seriesId": "venue",
-    "raceType": "circuit",
+    "id": "brisca-f1-buxton-raceway-2026-09-05",
+    "name": "Shootout Stage 1 (F1, F2, Ministox, Midgets)",
+    "trackId": "buxton-raceway",
+    "seriesId": "brisca-f1",
     "startDate": "2026-09-05",
     "endDate": "2026-09-05",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/car-track-day-18/",
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1272,18 +1259,6 @@
     "sample": false
   },
   {
-    "id": "santa-pod-national-finals-2026-09-25",
-    "name": "National Finals",
-    "trackId": "santa-pod",
-    "seriesId": "santa-pod",
-    "startDate": "2026-09-25",
-    "endDate": "2026-09-27",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://santapod.co.uk/events/national-finals/",
-    "sample": false
-  },
-  {
     "id": "brisca-f1-northampton-international-raceway-2026-09-25",
     "name": "Overseas Drivers (F1, F2, Classic F1)",
     "trackId": "northampton-international-raceway",
@@ -1293,6 +1268,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": null,
+    "sample": false
+  },
+  {
+    "id": "santa-pod-national-finals-2026-09-25",
+    "name": "National Finals",
+    "trackId": "santa-pod",
+    "seriesId": "santa-pod",
+    "startDate": "2026-09-25",
+    "endDate": "2026-09-27",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://santapod.co.uk/events/national-finals/",
     "sample": false
   },
   {
@@ -1346,6 +1333,18 @@
     "sample": false
   },
   {
+    "id": "brisca-f1-northampton-international-raceway-2026-09-26",
+    "name": "WORLD FINAL (F1, F2, Classic F1)",
+    "trackId": "northampton-international-raceway",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-09-26",
+    "endDate": "2026-09-26",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
+    "sample": false
+  },
+  {
     "id": "venue-lochgelly-2026-09-26",
     "name": "Stock Rod Scottish Championship",
     "trackId": "lochgelly-raceway",
@@ -1359,18 +1358,6 @@
     },
     "price": null,
     "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-09-26/",
-    "sample": false
-  },
-  {
-    "id": "brisca-f1-northampton-international-raceway-2026-09-26",
-    "name": "WORLD FINAL (F1, F2, Classic F1)",
-    "trackId": "northampton-international-raceway",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-09-26",
-    "endDate": "2026-09-26",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1410,16 +1397,19 @@
     "sample": false
   },
   {
-    "id": "straightliners-melbourne-raceway-2026-10-03",
-    "name": "Melbourne 3/4th October 2026",
-    "trackId": "melbourne-raceway",
-    "seriesId": "straightliners",
-    "raceType": "drag",
+    "id": "venue-lochgelly-2026-10-03",
+    "name": "SP Utilities Series Finale",
+    "trackId": "lochgelly-raceway",
+    "seriesId": "venue",
+    "raceType": "oval",
     "startDate": "2026-10-03",
-    "endDate": "2026-10-04",
-    "gates": null,
+    "endDate": "2026-10-03",
+    "gates": {
+      "open": "17:30",
+      "close": null
+    },
     "price": null,
-    "ticketUrl": "https://straightliners.events/events/melbourne-3-4th-october-2026/",
+    "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-10-03/",
     "sample": false
   },
   {
@@ -1449,19 +1439,16 @@
     "sample": false
   },
   {
-    "id": "venue-lochgelly-2026-10-03",
-    "name": "SP Utilities Series Finale",
-    "trackId": "lochgelly-raceway",
-    "seriesId": "venue",
-    "raceType": "oval",
+    "id": "straightliners-melbourne-raceway-2026-10-03",
+    "name": "Melbourne 3/4th October 2026",
+    "trackId": "melbourne-raceway",
+    "seriesId": "straightliners",
+    "raceType": "drag",
     "startDate": "2026-10-03",
-    "endDate": "2026-10-03",
-    "gates": {
-      "open": "17:30",
-      "close": null
-    },
+    "endDate": "2026-10-04",
+    "gates": null,
     "price": null,
-    "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-10-03/",
+    "ticketUrl": "https://straightliners.events/events/melbourne-3-4th-october-2026/",
     "sample": false
   },
   {
@@ -1503,22 +1490,6 @@
     "sample": false
   },
   {
-    "id": "venue-lochgelly-2026-10-10",
-    "name": "October Speed Weekend Day 1",
-    "trackId": "lochgelly-raceway",
-    "seriesId": "venue",
-    "raceType": "oval",
-    "startDate": "2026-10-10",
-    "endDate": "2026-10-10",
-    "gates": {
-      "open": "16:30",
-      "close": null
-    },
-    "price": null,
-    "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-10-10/",
-    "sample": false
-  },
-  {
     "id": "btcc-brands-hatch-2026-10-10",
     "name": "BTCC — Brands Hatch",
     "trackId": "brands-hatch",
@@ -1544,6 +1515,34 @@
     "sample": false
   },
   {
+    "id": "venue-lochgelly-2026-10-10",
+    "name": "October Speed Weekend Day 1",
+    "trackId": "lochgelly-raceway",
+    "seriesId": "venue",
+    "raceType": "oval",
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-10",
+    "gates": {
+      "open": "16:30",
+      "close": null
+    },
+    "price": null,
+    "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-10-10/",
+    "sample": false
+  },
+  {
+    "id": "brisca-f1-skegness-stadium-2026-10-11",
+    "name": "Shootout Stage 2 (F1, Saloons, Ministox, V8 Hotstox)",
+    "trackId": "skegness-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-10-11",
+    "endDate": "2026-10-11",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
+    "sample": false
+  },
+  {
     "id": "venue-lochgelly-2026-10-11",
     "name": "October Speed Weekend Day 2",
     "trackId": "lochgelly-raceway",
@@ -1557,18 +1556,6 @@
     },
     "price": null,
     "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-10-11/",
-    "sample": false
-  },
-  {
-    "id": "brisca-f1-skegness-stadium-2026-10-11",
-    "name": "Shootout Stage 2 (F1, Saloons, Ministox, V8 Hotstox)",
-    "trackId": "skegness-stadium",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-10-11",
-    "endDate": "2026-10-11",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1609,6 +1596,35 @@
     "sample": false
   },
   {
+    "id": "venue-lydden-hill-2026-10-17-autumn-rallysprint",
+    "name": "Autumn Rallysprint",
+    "trackId": "lydden-hill",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2026-10-17",
+    "endDate": "2026-10-17",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://lyddenhill.co.uk/events/2026-autumn-rallysprint-17-10-26/",
+    "sample": false
+  },
+  {
+    "id": "venue-lochgelly-2026-10-17",
+    "name": "Superstox Scottish Championship",
+    "trackId": "lochgelly-raceway",
+    "seriesId": "venue",
+    "raceType": "oval",
+    "startDate": "2026-10-17",
+    "endDate": "2026-10-17",
+    "gates": {
+      "open": "17:30",
+      "close": null
+    },
+    "price": null,
+    "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-10-17/",
+    "sample": false
+  },
+  {
     "id": "venue-pembrey-2026-10-17-12217",
     "name": "Supermoto",
     "trackId": "pembrey",
@@ -1635,35 +1651,6 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.castlecombecircuit.co.uk",
-    "sample": false
-  },
-  {
-    "id": "venue-lochgelly-2026-10-17",
-    "name": "Superstox Scottish Championship",
-    "trackId": "lochgelly-raceway",
-    "seriesId": "venue",
-    "raceType": "oval",
-    "startDate": "2026-10-17",
-    "endDate": "2026-10-17",
-    "gates": {
-      "open": "17:30",
-      "close": null
-    },
-    "price": null,
-    "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-10-17/",
-    "sample": false
-  },
-  {
-    "id": "venue-lydden-hill-2026-10-17-autumn-rallysprint",
-    "name": "Autumn Rallysprint",
-    "trackId": "lydden-hill",
-    "seriesId": "venue",
-    "raceType": "circuit",
-    "startDate": "2026-10-17",
-    "endDate": "2026-10-17",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/2026-autumn-rallysprint-17-10-26/",
     "sample": false
   },
   {
