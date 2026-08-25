@@ -769,6 +769,18 @@
     "sample": false
   },
   {
+    "id": "btcc-donington-park-2026-08-22",
+    "name": "BTCC — Donington Park",
+    "trackId": "donington-park",
+    "seriesId": "btcc",
+    "startDate": "2026-08-22",
+    "endDate": "2026-08-23",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.donington-park.co.uk",
+    "sample": false
+  },
+  {
     "id": "brisca-f1-king-s-lynn-stadium-2026-08-22",
     "name": "Shootout Stage 1 (F1, F2, V8 Hotstox)",
     "trackId": "king-s-lynn-stadium",
@@ -794,18 +806,6 @@
     "sample": false
   },
   {
-    "id": "btcc-donington-park-2026-08-22",
-    "name": "BTCC — Donington Park",
-    "trackId": "donington-park",
-    "seriesId": "btcc",
-    "startDate": "2026-08-22",
-    "endDate": "2026-08-23",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.donington-park.co.uk",
-    "sample": false
-  },
-  {
     "id": "venue-pembrey-2026-08-28-12657",
     "name": "Bike Tracdayz",
     "trackId": "pembrey",
@@ -819,15 +819,19 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-scunthorpe-stadium-2026-08-29",
-    "name": "Shootout Stage 1 (F1, F2, Hot Rods)",
-    "trackId": "scunthorpe-stadium",
-    "seriesId": "brisca-f1",
+    "id": "venue-lochgelly-2026-08-29",
+    "name": "Van Bangers Cash Chaser Finale",
+    "trackId": "lochgelly-raceway",
+    "seriesId": "venue",
+    "raceType": "oval",
     "startDate": "2026-08-29",
     "endDate": "2026-08-29",
-    "gates": null,
+    "gates": {
+      "open": "17:00",
+      "close": null
+    },
     "price": null,
-    "ticketUrl": null,
+    "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-08-29/",
     "sample": false
   },
   {
@@ -855,6 +859,18 @@
     "sample": false
   },
   {
+    "id": "brisca-f1-scunthorpe-stadium-2026-08-29",
+    "name": "Shootout Stage 1 (F1, F2, Hot Rods)",
+    "trackId": "scunthorpe-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-08-29",
+    "endDate": "2026-08-29",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
+    "sample": false
+  },
+  {
     "id": "straightliners-campbeltown-airfield-2026-08-29",
     "name": "Campbeltown CANCELLED",
     "trackId": "campbeltown-airfield",
@@ -865,35 +881,6 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://straightliners.events/events/campbeltown-cancelled/",
-    "sample": false
-  },
-  {
-    "id": "venue-lochgelly-2026-08-29",
-    "name": "Van Bangers Cash Chaser Finale",
-    "trackId": "lochgelly-raceway",
-    "seriesId": "venue",
-    "raceType": "oval",
-    "startDate": "2026-08-29",
-    "endDate": "2026-08-29",
-    "gates": {
-      "open": "17:00",
-      "close": null
-    },
-    "price": null,
-    "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-08-29/",
-    "sample": false
-  },
-  {
-    "id": "venue-castle-combe-2026-08-31",
-    "name": "Midsummer Mania Race Day",
-    "trackId": "castle-combe",
-    "seriesId": "venue",
-    "raceType": "circuit",
-    "startDate": "2026-08-31",
-    "endDate": "2026-08-31",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.castlecombecircuit.co.uk",
     "sample": false
   },
   {
@@ -922,6 +909,19 @@
     "sample": false
   },
   {
+    "id": "venue-castle-combe-2026-08-31",
+    "name": "Midsummer Mania Race Day",
+    "trackId": "castle-combe",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2026-08-31",
+    "endDate": "2026-08-31",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.castlecombecircuit.co.uk",
+    "sample": false
+  },
+  {
     "id": "venue-pembrey-2026-09-04-12655",
     "name": "Car Tracdayz",
     "trackId": "pembrey",
@@ -947,19 +947,6 @@
     "sample": false
   },
   {
-    "id": "venue-lydden-hill-2026-09-05-car-track-day-followed-by-koor-oval-racing",
-    "name": "Car Track Day followed by KOOR Oval Racing",
-    "trackId": "lydden-hill",
-    "seriesId": "venue",
-    "raceType": "circuit",
-    "startDate": "2026-09-05",
-    "endDate": "2026-09-05",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/car-track-day-18/",
-    "sample": false
-  },
-  {
     "id": "venue-lochgelly-2026-09-05",
     "name": "2026 September Speed Weekend Day 1",
     "trackId": "lochgelly-raceway",
@@ -973,6 +960,19 @@
     },
     "price": null,
     "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-09-05/",
+    "sample": false
+  },
+  {
+    "id": "venue-lydden-hill-2026-09-05-car-track-day-followed-by-koor-oval-racing",
+    "name": "Car Track Day followed by KOOR Oval Racing",
+    "trackId": "lydden-hill",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2026-09-05",
+    "endDate": "2026-09-05",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://lyddenhill.co.uk/events/car-track-day-18/",
     "sample": false
   },
   {
@@ -1069,16 +1069,16 @@
     "sample": false
   },
   {
-    "id": "venue-bridlington-south-beach-2026-09-11",
-    "name": "Race the Waves 2026",
-    "trackId": "bridlington-south-beach",
+    "id": "venue-castle-combe-2026-09-11",
+    "name": "Generations Trophy",
+    "trackId": "castle-combe",
     "seriesId": "venue",
-    "raceType": "drag",
+    "raceType": "circuit",
     "startDate": "2026-09-11",
     "endDate": "2026-09-13",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://backfireinfo.weebly.com/welcome-to-race-the-waves-2026.html",
+    "ticketUrl": "https://www.castlecombecircuit.co.uk",
     "sample": false
   },
   {
@@ -1094,16 +1094,16 @@
     "sample": false
   },
   {
-    "id": "venue-castle-combe-2026-09-11",
-    "name": "Generations Trophy",
-    "trackId": "castle-combe",
+    "id": "venue-bridlington-south-beach-2026-09-11",
+    "name": "Race the Waves 2026",
+    "trackId": "bridlington-south-beach",
     "seriesId": "venue",
-    "raceType": "circuit",
+    "raceType": "drag",
     "startDate": "2026-09-11",
     "endDate": "2026-09-13",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://www.castlecombecircuit.co.uk",
+    "ticketUrl": "https://backfireinfo.weebly.com/welcome-to-race-the-waves-2026.html",
     "sample": false
   },
   {
@@ -1123,22 +1123,6 @@
     "sample": false
   },
   {
-    "id": "venue-pembrey-2026-09-13-11758",
-    "name": "Welsh Motorsport & Supercar Festival",
-    "trackId": "pembrey",
-    "seriesId": "venue",
-    "raceType": "moto",
-    "startDate": "2026-09-13",
-    "endDate": "2026-09-13",
-    "gates": null,
-    "price": {
-      "adult": 22.0,
-      "currency": "GBP"
-    },
-    "ticketUrl": "https://www.pembreycircuit.co.uk//event/welsh-motorsport-supercar-festival",
-    "sample": false
-  },
-  {
     "id": "venue-pembrey-2026-09-13-11949",
     "name": "Welsh Motorsport & Supercar Festival - Car Clubs 2026",
     "trackId": "pembrey",
@@ -1155,16 +1139,19 @@
     "sample": false
   },
   {
-    "id": "venue-pembrey-2026-09-13-12412",
-    "name": "Welsh Motorsport & Supercar Festival - Display Vehicle",
+    "id": "venue-pembrey-2026-09-13-11758",
+    "name": "Welsh Motorsport & Supercar Festival",
     "trackId": "pembrey",
     "seriesId": "venue",
     "raceType": "moto",
     "startDate": "2026-09-13",
     "endDate": "2026-09-13",
     "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.pembreycircuit.co.uk//event/wmsf-display-vehicle",
+    "price": {
+      "adult": 22.0,
+      "currency": "GBP"
+    },
+    "ticketUrl": "https://www.pembreycircuit.co.uk//event/welsh-motorsport-supercar-festival",
     "sample": false
   },
   {
@@ -1177,6 +1164,19 @@
     "gates": null,
     "price": null,
     "ticketUrl": null,
+    "sample": false
+  },
+  {
+    "id": "venue-pembrey-2026-09-13-12412",
+    "name": "Welsh Motorsport & Supercar Festival - Display Vehicle",
+    "trackId": "pembrey",
+    "seriesId": "venue",
+    "raceType": "moto",
+    "startDate": "2026-09-13",
+    "endDate": "2026-09-13",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.pembreycircuit.co.uk//event/wmsf-display-vehicle",
     "sample": false
   },
   {
@@ -1283,40 +1283,15 @@
     "sample": false
   },
   {
-    "id": "brx-pembrey-2026-09-26",
-    "name": "5 Nations BRX — Pembrey",
-    "trackId": "pembrey",
-    "seriesId": "5-nations-brx",
-    "startDate": "2026-09-26",
-    "endDate": "2026-09-27",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.pembreycircuit.co.uk",
-    "sample": false
-  },
-  {
-    "id": "straightliners-dakota-raceway-2026-09-26",
-    "name": "Dakota 26th September 2026",
-    "trackId": "dakota-raceway",
-    "seriesId": "straightliners",
-    "raceType": "drag",
+    "id": "brisca-f1-northampton-international-raceway-2026-09-26",
+    "name": "WORLD FINAL (F1, F2, Classic F1)",
+    "trackId": "northampton-international-raceway",
+    "seriesId": "brisca-f1",
     "startDate": "2026-09-26",
     "endDate": "2026-09-26",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://straightliners.events/events/dakota-26th-september-2026/",
-    "sample": false
-  },
-  {
-    "id": "british-gt-brands-hatch-2026-09-26",
-    "name": "British GT — Brands Hatch",
-    "trackId": "brands-hatch",
-    "seriesId": "british-gt",
-    "startDate": "2026-09-26",
-    "endDate": "2026-09-27",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.brandshatch.co.uk",
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1333,15 +1308,52 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-northampton-international-raceway-2026-09-26",
-    "name": "WORLD FINAL (F1, F2, Classic F1)",
-    "trackId": "northampton-international-raceway",
-    "seriesId": "brisca-f1",
+    "id": "british-gt-brands-hatch-2026-09-26",
+    "name": "British GT — Brands Hatch",
+    "trackId": "brands-hatch",
+    "seriesId": "british-gt",
+    "startDate": "2026-09-26",
+    "endDate": "2026-09-27",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.brandshatch.co.uk",
+    "sample": false
+  },
+  {
+    "id": "straightliners-dakota-raceway-2026-09-26",
+    "name": "Dakota 26th September 2026",
+    "trackId": "dakota-raceway",
+    "seriesId": "straightliners",
+    "raceType": "drag",
     "startDate": "2026-09-26",
     "endDate": "2026-09-26",
     "gates": null,
     "price": null,
-    "ticketUrl": null,
+    "ticketUrl": "https://straightliners.events/events/dakota-26th-september-2026/",
+    "sample": false
+  },
+  {
+    "id": "btcc-silverstone-2026-09-26",
+    "name": "BTCC — Silverstone Circuit",
+    "trackId": "silverstone",
+    "seriesId": "btcc",
+    "startDate": "2026-09-26",
+    "endDate": "2026-09-27",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.silverstone.co.uk",
+    "sample": false
+  },
+  {
+    "id": "brx-pembrey-2026-09-26",
+    "name": "5 Nations BRX — Pembrey",
+    "trackId": "pembrey",
+    "seriesId": "5-nations-brx",
+    "startDate": "2026-09-26",
+    "endDate": "2026-09-27",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.pembreycircuit.co.uk",
     "sample": false
   },
   {
@@ -1358,18 +1370,6 @@
     },
     "price": null,
     "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-09-26/",
-    "sample": false
-  },
-  {
-    "id": "btcc-silverstone-2026-09-26",
-    "name": "BTCC — Silverstone Circuit",
-    "trackId": "silverstone",
-    "seriesId": "btcc",
-    "startDate": "2026-09-26",
-    "endDate": "2026-09-27",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.silverstone.co.uk",
     "sample": false
   },
   {
@@ -1413,6 +1413,19 @@
     "sample": false
   },
   {
+    "id": "straightliners-melbourne-raceway-2026-10-03",
+    "name": "Melbourne 3/4th October 2026",
+    "trackId": "melbourne-raceway",
+    "seriesId": "straightliners",
+    "raceType": "drag",
+    "startDate": "2026-10-03",
+    "endDate": "2026-10-04",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://straightliners.events/events/melbourne-3-4th-october-2026/",
+    "sample": false
+  },
+  {
     "id": "venue-pembrey-2026-10-03-12656",
     "name": "Car Tracdayz",
     "trackId": "pembrey",
@@ -1436,19 +1449,6 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.castlecombecircuit.co.uk",
-    "sample": false
-  },
-  {
-    "id": "straightliners-melbourne-raceway-2026-10-03",
-    "name": "Melbourne 3/4th October 2026",
-    "trackId": "melbourne-raceway",
-    "seriesId": "straightliners",
-    "raceType": "drag",
-    "startDate": "2026-10-03",
-    "endDate": "2026-10-04",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://straightliners.events/events/melbourne-3-4th-october-2026/",
     "sample": false
   },
   {
@@ -1478,6 +1478,19 @@
     "sample": false
   },
   {
+    "id": "venue-lydden-hill-2026-10-10-car-track-day-followed-by-koor-oval-racing",
+    "name": "Car Track Day followed by KOOR Oval Racing",
+    "trackId": "lydden-hill",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-10",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://lyddenhill.co.uk/events/10-10-car-track-day-koor-oval-racing/",
+    "sample": false
+  },
+  {
     "id": "brisca-f1-skegness-stadium-2026-10-10",
     "name": "World Championship Qualifier 27 & Shootout Stage 2 (F1, F2, Ministox, V8 Hotstox)",
     "trackId": "skegness-stadium",
@@ -1499,19 +1512,6 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.brandshatch.co.uk",
-    "sample": false
-  },
-  {
-    "id": "venue-lydden-hill-2026-10-10-car-track-day-followed-by-koor-oval-racing",
-    "name": "Car Track Day followed by KOOR Oval Racing",
-    "trackId": "lydden-hill",
-    "seriesId": "venue",
-    "raceType": "circuit",
-    "startDate": "2026-10-10",
-    "endDate": "2026-10-10",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/10-10-car-track-day-koor-oval-racing/",
     "sample": false
   },
   {
@@ -1559,6 +1559,18 @@
     "sample": false
   },
   {
+    "id": "bsb-brands-hatch-2026-10-16",
+    "name": "British Superbikes — Brands Hatch",
+    "trackId": "brands-hatch",
+    "seriesId": "bsb",
+    "startDate": "2026-10-16",
+    "endDate": "2026-10-18",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.brandshatch.co.uk/2026/october/british-superbike-championship",
+    "sample": false
+  },
+  {
     "id": "venue-lydden-hill-2026-10-16-rallycross-experience-day",
     "name": "Rallycross Experience Day",
     "trackId": "lydden-hill",
@@ -1572,15 +1584,16 @@
     "sample": false
   },
   {
-    "id": "bsb-brands-hatch-2026-10-16",
-    "name": "British Superbikes — Brands Hatch",
-    "trackId": "brands-hatch",
-    "seriesId": "bsb",
-    "startDate": "2026-10-16",
-    "endDate": "2026-10-18",
+    "id": "venue-lydden-hill-2026-10-17-autumn-rallysprint",
+    "name": "Autumn Rallysprint",
+    "trackId": "lydden-hill",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2026-10-17",
+    "endDate": "2026-10-17",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://www.brandshatch.co.uk/2026/october/british-superbike-championship",
+    "ticketUrl": "https://lyddenhill.co.uk/events/2026-autumn-rallysprint-17-10-26/",
     "sample": false
   },
   {
@@ -1596,16 +1609,16 @@
     "sample": false
   },
   {
-    "id": "venue-lydden-hill-2026-10-17-autumn-rallysprint",
-    "name": "Autumn Rallysprint",
-    "trackId": "lydden-hill",
+    "id": "venue-castle-combe-2026-10-17",
+    "name": "Advantage Motorsport Future Classics",
+    "trackId": "castle-combe",
     "seriesId": "venue",
-    "raceType": "circuit",
+    "raceType": "moto",
     "startDate": "2026-10-17",
     "endDate": "2026-10-17",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/2026-autumn-rallysprint-17-10-26/",
+    "ticketUrl": "https://www.castlecombecircuit.co.uk",
     "sample": false
   },
   {
@@ -1638,19 +1651,6 @@
       "currency": "GBP"
     },
     "ticketUrl": "https://www.pembreycircuit.co.uk//racing/supermoto",
-    "sample": false
-  },
-  {
-    "id": "venue-castle-combe-2026-10-17",
-    "name": "Advantage Motorsport Future Classics",
-    "trackId": "castle-combe",
-    "seriesId": "venue",
-    "raceType": "moto",
-    "startDate": "2026-10-17",
-    "endDate": "2026-10-17",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.castlecombecircuit.co.uk",
     "sample": false
   },
   {
@@ -1692,6 +1692,19 @@
     },
     "price": null,
     "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-10-24/",
+    "sample": false
+  },
+  {
+    "id": "straightliners-santa-pod-2026-10-25",
+    "name": "Santa Pod 25th October 2026",
+    "trackId": "santa-pod",
+    "seriesId": "straightliners",
+    "raceType": "drag",
+    "startDate": "2026-10-25",
+    "endDate": "2026-10-25",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://straightliners.events/events/santa-pod-master/",
     "sample": false
   },
   {
