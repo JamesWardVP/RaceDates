@@ -880,15 +880,15 @@
     "sample": false
   },
   {
-    "id": "santa-pod-kitfest-2026-09-04",
-    "name": "Kitfest",
+    "id": "santa-pod-vw-action-2026-09-04",
+    "name": "VW Action",
     "trackId": "santa-pod",
     "seriesId": "santa-pod",
     "startDate": "2026-09-04",
     "endDate": "2026-09-06",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://santapod.co.uk/events/kitfest/",
+    "ticketUrl": "https://santapod.co.uk/events/vw-action/",
     "sample": false
   },
   {
@@ -1241,18 +1241,6 @@
     "sample": false
   },
   {
-    "id": "btcc-silverstone-2026-09-26",
-    "name": "BTCC — Silverstone Circuit",
-    "trackId": "silverstone",
-    "seriesId": "btcc",
-    "startDate": "2026-09-26",
-    "endDate": "2026-09-27",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.silverstone.co.uk",
-    "sample": false
-  },
-  {
     "id": "british-gt-brands-hatch-2026-09-26",
     "name": "British GT — Brands Hatch",
     "trackId": "brands-hatch",
@@ -1287,6 +1275,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.pembreycircuit.co.uk",
+    "sample": false
+  },
+  {
+    "id": "btcc-silverstone-2026-09-26",
+    "name": "BTCC — Silverstone Circuit",
+    "trackId": "silverstone",
+    "seriesId": "btcc",
+    "startDate": "2026-09-26",
+    "endDate": "2026-09-27",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.silverstone.co.uk",
     "sample": false
   },
   {
