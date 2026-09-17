@@ -1044,19 +1044,15 @@
     "sample": false
   },
   {
-    "id": "venue-lochgelly-2026-09-26",
-    "name": "Stock Rod Scottish Championship",
-    "trackId": "lochgelly-raceway",
-    "seriesId": "venue",
-    "raceType": "oval",
+    "id": "brx-pembrey-2026-09-26",
+    "name": "5 Nations BRX — Pembrey",
+    "trackId": "pembrey",
+    "seriesId": "5-nations-brx",
     "startDate": "2026-09-26",
-    "endDate": "2026-09-26",
-    "gates": {
-      "open": "17:30",
-      "close": null
-    },
+    "endDate": "2026-09-27",
+    "gates": null,
     "price": null,
-    "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-09-26/",
+    "ticketUrl": "https://www.pembreycircuit.co.uk",
     "sample": false
   },
   {
@@ -1072,40 +1068,19 @@
     "sample": false
   },
   {
-    "id": "btcc-silverstone-2026-09-26",
-    "name": "BTCC — Silverstone Circuit",
-    "trackId": "silverstone",
-    "seriesId": "btcc",
-    "startDate": "2026-09-26",
-    "endDate": "2026-09-27",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.silverstone.co.uk",
-    "sample": false
-  },
-  {
-    "id": "brx-pembrey-2026-09-26",
-    "name": "5 Nations BRX — Pembrey",
-    "trackId": "pembrey",
-    "seriesId": "5-nations-brx",
-    "startDate": "2026-09-26",
-    "endDate": "2026-09-27",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.pembreycircuit.co.uk",
-    "sample": false
-  },
-  {
-    "id": "straightliners-dakota-raceway-2026-09-26",
-    "name": "Dakota 26th September 2026",
-    "trackId": "dakota-raceway",
-    "seriesId": "straightliners",
-    "raceType": "drag",
+    "id": "venue-lochgelly-2026-09-26",
+    "name": "Stock Rod Scottish Championship",
+    "trackId": "lochgelly-raceway",
+    "seriesId": "venue",
+    "raceType": "oval",
     "startDate": "2026-09-26",
     "endDate": "2026-09-26",
-    "gates": null,
+    "gates": {
+      "open": "17:30",
+      "close": null
+    },
     "price": null,
-    "ticketUrl": "https://straightliners.events/events/dakota-26th-september-2026/",
+    "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-09-26/",
     "sample": false
   },
   {
@@ -1131,6 +1106,31 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://lyddenhill.co.uk/events/no-limits-bike-track-day-26th-september-2026/",
+    "sample": false
+  },
+  {
+    "id": "straightliners-dakota-raceway-2026-09-26",
+    "name": "Dakota 26th September 2026",
+    "trackId": "dakota-raceway",
+    "seriesId": "straightliners",
+    "raceType": "drag",
+    "startDate": "2026-09-26",
+    "endDate": "2026-09-26",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://straightliners.events/events/dakota-26th-september-2026/",
+    "sample": false
+  },
+  {
+    "id": "btcc-silverstone-2026-09-26",
+    "name": "BTCC — Silverstone Circuit",
+    "trackId": "silverstone",
+    "seriesId": "btcc",
+    "startDate": "2026-09-26",
+    "endDate": "2026-09-27",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.silverstone.co.uk",
     "sample": false
   },
   {
@@ -1239,8 +1239,8 @@
     "sample": false
   },
   {
-    "id": "venue-lydden-hill-2026-10-10-kent-outlaw-oval-racing",
-    "name": "Kent Outlaw Oval Racing",
+    "id": "venue-lydden-hill-2026-10-10-car-track-day-9am-3pm",
+    "name": "Car Track Day (9am - 3pm)",
     "trackId": "lydden-hill",
     "seriesId": "venue",
     "raceType": "circuit",
@@ -1248,7 +1248,31 @@
     "endDate": "2026-10-10",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/kent-outlaw-oval-racing-10th-oct-2026/",
+    "ticketUrl": "https://lyddenhill.co.uk/events/10-10-car-track-day-koor-oval-racing/",
+    "sample": false
+  },
+  {
+    "id": "btcc-brands-hatch-2026-10-10",
+    "name": "BTCC — Brands Hatch",
+    "trackId": "brands-hatch",
+    "seriesId": "btcc",
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-11",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.brandshatch.co.uk",
+    "sample": false
+  },
+  {
+    "id": "brisca-f1-skegness-stadium-2026-10-10",
+    "name": "World Championship Qualifier 27 & Shootout Stage 2 (F1, F2, Ministox, V8 Hotstox)",
+    "trackId": "skegness-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-10",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1268,20 +1292,8 @@
     "sample": false
   },
   {
-    "id": "btcc-brands-hatch-2026-10-10",
-    "name": "BTCC — Brands Hatch",
-    "trackId": "brands-hatch",
-    "seriesId": "btcc",
-    "startDate": "2026-10-10",
-    "endDate": "2026-10-11",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.brandshatch.co.uk",
-    "sample": false
-  },
-  {
-    "id": "venue-lydden-hill-2026-10-10-car-track-day-9am-3pm",
-    "name": "Car Track Day (9am - 3pm)",
+    "id": "venue-lydden-hill-2026-10-10-kent-outlaw-oval-racing",
+    "name": "Kent Outlaw Oval Racing",
     "trackId": "lydden-hill",
     "seriesId": "venue",
     "raceType": "circuit",
@@ -1289,16 +1301,16 @@
     "endDate": "2026-10-10",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/10-10-car-track-day-koor-oval-racing/",
+    "ticketUrl": "https://lyddenhill.co.uk/events/kent-outlaw-oval-racing-10th-oct-2026/",
     "sample": false
   },
   {
-    "id": "brisca-f1-skegness-stadium-2026-10-10",
-    "name": "World Championship Qualifier 27 & Shootout Stage 2 (F1, F2, Ministox, V8 Hotstox)",
+    "id": "brisca-f1-skegness-stadium-2026-10-11",
+    "name": "Shootout Stage 2 (F1, Saloons, Ministox, V8 Hotstox)",
     "trackId": "skegness-stadium",
     "seriesId": "brisca-f1",
-    "startDate": "2026-10-10",
-    "endDate": "2026-10-10",
+    "startDate": "2026-10-11",
+    "endDate": "2026-10-11",
     "gates": null,
     "price": null,
     "ticketUrl": null,
@@ -1321,15 +1333,16 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-skegness-stadium-2026-10-11",
-    "name": "Shootout Stage 2 (F1, Saloons, Ministox, V8 Hotstox)",
-    "trackId": "skegness-stadium",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-10-11",
-    "endDate": "2026-10-11",
+    "id": "venue-lydden-hill-2026-10-16-rallycross-experience-day",
+    "name": "Rallycross Experience Day",
+    "trackId": "lydden-hill",
+    "seriesId": "venue",
+    "raceType": "rallycross",
+    "startDate": "2026-10-16",
+    "endDate": "2026-10-16",
     "gates": null,
     "price": null,
-    "ticketUrl": null,
+    "ticketUrl": "https://lyddenhill.co.uk/events/2026-16th-october-rallycross-experience-day/",
     "sample": false
   },
   {
@@ -1345,19 +1358,6 @@
     "sample": false
   },
   {
-    "id": "venue-lydden-hill-2026-10-16-rallycross-experience-day",
-    "name": "Rallycross Experience Day",
-    "trackId": "lydden-hill",
-    "seriesId": "venue",
-    "raceType": "rallycross",
-    "startDate": "2026-10-16",
-    "endDate": "2026-10-16",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/2026-16th-october-rallycross-experience-day/",
-    "sample": false
-  },
-  {
     "id": "venue-lydden-hill-2026-10-17-autumn-rallysprint",
     "name": "Autumn Rallysprint",
     "trackId": "lydden-hill",
@@ -1368,6 +1368,19 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://lyddenhill.co.uk/events/2026-autumn-rallysprint-17-10-26/",
+    "sample": false
+  },
+  {
+    "id": "venue-pembrey-2026-10-17-12831",
+    "name": "Bike Tracdayz",
+    "trackId": "pembrey",
+    "seriesId": "venue",
+    "raceType": "moto",
+    "startDate": "2026-10-17",
+    "endDate": "2026-10-18",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.pembreycircuit.co.uk//racing/bike-tracdayz-17-18-october",
     "sample": false
   },
   {
