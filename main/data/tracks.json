@@ -723,8 +723,8 @@
       "town": "Cardenden",
       "county": "Fife",
       "country": "Scotland",
-      "lat": 56.12781,
-      "lng": -3.2788
+      "lat": 56.12646,
+      "lng": -3.27821
     },
     "opened": null,
     "capacity": null,
@@ -733,8 +733,8 @@
     "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thunder%20Valley%20-%20geograph.org.uk%20-%203080477.jpg?width=900",
     "summary": "Driftland is a purpose-built race track for drifting at the Lochgelly Motorsport Complex, Fife, Scotland, inspired by the drift tracks of Japan.",
     "verified": true,
-    "wikidata": "Q48772190",
-    "wikipedia": "https://en.wikipedia.org/wiki/Driftland"
+    "wikidata": "Q114811655",
+    "wikipedia": null
   },
   {
     "id": "eddie-wright-raceway",
@@ -916,8 +916,8 @@
       "town": "Cardenden",
       "county": "Fife",
       "country": "Scotland",
-      "lat": 56.12781,
-      "lng": -3.2788
+      "lat": 56.12646,
+      "lng": -3.27821
     },
     "opened": null,
     "capacity": null,
@@ -926,8 +926,8 @@
     "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thunder%20Valley%20-%20geograph.org.uk%20-%203080477.jpg?width=900",
     "summary": "Circuit in Fife.",
     "verified": true,
-    "wikidata": "Q48772190",
-    "wikipedia": "https://en.wikipedia.org/wiki/Driftland"
+    "wikidata": "Q114811655",
+    "wikipedia": null
   },
   {
     "id": "mendips-raceway",
