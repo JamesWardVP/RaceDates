@@ -1049,18 +1049,6 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-northampton-international-raceway-2026-09-26",
-    "name": "WORLD FINAL (F1, F2, Classic F1)",
-    "trackId": "northampton-international-raceway",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-09-26",
-    "endDate": "2026-09-26",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
-    "sample": false
-  },
-  {
     "id": "btcc-silverstone-2026-09-26",
     "name": "BTCC — Silverstone Circuit",
     "trackId": "silverstone",
@@ -1070,6 +1058,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.silverstone.co.uk",
+    "sample": false
+  },
+  {
+    "id": "brisca-f1-northampton-international-raceway-2026-09-26",
+    "name": "WORLD FINAL (F1, F2, Classic F1)",
+    "trackId": "northampton-international-raceway",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-09-26",
+    "endDate": "2026-09-26",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1110,19 +1110,6 @@
     "sample": false
   },
   {
-    "id": "straightliners-melbourne-raceway-2026-10-03",
-    "name": "Melbourne 3/4th October 2026",
-    "trackId": "melbourne-raceway",
-    "seriesId": "straightliners",
-    "raceType": "drag",
-    "startDate": "2026-10-03",
-    "endDate": "2026-10-04",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://straightliners.events/events/melbourne-3-4th-october-2026/",
-    "sample": false
-  },
-  {
     "id": "venue-pembrey-2026-10-04-12597",
     "name": "Pembrey Performance Driving School",
     "trackId": "pembrey",
@@ -1149,44 +1136,6 @@
     "sample": false
   },
   {
-    "id": "venue-lydden-hill-2026-10-10-car-track-day-9am-3pm",
-    "name": "Car Track Day (9am - 3pm)",
-    "trackId": "lydden-hill",
-    "seriesId": "venue",
-    "raceType": "circuit",
-    "startDate": "2026-10-10",
-    "endDate": "2026-10-10",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/10-10-car-track-day-koor-oval-racing/",
-    "sample": false
-  },
-  {
-    "id": "brisca-f1-skegness-stadium-2026-10-10",
-    "name": "World Championship Qualifier 27 & Shootout Stage 2 (F1, F2, Ministox, V8 Hotstox)",
-    "trackId": "skegness-stadium",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-10-10",
-    "endDate": "2026-10-10",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
-    "sample": false
-  },
-  {
-    "id": "venue-lydden-hill-2026-10-10-kent-outlaw-oval-racing",
-    "name": "Kent Outlaw Oval Racing",
-    "trackId": "lydden-hill",
-    "seriesId": "venue",
-    "raceType": "circuit",
-    "startDate": "2026-10-10",
-    "endDate": "2026-10-10",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/kent-outlaw-oval-racing-10th-oct-2026/",
-    "sample": false
-  },
-  {
     "id": "venue-lochgelly-2026-10-10",
     "name": "October Speed Weekend Day 1",
     "trackId": "lochgelly-raceway",
@@ -1203,6 +1152,44 @@
     "sample": false
   },
   {
+    "id": "brisca-f1-skegness-stadium-2026-10-10",
+    "name": "World Championship Qualifier 27 & Shootout Stage 2 (F1, F2, Ministox, V8 Hotstox)",
+    "trackId": "skegness-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-10",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
+    "sample": false
+  },
+  {
+    "id": "venue-lydden-hill-2026-10-10-car-track-day-9am-3pm",
+    "name": "Car Track Day (9am - 3pm)",
+    "trackId": "lydden-hill",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-10",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://lyddenhill.co.uk/events/10-10-car-track-day-koor-oval-racing/",
+    "sample": false
+  },
+  {
+    "id": "venue-lydden-hill-2026-10-10-kent-outlaw-oval-racing",
+    "name": "Kent Outlaw Oval Racing",
+    "trackId": "lydden-hill",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-10",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://lyddenhill.co.uk/events/kent-outlaw-oval-racing-10th-oct-2026/",
+    "sample": false
+  },
+  {
     "id": "btcc-brands-hatch-2026-10-10",
     "name": "BTCC — Brands Hatch",
     "trackId": "brands-hatch",
@@ -1212,18 +1199,6 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.brandshatch.co.uk",
-    "sample": false
-  },
-  {
-    "id": "brisca-f1-skegness-stadium-2026-10-11",
-    "name": "Shootout Stage 2 (F1, Saloons, Ministox, V8 Hotstox)",
-    "trackId": "skegness-stadium",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-10-11",
-    "endDate": "2026-10-11",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1240,6 +1215,18 @@
     },
     "price": null,
     "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-10-11/",
+    "sample": false
+  },
+  {
+    "id": "brisca-f1-skegness-stadium-2026-10-11",
+    "name": "Shootout Stage 2 (F1, Saloons, Ministox, V8 Hotstox)",
+    "trackId": "skegness-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-10-11",
+    "endDate": "2026-10-11",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1265,19 +1252,6 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://lyddenhill.co.uk/events/2026-16th-october-rallycross-experience-day/",
-    "sample": false
-  },
-  {
-    "id": "venue-lydden-hill-2026-10-17-autumn-rallysprint",
-    "name": "Autumn Rallysprint",
-    "trackId": "lydden-hill",
-    "seriesId": "venue",
-    "raceType": "circuit",
-    "startDate": "2026-10-17",
-    "endDate": "2026-10-17",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/2026-autumn-rallysprint-17-10-26/",
     "sample": false
   },
   {
@@ -1309,6 +1283,19 @@
     "sample": false
   },
   {
+    "id": "venue-lydden-hill-2026-10-17-autumn-rallysprint",
+    "name": "Autumn Rallysprint",
+    "trackId": "lydden-hill",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2026-10-17",
+    "endDate": "2026-10-17",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://lyddenhill.co.uk/events/2026-autumn-rallysprint-17-10-26/",
+    "sample": false
+  },
+  {
     "id": "venue-castle-combe-2026-10-17",
     "name": "Advantage Motorsport Future Classics",
     "trackId": "castle-combe",
@@ -1322,18 +1309,6 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-king-s-lynn-stadium-2026-10-18",
-    "name": "World Championship Qualifier 27 & Shootout Stage 3 (F1, F2)",
-    "trackId": "king-s-lynn-stadium",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-10-18",
-    "endDate": "2026-10-18",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
-    "sample": false
-  },
-  {
     "id": "venue-lydden-hill-2026-10-18-rallycross-experience-day",
     "name": "Rallycross Experience Day",
     "trackId": "lydden-hill",
@@ -1344,6 +1319,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://lyddenhill.co.uk/events/2026-18th-october-rallycross-experience-day/",
+    "sample": false
+  },
+  {
+    "id": "brisca-f1-king-s-lynn-stadium-2026-10-18",
+    "name": "World Championship Qualifier 27 & Shootout Stage 3 (F1, F2)",
+    "trackId": "king-s-lynn-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-10-18",
+    "endDate": "2026-10-18",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1416,18 +1403,6 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-skegness-stadium-2026-11-07",
-    "name": "World Championship Qualifier 27 & Shootout Final (F1, F2, Ministox)",
-    "trackId": "skegness-stadium",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-11-07",
-    "endDate": "2026-11-07",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
-    "sample": false
-  },
-  {
     "id": "brx-lydden-hill-2026-11-07",
     "name": "5 Nations BRX — Fireworks Finale, Lydden Hill",
     "trackId": "lydden-hill",
@@ -1437,6 +1412,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://lyddenhill.co.uk",
+    "sample": false
+  },
+  {
+    "id": "brisca-f1-skegness-stadium-2026-11-07",
+    "name": "World Championship Qualifier 27 & Shootout Final (F1, F2, Ministox)",
+    "trackId": "skegness-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-11-07",
+    "endDate": "2026-11-07",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1468,19 +1455,6 @@
     "sample": false
   },
   {
-    "id": "venue-lydden-hill-2026-11-14-car-track-day",
-    "name": "Car Track Day",
-    "trackId": "lydden-hill",
-    "seriesId": "venue",
-    "raceType": "circuit",
-    "startDate": "2026-11-14",
-    "endDate": "2026-11-14",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/car-track-day-19/",
-    "sample": false
-  },
-  {
     "id": "venue-lochgelly-2026-11-14",
     "name": "2026 Season Finale",
     "trackId": "lochgelly-raceway",
@@ -1494,6 +1468,19 @@
     },
     "price": null,
     "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-11-14/",
+    "sample": false
+  },
+  {
+    "id": "venue-lydden-hill-2026-11-14-car-track-day",
+    "name": "Car Track Day",
+    "trackId": "lydden-hill",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2026-11-14",
+    "endDate": "2026-11-14",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://lyddenhill.co.uk/events/car-track-day-19/",
     "sample": false
   },
   {
