@@ -1025,18 +1025,6 @@
     "sample": false
   },
   {
-    "id": "brx-pembrey-2026-09-26",
-    "name": "5 Nations BRX — Pembrey",
-    "trackId": "pembrey",
-    "seriesId": "5-nations-brx",
-    "startDate": "2026-09-26",
-    "endDate": "2026-09-27",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.pembreycircuit.co.uk",
-    "sample": false
-  },
-  {
     "id": "btcc-silverstone-2026-09-26",
     "name": "BTCC — Silverstone Circuit",
     "trackId": "silverstone",
@@ -1058,6 +1046,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": null,
+    "sample": false
+  },
+  {
+    "id": "brx-pembrey-2026-09-26",
+    "name": "5 Nations BRX — Pembrey",
+    "trackId": "pembrey",
+    "seriesId": "5-nations-brx",
+    "startDate": "2026-09-26",
+    "endDate": "2026-09-27",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.pembreycircuit.co.uk",
     "sample": false
   },
   {
@@ -1159,22 +1159,6 @@
     "sample": false
   },
   {
-    "id": "venue-lochgelly-2026-10-17",
-    "name": "Superstox Scottish Championship",
-    "trackId": "lochgelly-raceway",
-    "seriesId": "venue",
-    "raceType": "oval",
-    "startDate": "2026-10-17",
-    "endDate": "2026-10-17",
-    "gates": {
-      "open": "17:30",
-      "close": null
-    },
-    "price": null,
-    "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-10-17/",
-    "sample": false
-  },
-  {
     "id": "brisca-f1-mildenhall-stadium-2026-10-17",
     "name": "World Championship Qualifier 27 & Shootout Stage 2 (F1, Bangers Back to Basics)",
     "trackId": "mildenhall-stadium",
@@ -1200,16 +1184,15 @@
     "sample": false
   },
   {
-    "id": "venue-lydden-hill-2026-10-17-autumn-rallysprint",
-    "name": "Autumn Rallysprint",
-    "trackId": "lydden-hill",
-    "seriesId": "venue",
-    "raceType": "circuit",
-    "startDate": "2026-10-17",
-    "endDate": "2026-10-17",
+    "id": "brisca-f1-king-s-lynn-stadium-2026-10-18",
+    "name": "World Championship Qualifier 27 & Shootout Stage 3 (F1, F2)",
+    "trackId": "king-s-lynn-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-10-18",
+    "endDate": "2026-10-18",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk/events/2026-autumn-rallysprint-17-10-26/",
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1223,18 +1206,6 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://lyddenhill.co.uk/events/2026-18th-october-rallycross-experience-day/",
-    "sample": false
-  },
-  {
-    "id": "brisca-f1-king-s-lynn-stadium-2026-10-18",
-    "name": "World Championship Qualifier 27 & Shootout Stage 3 (F1, F2)",
-    "trackId": "king-s-lynn-stadium",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-10-18",
-    "endDate": "2026-10-18",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1440,6 +1411,19 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.goodwood.com/motorsport/members-meeting/",
+    "sample": false
+  },
+  {
+    "id": "venue-goodwood-2027-07-15",
+    "name": "Goodwood Festival of Speed 2027",
+    "trackId": "goodwood",
+    "seriesId": "venue",
+    "raceType": "hillclimb",
+    "startDate": "2027-07-15",
+    "endDate": "2027-07-18",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.goodwood.com/motorsport/festival-of-speed/",
     "sample": false
   },
   {
