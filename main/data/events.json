@@ -1111,18 +1111,6 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-skegness-stadium-2026-10-10",
-    "name": "World Championship Qualifier 27 & Shootout Stage 2 (F1, F2, Ministox, V8 Hotstox)",
-    "trackId": "skegness-stadium",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-10-10",
-    "endDate": "2026-10-10",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
-    "sample": false
-  },
-  {
     "id": "btcc-brands-hatch-2026-10-10",
     "name": "BTCC — Brands Hatch",
     "trackId": "brands-hatch",
@@ -1132,6 +1120,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.brandshatch.co.uk",
+    "sample": false
+  },
+  {
+    "id": "brisca-f1-skegness-stadium-2026-10-10",
+    "name": "World Championship Qualifier 27 & Shootout Stage 2 (F1, F2, Ministox, V8 Hotstox)",
+    "trackId": "skegness-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-10",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -1193,22 +1193,6 @@
     "gates": null,
     "price": null,
     "ticketUrl": null,
-    "sample": false
-  },
-  {
-    "id": "venue-lochgelly-2026-10-24",
-    "name": "2.0 Hot Rod Scottish Championship",
-    "trackId": "lochgelly-raceway",
-    "seriesId": "venue",
-    "raceType": "oval",
-    "startDate": "2026-10-24",
-    "endDate": "2026-10-24",
-    "gates": {
-      "open": "17:30",
-      "close": null
-    },
-    "price": null,
-    "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-10-24/",
     "sample": false
   },
   {
