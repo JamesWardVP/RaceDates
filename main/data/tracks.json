@@ -136,8 +136,8 @@
       "town": "Thruxton",
       "county": "Hampshire",
       "country": "England",
-      "lat": 51.21028,
-      "lng": -1.60056
+      "lat": 51.2031,
+      "lng": -1.6095
     },
     "opened": 1968,
     "capacity": null,
@@ -146,8 +146,8 @@
     "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thruxton.jpg?width=900",
     "summary": "The fastest circuit in the UK, averaging well over 110 mph a lap in touring cars.",
     "verified": true,
-    "wikidata": "Q2465788",
-    "wikipedia": "https://en.wikipedia.org/wiki/Thruxton_Circuit"
+    "wikidata": "Q7798612",
+    "wikipedia": "https://en.wikipedia.org/wiki/Thruxton_Karting_Circuit"
   },
   {
     "id": "cadwell-park",

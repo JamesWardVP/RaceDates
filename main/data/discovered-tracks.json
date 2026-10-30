@@ -20,5 +20,16 @@
     "image": null,
     "website": "https://www.hardieracepromotions.co.uk/",
     "wikipedia": null
+  },
+  {
+    "qid": "Q2465788",
+    "name": "Q2465788",
+    "lat": 51.210278,
+    "lng": -1.600556,
+    "opened": 1950,
+    "capacity": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thruxton.jpg?width=900",
+    "website": "https://thruxtonracing.co.uk/",
+    "wikipedia": "https://en.wikipedia.org/wiki/Thruxton_Circuit"
   }
 ]
