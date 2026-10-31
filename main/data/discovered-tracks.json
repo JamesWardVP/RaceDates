@@ -11,25 +11,25 @@
     "wikipedia": "https://en.wikipedia.org/wiki/Buckmore_Park_Kart_Circuit"
   },
   {
-    "qid": "Q114811655",
-    "name": "Lochgelly Raceway",
-    "lat": 56.126456,
-    "lng": -3.27821,
+    "qid": "Q48772190",
+    "name": "Driftland",
+    "lat": 56.12781,
+    "lng": -3.2788,
     "opened": null,
     "capacity": null,
     "image": null,
-    "website": "https://www.hardieracepromotions.co.uk/",
-    "wikipedia": null
+    "website": "http://www.driftlanduk.com/",
+    "wikipedia": "https://en.wikipedia.org/wiki/Driftland"
   },
   {
-    "qid": "Q2465788",
-    "name": "Q2465788",
-    "lat": 51.210278,
-    "lng": -1.600556,
-    "opened": 1950,
+    "qid": "Q7798612",
+    "name": "Thruxton Karting Circuit",
+    "lat": 51.2031,
+    "lng": -1.6095,
+    "opened": null,
     "capacity": null,
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thruxton.jpg?width=900",
-    "website": "https://thruxtonracing.co.uk/",
-    "wikipedia": "https://en.wikipedia.org/wiki/Thruxton_Circuit"
+    "image": null,
+    "website": null,
+    "wikipedia": "https://en.wikipedia.org/wiki/Thruxton_Karting_Circuit"
   }
 ]
