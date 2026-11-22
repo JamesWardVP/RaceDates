@@ -22,6 +22,17 @@
     "wikipedia": null
   },
   {
+    "qid": "Q2465788",
+    "name": "Q2465788",
+    "lat": 51.210278,
+    "lng": -1.600556,
+    "opened": 1950,
+    "capacity": null,
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thruxton.jpg?width=900",
+    "website": "https://thruxtonracing.co.uk/",
+    "wikipedia": "https://en.wikipedia.org/wiki/Thruxton_Circuit"
+  },
+  {
     "qid": "Q7384971",
     "name": "Rye House Kart Circuit",
     "lat": 51.7676,
@@ -31,16 +42,5 @@
     "image": null,
     "website": null,
     "wikipedia": "https://en.wikipedia.org/wiki/Rye_House_Kart_Circuit"
-  },
-  {
-    "qid": "Q7798612",
-    "name": "Thruxton Karting Circuit",
-    "lat": 51.2031,
-    "lng": -1.6095,
-    "opened": null,
-    "capacity": null,
-    "image": null,
-    "website": null,
-    "wikipedia": "https://en.wikipedia.org/wiki/Thruxton_Karting_Circuit"
   }
 ]
