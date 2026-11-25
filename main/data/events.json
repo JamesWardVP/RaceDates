@@ -85,18 +85,6 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-buxton-raceway-2026-04-18",
-    "name": "World Championship Qualifier (F1, F2, Ministox, Stox Karts)",
-    "trackId": "buxton-raceway",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-04-18",
-    "endDate": "2026-04-18",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
-    "sample": false
-  },
-  {
     "id": "btcc-donington-park-2026-04-18",
     "name": "BTCC — Donington Park",
     "trackId": "donington-park",
@@ -106,6 +94,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.donington-park.co.uk",
+    "sample": false
+  },
+  {
+    "id": "brisca-f1-buxton-raceway-2026-04-18",
+    "name": "World Championship Qualifier (F1, F2, Ministox, Stox Karts)",
+    "trackId": "buxton-raceway",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-04-18",
+    "endDate": "2026-04-18",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -133,18 +133,6 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-northampton-international-raceway-2026-05-02",
-    "name": "World Championship Qualifier (F1, F2, Bangers Back to Basics Vans)",
-    "trackId": "northampton-international-raceway",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-05-02",
-    "endDate": "2026-05-02",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
-    "sample": false
-  },
-  {
     "id": "british-hillclimb-craigantlet-2026-05-02",
     "name": "British Hillclimb — Craigantlet Hill Climb",
     "trackId": "craigantlet",
@@ -154,6 +142,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.britishhillclimb.co.uk",
+    "sample": false
+  },
+  {
+    "id": "brisca-f1-northampton-international-raceway-2026-05-02",
+    "name": "World Championship Qualifier (F1, F2, Bangers Back to Basics Vans)",
+    "trackId": "northampton-international-raceway",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-05-02",
+    "endDate": "2026-05-02",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -194,18 +194,6 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-skegness-stadium-2026-05-10",
-    "name": "UK Open Championship (F1, F2, Ministox, Classic F1)",
-    "trackId": "skegness-stadium",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-05-10",
-    "endDate": "2026-05-10",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
-    "sample": false
-  },
-  {
     "id": "british-hillclimb-harewood-2026-05-10",
     "name": "British Hillclimb — Harewood Speed Hillclimb",
     "trackId": "harewood",
@@ -215,6 +203,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.britishhillclimb.co.uk",
+    "sample": false
+  },
+  {
+    "id": "brisca-f1-skegness-stadium-2026-05-10",
+    "name": "UK Open Championship (F1, F2, Ministox, Classic F1)",
+    "trackId": "skegness-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-05-10",
+    "endDate": "2026-05-10",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -278,19 +278,6 @@
     "sample": false
   },
   {
-    "id": "venue-snaefell-2026-05-25",
-    "name": "Isle of Man TT 2026",
-    "trackId": "snaefell-mountain-course",
-    "seriesId": "venue",
-    "raceType": "moto",
-    "startDate": "2026-05-25",
-    "endDate": "2026-06-06",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.iomttraces.com",
-    "sample": false
-  },
-  {
     "id": "venue-castle-combe-2026-05-25",
     "name": "Whitsun Warriors Race Day",
     "trackId": "castle-combe",
@@ -301,6 +288,19 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.castlecombecircuit.co.uk",
+    "sample": false
+  },
+  {
+    "id": "venue-snaefell-2026-05-25",
+    "name": "Isle of Man TT 2026",
+    "trackId": "snaefell-mountain-course",
+    "seriesId": "venue",
+    "raceType": "moto",
+    "startDate": "2026-05-25",
+    "endDate": "2026-06-06",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.iomttraces.com",
     "sample": false
   },
   {
@@ -316,15 +316,15 @@
     "sample": false
   },
   {
-    "id": "british-hillclimb-shelsley-walsh-2026-06-06",
-    "name": "British Hillclimb — Shelsley Walsh Hill Climb",
-    "trackId": "shelsley-walsh",
-    "seriesId": "british-hillclimb",
+    "id": "brisca-f1-mildenhall-stadium-2026-06-06",
+    "name": "European Qualifiers & World Championship Qualifier (F1, F2, 1400 Stock Cars)",
+    "trackId": "mildenhall-stadium",
+    "seriesId": "brisca-f1",
     "startDate": "2026-06-06",
-    "endDate": "2026-06-07",
+    "endDate": "2026-06-06",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://www.shelsleywalsh.com",
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -340,15 +340,15 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-mildenhall-stadium-2026-06-06",
-    "name": "European Qualifiers & World Championship Qualifier (F1, F2, 1400 Stock Cars)",
-    "trackId": "mildenhall-stadium",
-    "seriesId": "brisca-f1",
+    "id": "british-hillclimb-shelsley-walsh-2026-06-06",
+    "name": "British Hillclimb — Shelsley Walsh Hill Climb",
+    "trackId": "shelsley-walsh",
+    "seriesId": "british-hillclimb",
     "startDate": "2026-06-06",
-    "endDate": "2026-06-06",
+    "endDate": "2026-06-07",
     "gates": null,
     "price": null,
-    "ticketUrl": null,
+    "ticketUrl": "https://www.shelsleywalsh.com",
     "sample": false
   },
   {
@@ -376,18 +376,6 @@
     "sample": false
   },
   {
-    "id": "brisca-f1-scunthorpe-stadium-2026-06-20",
-    "name": "World Championship Qualifier (F1, Classic F1, Hot Rods)",
-    "trackId": "scunthorpe-stadium",
-    "seriesId": "brisca-f1",
-    "startDate": "2026-06-20",
-    "endDate": "2026-06-20",
-    "gates": null,
-    "price": null,
-    "ticketUrl": null,
-    "sample": false
-  },
-  {
     "id": "british-hillclimb-doune-2026-06-20",
     "name": "British Hillclimb — Doune Hillclimb",
     "trackId": "doune",
@@ -397,6 +385,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://www.britishhillclimb.co.uk",
+    "sample": false
+  },
+  {
+    "id": "brisca-f1-scunthorpe-stadium-2026-06-20",
+    "name": "World Championship Qualifier (F1, Classic F1, Hot Rods)",
+    "trackId": "scunthorpe-stadium",
+    "seriesId": "brisca-f1",
+    "startDate": "2026-06-20",
+    "endDate": "2026-06-20",
+    "gates": null,
+    "price": null,
+    "ticketUrl": null,
     "sample": false
   },
   {
@@ -510,15 +510,15 @@
     "sample": false
   },
   {
-    "id": "btcc-thruxton-2026-07-25",
-    "name": "BTCC — Thruxton Circuit",
-    "trackId": "thruxton",
-    "seriesId": "btcc",
+    "id": "brx-lydden-hill-2026-07-25",
+    "name": "5 Nations BRX — 2WD Superprix, Lydden Hill",
+    "trackId": "lydden-hill",
+    "seriesId": "5-nations-brx",
     "startDate": "2026-07-25",
-    "endDate": "2026-07-26",
+    "endDate": "2026-07-25",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://thruxtonracing.co.uk",
+    "ticketUrl": "https://lyddenhill.co.uk",
     "sample": false
   },
   {
@@ -534,15 +534,15 @@
     "sample": false
   },
   {
-    "id": "brx-lydden-hill-2026-07-25",
-    "name": "5 Nations BRX — 2WD Superprix, Lydden Hill",
-    "trackId": "lydden-hill",
-    "seriesId": "5-nations-brx",
+    "id": "btcc-thruxton-2026-07-25",
+    "name": "BTCC — Thruxton Circuit",
+    "trackId": "thruxton",
+    "seriesId": "btcc",
     "startDate": "2026-07-25",
-    "endDate": "2026-07-25",
+    "endDate": "2026-07-26",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk",
+    "ticketUrl": "https://thruxtonracing.co.uk",
     "sample": false
   },
   {
@@ -791,15 +791,15 @@
     "sample": false
   },
   {
-    "id": "brx-pembrey-2026-09-26",
-    "name": "5 Nations BRX — Pembrey",
-    "trackId": "pembrey",
-    "seriesId": "5-nations-brx",
+    "id": "btcc-silverstone-2026-09-26",
+    "name": "BTCC — Silverstone Circuit",
+    "trackId": "silverstone",
+    "seriesId": "btcc",
     "startDate": "2026-09-26",
     "endDate": "2026-09-27",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://www.pembreycircuit.co.uk",
+    "ticketUrl": "https://www.silverstone.co.uk",
     "sample": false
   },
   {
@@ -815,15 +815,15 @@
     "sample": false
   },
   {
-    "id": "btcc-silverstone-2026-09-26",
-    "name": "BTCC — Silverstone Circuit",
-    "trackId": "silverstone",
-    "seriesId": "btcc",
+    "id": "brx-pembrey-2026-09-26",
+    "name": "5 Nations BRX — Pembrey",
+    "trackId": "pembrey",
+    "seriesId": "5-nations-brx",
     "startDate": "2026-09-26",
     "endDate": "2026-09-27",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://www.silverstone.co.uk",
+    "ticketUrl": "https://www.pembreycircuit.co.uk",
     "sample": false
   },
   {
@@ -852,18 +852,6 @@
     "sample": false
   },
   {
-    "id": "btcc-brands-hatch-2026-10-10",
-    "name": "BTCC — Brands Hatch",
-    "trackId": "brands-hatch",
-    "seriesId": "btcc",
-    "startDate": "2026-10-10",
-    "endDate": "2026-10-11",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.brandshatch.co.uk",
-    "sample": false
-  },
-  {
     "id": "brisca-f1-skegness-stadium-2026-10-10",
     "name": "World Championship Qualifier 27 & Shootout Stage 2 (F1, F2, Ministox, V8 Hotstox)",
     "trackId": "skegness-stadium",
@@ -873,6 +861,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": null,
+    "sample": false
+  },
+  {
+    "id": "btcc-brands-hatch-2026-10-10",
+    "name": "BTCC — Brands Hatch",
+    "trackId": "brands-hatch",
+    "seriesId": "btcc",
+    "startDate": "2026-10-10",
+    "endDate": "2026-10-11",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.brandshatch.co.uk",
     "sample": false
   },
   {
@@ -962,18 +962,6 @@
     "sample": false
   },
   {
-    "id": "brx-lydden-hill-2026-11-07",
-    "name": "5 Nations BRX — Fireworks Finale, Lydden Hill",
-    "trackId": "lydden-hill",
-    "seriesId": "5-nations-brx",
-    "startDate": "2026-11-07",
-    "endDate": "2026-11-08",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://lyddenhill.co.uk",
-    "sample": false
-  },
-  {
     "id": "brisca-f1-skegness-stadium-2026-11-07",
     "name": "World Championship Qualifier 27 & Shootout Final (F1, F2, Ministox)",
     "trackId": "skegness-stadium",
@@ -983,6 +971,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": null,
+    "sample": false
+  },
+  {
+    "id": "brx-lydden-hill-2026-11-07",
+    "name": "5 Nations BRX — Fireworks Finale, Lydden Hill",
+    "trackId": "lydden-hill",
+    "seriesId": "5-nations-brx",
+    "startDate": "2026-11-07",
+    "endDate": "2026-11-08",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://lyddenhill.co.uk",
     "sample": false
   },
   {
@@ -1011,6 +1011,19 @@
     },
     "price": null,
     "ticketUrl": "https://www.hardieracepromotions.co.uk/pages/fixture/2026-11-28/",
+    "sample": false
+  },
+  {
+    "id": "venue-lydden-hill-2026-11-28-supercar-driving-experiences",
+    "name": "Supercar Driving Experiences",
+    "trackId": "lydden-hill",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2026-11-28",
+    "endDate": "2026-11-28",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://lyddenhill.co.uk/events/psr-experience-days-28-nov-2026/",
     "sample": false
   },
   {
@@ -1055,19 +1068,6 @@
     "sample": false
   },
   {
-    "id": "venue-goodwood-2027-04-10",
-    "name": "Goodwood Members' Meeting 2027",
-    "trackId": "goodwood",
-    "seriesId": "venue",
-    "raceType": "circuit",
-    "startDate": "2027-04-10",
-    "endDate": "2027-04-11",
-    "gates": null,
-    "price": null,
-    "ticketUrl": "https://www.goodwood.com/motorsport/members-meeting/",
-    "sample": false
-  },
-  {
     "id": "venue-olivers-mount-2027-04-10",
     "name": "Bob Smith Spring Cup",
     "trackId": "oliver-s-mount-racing-circuit",
@@ -1081,15 +1081,16 @@
     "sample": false
   },
   {
-    "id": "bsb-oulton-park-2027-05-01",
-    "name": "British Superbikes — Oulton Park",
-    "trackId": "oulton-park",
-    "seriesId": "bsb",
-    "startDate": "2027-05-01",
-    "endDate": "2027-05-03",
+    "id": "venue-goodwood-2027-04-10",
+    "name": "Goodwood Members' Meeting 2027",
+    "trackId": "goodwood",
+    "seriesId": "venue",
+    "raceType": "circuit",
+    "startDate": "2027-04-10",
+    "endDate": "2027-04-11",
     "gates": null,
     "price": null,
-    "ticketUrl": "https://www.oultonpark.co.uk/2027/may/british-superbike-championship",
+    "ticketUrl": "https://www.goodwood.com/motorsport/members-meeting/",
     "sample": false
   },
   {
@@ -1103,6 +1104,18 @@
     "gates": null,
     "price": null,
     "ticketUrl": "https://oliversmount.ticketco.events/uk/en/e/27mhc",
+    "sample": false
+  },
+  {
+    "id": "bsb-oulton-park-2027-05-01",
+    "name": "British Superbikes — Oulton Park",
+    "trackId": "oulton-park",
+    "seriesId": "bsb",
+    "startDate": "2027-05-01",
+    "endDate": "2027-05-03",
+    "gates": null,
+    "price": null,
+    "ticketUrl": "https://www.oultonpark.co.uk/2027/may/british-superbike-championship",
     "sample": false
   },
   {

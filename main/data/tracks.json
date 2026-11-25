@@ -136,8 +136,8 @@
       "town": "Thruxton",
       "county": "Hampshire",
       "country": "England",
-      "lat": 51.2031,
-      "lng": -1.6095
+      "lat": 51.21028,
+      "lng": -1.60056
     },
     "opened": 1968,
     "capacity": null,
@@ -146,8 +146,8 @@
     "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thruxton.jpg?width=900",
     "summary": "The fastest circuit in the UK, averaging well over 110 mph a lap in touring cars.",
     "verified": true,
-    "wikidata": "Q7798612",
-    "wikipedia": "https://en.wikipedia.org/wiki/Thruxton_Karting_Circuit"
+    "wikidata": "Q2465788",
+    "wikipedia": "https://en.wikipedia.org/wiki/Thruxton_Circuit"
   },
   {
     "id": "cadwell-park",
@@ -723,8 +723,8 @@
       "town": "Cardenden",
       "county": "Fife",
       "country": "Scotland",
-      "lat": 56.12781,
-      "lng": -3.2788
+      "lat": 56.12646,
+      "lng": -3.27821
     },
     "opened": null,
     "capacity": null,
@@ -733,8 +733,8 @@
     "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thunder%20Valley%20-%20geograph.org.uk%20-%203080477.jpg?width=900",
     "summary": "Driftland is a purpose-built race track for drifting at the Lochgelly Motorsport Complex, Fife, Scotland, inspired by the drift tracks of Japan.",
     "verified": true,
-    "wikidata": "Q48772190",
-    "wikipedia": "https://en.wikipedia.org/wiki/Driftland"
+    "wikidata": "Q114811655",
+    "wikipedia": null
   },
   {
     "id": "eddie-wright-raceway",
@@ -916,8 +916,8 @@
       "town": "Cardenden",
       "county": "Fife",
       "country": "Scotland",
-      "lat": 56.12781,
-      "lng": -3.2788
+      "lat": 56.12646,
+      "lng": -3.27821
     },
     "opened": null,
     "capacity": null,
@@ -926,8 +926,8 @@
     "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Thunder%20Valley%20-%20geograph.org.uk%20-%203080477.jpg?width=900",
     "summary": "Circuit in Fife.",
     "verified": true,
-    "wikidata": "Q48772190",
-    "wikipedia": "https://en.wikipedia.org/wiki/Driftland"
+    "wikidata": "Q114811655",
+    "wikipedia": null
   },
   {
     "id": "mendips-raceway",
@@ -1358,18 +1358,18 @@
       "town": "Buxton",
       "county": "Derbyshire",
       "country": "England",
-      "lat": 53.2226,
-      "lng": -1.9378
+      "lat": 53.259,
+      "lng": -1.911
     },
     "opened": null,
     "capacity": null,
     "lengthMiles": null,
     "website": null,
-    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Buxton%20Raceway%20-%20geograph.org.uk%20-%20335934.jpg?width=900",
+    "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Buxton%20scene%2C%20autumn%20%28geograph%203191760%29.jpg?width=900",
     "summary": "A Derbyshire stock car oval hosting BriSCA F1, F2 and Ministox racing.",
     "verified": true,
-    "wikidata": "Q124830365",
-    "wikipedia": "https://en.wikipedia.org/wiki/Buxton_Raceway"
+    "wikidata": "Q971223",
+    "wikipedia": "https://en.wikipedia.org/wiki/Buxton"
   },
   {
     "id": "foxhall-stadium",
